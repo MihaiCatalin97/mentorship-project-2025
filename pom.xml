@@ -9,6 +9,11 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>Car Rental Management</name>
+    <description>This project implements a distributed microservice-based car rental management system using Java,
+        Spring Boot, SQL, RabbitMQ, and WebSockets.
+    </description>
+
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
