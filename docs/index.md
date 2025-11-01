@@ -22,6 +22,8 @@
 - Config Server for centralized configuration
 - Kafka as alternative to RabbitMQ
 - GraphQL API layer
+- OpenAPI contracts
+- Swagger Documentation
 - Integration tests with TestContainers
 
 
