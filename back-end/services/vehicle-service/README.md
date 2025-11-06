@@ -1,11 +1,11 @@
 # vehicle-service
 
 ## Overview
-Maven module for vehicle related operations.(Initial setup)
+Modul Maven pentru operațiuni legate de vehicule (setup inițial).
 
 ## Structure
-- [VehicleServiceApplication](src/main/java/com/project/mentorship/service/vehicle/VehicleServiceApplication.java) — entry point dummy (psvm)
+- `src/main/java/com/project/mentorship/service/vehicle/VehicleServiceApplication.java` — entry point dummy (psvm)
 
 ## Build
 ```bash
-mvn install -DskipTests 
+mvn -DskipTests install
