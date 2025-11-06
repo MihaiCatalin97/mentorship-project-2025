@@ -12,5 +12,8 @@
 
     <artifactId>services</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>vehicle-service</module>
+    </modules>
 
 </project>
