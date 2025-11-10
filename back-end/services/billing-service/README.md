@@ -1,0 +1,11 @@
+# vehicle-service
+
+## Overview
+Maven module for vehicle related operations.(Initial setup)
+
+## Structure
+- [BillingServiceApplication](src/main/java/com/project/mentorship/service/billing/BillingServiceApplication.java) — entry point dummy (psvm)
+
+## Build
+```bash
+mvn install -DskipTests 
