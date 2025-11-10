@@ -16,7 +16,6 @@
     <modules>
         <module>common-libs</module>
         <module>services</module>
-        <module>services/notification-service</module>
     </modules>
 
 </project>
