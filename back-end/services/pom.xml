@@ -13,4 +13,8 @@
     <artifactId>services</artifactId>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>auth-service</module>
+    </modules>
+
 </project>

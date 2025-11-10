@@ -16,7 +16,6 @@
     <modules>
         <module>common-libs</module>
         <module>services</module>
-        <module>services/auth-service</module>
     </modules>
 
 </project>
