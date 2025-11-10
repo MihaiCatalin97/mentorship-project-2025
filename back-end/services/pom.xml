@@ -12,11 +12,9 @@
 
     <artifactId>services</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>vehicle-service</module>
-    </modules>
 
     <modules>
+        <module>vehicle-service</module>
         <module>auth-service</module>
     </modules>
 
