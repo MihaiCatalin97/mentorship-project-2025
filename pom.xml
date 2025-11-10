@@ -18,6 +18,7 @@
         <module>back-end</module>
         <module>database</module>
         <module>deploy</module>
+        <module>back-end/services/reservation-service</module>
     </modules>
 
 </project>
