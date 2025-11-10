@@ -12,6 +12,7 @@
 
     <artifactId>services</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>gateway</module>
     </modules>
