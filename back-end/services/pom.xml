@@ -17,6 +17,7 @@
         <module>vehicle-service</module>
         <module>auth-service</module>
         <module>notification-service</module>
+        <module>gateway</module>
     </modules>
 
 </project>
