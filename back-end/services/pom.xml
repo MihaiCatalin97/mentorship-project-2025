@@ -14,12 +14,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>gateway</module>
-    </modules>
-
-    <modules>
         <module>vehicle-service</module>
         <module>auth-service</module>
+        <module>gateway</module>
     </modules>
 
 </project>
