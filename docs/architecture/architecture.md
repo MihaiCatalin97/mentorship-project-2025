@@ -326,6 +326,31 @@ flowchart TB
   U1 --> M1
 ```
 
+### Entity Creation Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant CLIENT as Client
+    participant CONTROLLER as Controller
+    participant MAPPER as Mapper
+    participant SERVICE as Service
+    participant REPOSITORY as Repository
+    
+    CLIENT ->> CONTROLLER: HTTP Request
+    CONTROLLER ->> CONTROLLER: Validates DTO
+    CONTROLLER ->> MAPPER: DTO
+    MAPPER ->> CONTROLLER: Domain Object
+    CONTROLLER ->> SERVICE: Domain Object
+    SERVICE ->> SERVICE: Validates Domain Object
+    SERVICE ->> REPOSITORY: Domain Object
+    REPOSITORY ->> REPOSITORY: Stores Domain Object
+    REPOSITORY ->> SERVICE: returns Domain Object
+    SERVICE ->> CONTROLLER: returns Domain Object
+    CONTROLLER ->> MAPPER: Domain Object
+    MAPPER ->> CONTROLLER: DTO
+    CONTROLLER ->> CLIENT: HTTP Response
+```
+
 ## ✅ Layer Responsibilities
 
 | Layer                      | Package          | Purpose                                              | Example classes                               |
