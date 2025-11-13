@@ -25,7 +25,7 @@ To validate that the code in the `main` branch compiles successfully after chang
 ## 3. Pull Request Pipeline: `pull_request.yml`
 
 **Purpose:**
-To validate that a draft pull request targeting the `main` branch compiles successfully before merging.
+To validate that a non-draft pull request targeting the `main` branch compiles successfully before merging.
 
 
 **Trigger:**
