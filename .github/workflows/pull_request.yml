@@ -2,11 +2,8 @@ name: Build (PR to main)
 
 on:
   pull_request:
-    branches: [ main ]
-    types: [opened, synchronize, reopened, ready_for_review]
-
-permissions:
-  contents: read
+    branches:
+        - main
 
 jobs:
   build:
@@ -25,4 +22,4 @@ jobs:
           cache: maven
 
       - name: Build with Maven
-        run: mvn -B clean install
+        run: mvn clean install
