@@ -22,6 +22,7 @@
 
         <!-- Plugin versions -->
         <spotless.version>3.0.0</spotless.version>
+        <sonar.coverage.exclusions>**/*Application.java</sonar.coverage.exclusions>
     </properties>
 
     <modules>
