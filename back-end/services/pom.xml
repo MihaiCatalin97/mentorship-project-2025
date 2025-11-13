@@ -16,11 +16,11 @@
     <modules>
         <module>vehicle-service</module>
         <module>billing-service</module>
+        <module>customer-service</module>
         <module>auth-service</module>
         <module>notification-service</module>
         <module>gateway</module>
         <module>analytics-service</module>
         <module>reservation-service</module>
     </modules>
-
 </project>
