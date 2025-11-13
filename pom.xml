@@ -15,10 +15,13 @@
     </description>
 
     <properties>
+        <!-- Compiler properties -->
         <maven.compiler.release>21</maven.compiler.release>
         <maven.compiler.source>21</maven.compiler.source>
-        <spotless.version>3.0.0</spotless.version>
         <maven.compiler.target>21</maven.compiler.target>
+
+        <!-- Plugin versions -->
+        <spotless.version>3.0.0</spotless.version>
     </properties>
 
     <modules>
