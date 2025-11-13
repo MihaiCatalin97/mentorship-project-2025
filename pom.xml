@@ -17,6 +17,7 @@
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <maven.compiler.source>21</maven.compiler.source>
+        <spotless.version>3.0.0</spotless.version>
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
@@ -31,18 +32,13 @@
                 <plugin>
                     <groupId>com.diffplug.spotless</groupId>
                     <artifactId>spotless-maven-plugin</artifactId>
-                    <version>2.43.0</version>
+                    <version>${spotless.version}</version>
                     <configuration>
                         <java>
+                            <eclipse />
+                            <importOrder />
                             <removeUnusedImports />
-                            <replaceRegex>
-                                <name>Remove wildcard imports</name>
-                                <searchRegex>import\\s+[^\*\\s]+\\*;(\\r\\n|\\r|\\n)</searchRegex>
-                                <replacement>$1</replacement>
-                            </replaceRegex>
-                            <eclipse>
-                                <version>4.25.0</version>
-                            </eclipse>
+                            <forbidWildcardImports />
                         </java>
                     </configuration>
                     <executions>
