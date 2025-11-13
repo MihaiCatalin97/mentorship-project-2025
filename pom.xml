@@ -25,7 +25,6 @@
         <module>database</module>
         <module>deploy</module>
     </modules>
-
     <build>
         <pluginManagement>
             <plugins>
