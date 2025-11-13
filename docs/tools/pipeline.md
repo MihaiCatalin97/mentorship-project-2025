@@ -21,8 +21,16 @@ Both pipelines ensure that the project builds correctly using **Maven** with **J
 **Purpose:**  
 To validate that the code in the `main` branch compiles successfully after changes are merged.
 
+
+## 3. Pull Request Pipeline: `pull_request.yml`
+
+**Purpose:**
+To validate that a draft pull request targeting the `main` branch compiles successfully before merging.
+
+
 **Trigger:**
 ```yaml
 on:
   push:
-    branches: [ main ]
+    branches:
+        - main
