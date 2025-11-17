@@ -1,4 +1,4 @@
-package com.project.mentorship.service.reservation;
+package com.project.mentorship.service.vehicle.service.reservation;
 
 public class ReservationServiceApplication {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.project.mentorship.service.billing;
+package com.project.mentorship.service.vehicle.service.billing;
 
 public class BillingServiceApplication {
 	public static void main(String[] args) {
