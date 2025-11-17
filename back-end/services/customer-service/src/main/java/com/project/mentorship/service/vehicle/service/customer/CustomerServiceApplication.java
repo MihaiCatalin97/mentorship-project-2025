@@ -1,4 +1,4 @@
-package com.project.mentorship.service.customer;
+package com.project.mentorship.service.vehicle.service.customer;
 
 public class CustomerServiceApplication {
 	public static void main(String[] args) {
