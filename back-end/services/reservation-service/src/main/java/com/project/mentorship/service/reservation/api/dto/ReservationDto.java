@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ReservationDto {
-    private String id;
-    private String customerId;
-    private String vehicleId;
-    private String startTime;
-    private String endTime;
-    private String status;
-    private String createdAt;
-    private String updatedAt;
+	private String id;
+	private String customerId;
+	private String vehicleId;
+	private String startTime;
+	private String endTime;
+	private String status;
+	private String createdAt;
+	private String updatedAt;
 }

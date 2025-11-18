@@ -1,22 +1,23 @@
 package com.project.mentorship.service.reservation.domain;
 
+import java.time.OffsetDateTime;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Reservation {
-    private String id;
-    private String customerId;
-    private String vehicleId;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private String status;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+	private UUID id;
+	private UUID customerId;
+	private UUID vehicleId;
+	private OffsetDateTime startTime;
+	private OffsetDateTime endTime;
+	private ReservationStatus status;
+	private OffsetDateTime createdAt;
+	private OffsetDateTime updatedAt;
 }
