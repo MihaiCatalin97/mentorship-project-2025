@@ -1,6 +1,6 @@
 package com.project.mentorship.service.reservation.service;
 
-import com.project.mentorship.lib.pattern.Repository.BaseService;
+import com.project.mentorship.lib.pattern.repository.BaseService;
 import com.project.mentorship.service.reservation.domain.Reservation;
 import com.project.mentorship.service.reservation.persistance.ReservationRepository;
 import lombok.RequiredArgsConstructor;
