@@ -1,4 +1,4 @@
-package com.project.mentorship.lib.pattern;
+package com.project.mentorship.lib.pattern.Repository;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
