@@ -1,6 +1,6 @@
-package com.project.mentorship.service.reservation.persistence;
+package com.project.mentorship.service.reservation.persistance;
 
-import com.project.mentorship.lib.pattern.BaseRepository;
+import com.project.mentorship.lib.pattern.Repository.BaseRepository;
 import com.project.mentorship.service.reservation.domain.Reservation;
 import java.util.ArrayList;
 import java.util.List;

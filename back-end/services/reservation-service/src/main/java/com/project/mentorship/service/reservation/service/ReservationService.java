@@ -1,8 +1,8 @@
 package com.project.mentorship.service.reservation.service;
 
-import com.project.mentorship.lib.pattern.BaseService;
+import com.project.mentorship.lib.pattern.Repository.BaseService;
 import com.project.mentorship.service.reservation.domain.Reservation;
-import com.project.mentorship.service.reservation.persistence.ReservationRepository;
+import com.project.mentorship.service.reservation.persistance.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

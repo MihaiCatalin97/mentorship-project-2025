@@ -1,53 +1,70 @@
 package com.project.mentorship.service.reservation.mapper;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.project.mentorship.service.reservation.api.dto.ReservationDto;
 import com.project.mentorship.service.reservation.domain.Reservation;
 import com.project.mentorship.service.reservation.domain.ReservationStatus;
 import java.time.OffsetDateTime;
 import java.util.UUID;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ReservationMapperTest {
 
-	private ReservationMapper reservationMapper;
-
-	@BeforeEach
-	void setUp() {
-		reservationMapper = new ReservationMapper();
-	}
+	private final ReservationMapper reservationMapper = new ReservationMapper();
 
 	@Test
-	void toDomain_ShouldMapOffsetDateTimeFields() {
-		ReservationDto dto = ReservationDto.builder().id(UUID.randomUUID().toString())
-				.customerId(UUID.randomUUID().toString()).vehicleId(UUID.randomUUID().toString())
-				.startTime("2024-06-01T10:15:30+01:00").endTime("2024-06-01T12:15:30+01:00").status("CONFIRMED")
-				.createdAt("2024-06-01T09:00:00+01:00").updatedAt("2024-06-01T09:30:00+01:00").build();
+	void toDomain_ShouldMapAllFieldsCorrectly() {
+		UUID id = UUID.randomUUID();
+		UUID customerId = UUID.randomUUID();
+		UUID vehicleId = UUID.randomUUID();
+		String now = OffsetDateTime.now().toString();
+
+		ReservationDto dto = ReservationDto.builder().id(id.toString()).customerId(customerId.toString())
+				.vehicleId(vehicleId.toString()).startTime(now).endTime(now).status("CONFIRMED").createdAt(now)
+				.updatedAt(now).build();
 
 		Reservation result = reservationMapper.toDomain(dto);
-
-		assertThat(result.getStartTime()).isEqualTo(OffsetDateTime.parse(dto.getStartTime()));
-		assertThat(result.getEndTime()).isEqualTo(OffsetDateTime.parse(dto.getEndTime()));
-		assertThat(result.getCreatedAt()).isEqualTo(OffsetDateTime.parse(dto.getCreatedAt()));
-		assertThat(result.getUpdatedAt()).isEqualTo(OffsetDateTime.parse(dto.getUpdatedAt()));
+		assertNotNull(result);
+		assertEquals(id, result.getId());
+		assertEquals(customerId, result.getCustomerId());
+		assertEquals(vehicleId, result.getVehicleId());
+		assertEquals(ReservationStatus.CONFIRMED, result.getStatus());
+		assertEquals(OffsetDateTime.parse(now), result.getStartTime());
+		assertEquals(OffsetDateTime.parse(now), result.getEndTime());
 	}
 
 	@Test
-	void toDto_ShouldMapOffsetDateTimeFields() {
-		Reservation reservation = Reservation.builder().id(UUID.randomUUID()).customerId(UUID.randomUUID())
-				.vehicleId(UUID.randomUUID()).startTime(OffsetDateTime.parse("2024-06-01T10:15:30+01:00"))
-				.endTime(OffsetDateTime.parse("2024-06-01T12:15:30+01:00")).status(ReservationStatus.CONFIRMED)
-				.createdAt(OffsetDateTime.parse("2024-06-01T09:00:00+01:00"))
-				.updatedAt(OffsetDateTime.parse("2024-06-01T09:30:00+01:00")).build();
+	void toDomain_ShouldReturnNull_WhenInputIsNull() {
+		assertNull(reservationMapper.toDomain(null));
+	}
+
+	@Test
+	void toDto_ShouldMapAllFieldsCorrectly() {
+		// Arrange
+		UUID id = UUID.randomUUID();
+		UUID customerId = UUID.randomUUID();
+		UUID vehicleId = UUID.randomUUID();
+		OffsetDateTime now = OffsetDateTime.now();
+
+		Reservation reservation = Reservation.builder().id(id).customerId(customerId).vehicleId(vehicleId)
+				.startTime(now).endTime(now).status(ReservationStatus.CANCELLED).createdAt(now).updatedAt(now).build();
 
 		ReservationDto dto = reservationMapper.toDto(reservation);
 
-		assertThat(dto.getStartTime()).isEqualTo(reservation.getStartTime().toString());
-		assertThat(dto.getEndTime()).isEqualTo(reservation.getEndTime().toString());
-		assertThat(dto.getCreatedAt()).isEqualTo(reservation.getCreatedAt().toString());
-		assertThat(dto.getUpdatedAt()).isEqualTo(reservation.getUpdatedAt().toString());
+		assertNotNull(dto);
+		assertEquals(id.toString(), dto.getId());
+		assertEquals(customerId.toString(), dto.getCustomerId());
+		assertEquals(vehicleId.toString(), dto.getVehicleId());
+		assertEquals("CANCELLED", dto.getStatus());
+		assertEquals(now.toString(), dto.getStartTime());
+		assertEquals(now.toString(), dto.getEndTime());
 	}
 
+	@Test
+	void toDto_ShouldReturnNull_WhenInputIsNull() {
+		assertNull(reservationMapper.toDto(null));
+	}
 }

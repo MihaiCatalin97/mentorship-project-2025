@@ -1,4 +1,4 @@
-package com.project.mentorship.lib.pattern;
+package com.project.mentorship.lib.pattern.Repository;
 
 import com.project.mentorship.lib.exception.NotImplementedException;
 import java.util.List;
