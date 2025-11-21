@@ -25,16 +25,18 @@ class ReservationControllerTest {
 
 	@Test
 	void shouldCreateReservationAndReturn201() throws Exception {
-		ReservationDto request = ReservationDto.builder().id("550e8400-e29b-41d4-a716-446655440000")
-				.customerId("123e4567-e89b-12d3-a456-426614174000").vehicleId("223e4567-e89b-12d3-a456-426614174000")
-				.startTime("2025-11-14T10:00:00+01:00").endTime("2025-11-14T12:00:00+01:00").status("PENDING")
-				.createdAt("2025-11-14T09:50:00+01:00").updatedAt("2025-11-14T09:50:00+01:00").build();
+		// Given
+		ReservationDto request = new ReservationDto("550e8400-e29b-41d4-a716-446655440000",
+				"123e4567-e89b-12d3-a456-426614174000", "223e4567-e89b-12d3-a456-426614174000", "2025-11-14T10:00:00Z",
+				"2025-11-14T12:00:00Z", "PENDING", "2025-11-14T09:50:00Z", "2025-11-14T09:50:00Z");
 
+		// When & Then
 		mockMvc.perform(post("/reservations").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(request))).andExpect(status().isCreated())
-				.andExpect(jsonPath("$.id").value("550e8400-e29b-41d4-a716-446655440000"))
+				.andExpect(jsonPath("$.id").isNotEmpty())
 				.andExpect(jsonPath("$.customerId").value("123e4567-e89b-12d3-a456-426614174000"))
-				.andExpect(jsonPath("$.status").value("PENDING"));
-	}
+				.andExpect(jsonPath("$.status").value("PENDING")).andExpect(jsonPath("$.createdAt").isNotEmpty())
+				.andExpect(jsonPath("$.updatedAt").doesNotExist());
 
+	}
 }

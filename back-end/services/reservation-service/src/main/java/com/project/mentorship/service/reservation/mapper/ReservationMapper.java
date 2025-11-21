@@ -10,33 +10,49 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReservationMapper {
 
-	public Reservation toDomain(ReservationDto dto) {
+	public Reservation map(ReservationDto dto) {
 		if (dto == null) {
 			return null;
 		}
 
-		return Reservation.builder().id(dto.getId() != null ? UUID.fromString(dto.getId()) : null)
-				.customerId(dto.getCustomerId() != null ? UUID.fromString(dto.getCustomerId()) : null)
-				.vehicleId(dto.getVehicleId() != null ? UUID.fromString(dto.getVehicleId()) : null)
-				.startTime(dto.getStartTime() != null ? OffsetDateTime.parse(dto.getStartTime()) : null)
-				.endTime(dto.getEndTime() != null ? OffsetDateTime.parse(dto.getEndTime()) : null)
-				.status(dto.getStatus() != null ? ReservationStatus.valueOf(dto.getStatus()) : null)
-				.createdAt(dto.getCreatedAt() != null ? OffsetDateTime.parse(dto.getCreatedAt()) : null)
-				.updatedAt(dto.getUpdatedAt() != null ? OffsetDateTime.parse(dto.getUpdatedAt()) : null).build();
+		return Reservation.builder().id(dto.id() != null ?
+                        UUID.fromString(dto.id()) : null)
+				.customerId(dto.customerId() != null ?
+                        UUID.fromString(dto.customerId()) : null)
+				.vehicleId(dto.vehicleId() != null ?
+                        UUID.fromString(dto.vehicleId()) : null)
+				.startTime(dto.startTime() != null ?
+                        OffsetDateTime.parse(dto.startTime()) : null)
+				.endTime(dto.endTime() != null ?
+                        OffsetDateTime.parse(dto.endTime()) : null)
+				.status(dto.status() != null ?
+                        ReservationStatus.valueOf(dto.status()) : null)
+				.createdAt(dto.createdAt() != null ?
+                        OffsetDateTime.parse(dto.createdAt()) : null)
+				.updatedAt(dto.updatedAt() != null ?
+                        OffsetDateTime.parse(dto.updatedAt()) : null).build();
 	}
 
-	public ReservationDto toDto(Reservation reservation) {
+	public ReservationDto map(Reservation reservation) {
 		if (reservation == null) {
 			return null;
 		}
 
-		return ReservationDto.builder().id(reservation.getId() != null ? reservation.getId().toString() : null)
-				.customerId(reservation.getCustomerId() != null ? reservation.getCustomerId().toString() : null)
-				.vehicleId(reservation.getVehicleId() != null ? reservation.getVehicleId().toString() : null)
-				.startTime(reservation.getStartTime() != null ? reservation.getStartTime().toString() : null)
-				.endTime(reservation.getEndTime() != null ? reservation.getEndTime().toString() : null)
-				.status(reservation.getStatus() != null ? reservation.getStatus().name() : null)
-				.createdAt(reservation.getCreatedAt() != null ? reservation.getCreatedAt().toString() : null)
-				.updatedAt(reservation.getUpdatedAt() != null ? reservation.getUpdatedAt().toString() : null).build();
+		return new ReservationDto(reservation.getId() != null ?
+                reservation.getId().toString() : null,
+				reservation.getCustomerId() != null ?
+                        reservation.getCustomerId().toString() : null,
+				reservation.getVehicleId() != null ?
+                        reservation.getVehicleId().toString() : null,
+				reservation.getStartTime() != null ?
+                        reservation.getStartTime().toString() : null,
+				reservation.getEndTime() != null ?
+                        reservation.getEndTime().toString() : null,
+				reservation.getStatus() != null ?
+                        reservation.getStatus().name() : null,
+				reservation.getCreatedAt() != null ?
+                        reservation.getCreatedAt().toString() : null,
+				reservation.getUpdatedAt() != null ?
+                        reservation.getUpdatedAt().toString() : null);
 	}
 }

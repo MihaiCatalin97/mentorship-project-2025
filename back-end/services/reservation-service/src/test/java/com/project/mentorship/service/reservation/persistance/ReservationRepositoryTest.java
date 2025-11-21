@@ -19,11 +19,16 @@ class ReservationRepositoryTest {
 
 	@Test
 	void save_ShouldAddReservationToList() {
-
+        //Given
 		Reservation reservation = new Reservation();
 		reservation.setId(UUID.randomUUID());
+
+        //When
 		Reservation result = reservationRepository.save(reservation);
+
+        //Then
 		assertNotNull(result);
-		assertEquals(reservation, result, "Obiectul returnat trebuie să fie același cu cel salvat");
+		assertEquals(reservation, result,
+                "The saved reservation should be the same as the input reservation");
 	}
 }
