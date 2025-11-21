@@ -1,4 +1,3 @@
-
 package com.project.mentorship.lib.pattern;
 
 import com.project.mentorship.lib.exception.NotImplementedException;
