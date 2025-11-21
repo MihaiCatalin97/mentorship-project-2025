@@ -10,7 +10,7 @@ import java.util.Optional;
  * Each method has a default implementation that throws
  * {@link NotImplementedException}. Concrete services should override these
  * methods as needed.
- * 
+ *
  * @param <T>
  *            the type of entity handled by the service
  */
@@ -19,7 +19,7 @@ public interface BaseService<T> {
 
 	/**
 	 * Creates a new entity.
-	 * 
+	 *
 	 * @param entity
 	 *            the entity to create
 	 * @return the created entity
@@ -32,7 +32,7 @@ public interface BaseService<T> {
 
 	/**
 	 * Updates an existing entity.
-	 * 
+	 *
 	 * @param entity
 	 *            the entity to update
 	 * @return the updated entity
@@ -45,7 +45,7 @@ public interface BaseService<T> {
 
 	/**
 	 * Deletes an entity by its ID.
-	 * 
+	 *
 	 * @param id
 	 *            the unique identifier of the entity
 	 * @throws NotImplementedException
@@ -57,7 +57,7 @@ public interface BaseService<T> {
 
 	/**
 	 * Finds an entity by its ID.
-	 * 
+	 *
 	 * @param id
 	 *            the unique identifier of the entity
 	 * @return an {@link Optional} containing the entity if found, or empty
@@ -71,7 +71,7 @@ public interface BaseService<T> {
 
 	/**
 	 * Returns all entities.
-	 * 
+	 *
 	 * @return a list of all entities
 	 * @throws NotImplementedException
 	 *             if the method is not implemented

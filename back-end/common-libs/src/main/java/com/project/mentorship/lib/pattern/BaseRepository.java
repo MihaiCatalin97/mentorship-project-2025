@@ -18,7 +18,7 @@ public interface BaseRepository<T> {
 
 	/**
 	 * Persists a new entity.
-	 * 
+	 *
 	 * @param entity
 	 *            the entity to save
 	 * @return the persisted entity
@@ -31,7 +31,7 @@ public interface BaseRepository<T> {
 
 	/**
 	 * Updates an existing entity.
-	 * 
+	 *
 	 * @param entity
 	 *            the entity to update
 	 * @return the updated entity
@@ -44,7 +44,7 @@ public interface BaseRepository<T> {
 
 	/**
 	 * Deletes an entity by ID.
-	 * 
+	 *
 	 * @param id
 	 *            the unique identifier of the entity
 	 * @throws NotImplementedException
@@ -56,7 +56,7 @@ public interface BaseRepository<T> {
 
 	/**
 	 * Finds an entity by ID.
-	 * 
+	 *
 	 * @param id
 	 *            the unique identifier of the entity
 	 * @return an {@link Optional} containing the entity if found
@@ -69,7 +69,7 @@ public interface BaseRepository<T> {
 
 	/**
 	 * Retrieves all entities.
-	 * 
+	 *
 	 * @return a list of all entities
 	 * @throws NotImplementedException
 	 *             if the method is not implemented
