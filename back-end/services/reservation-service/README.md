@@ -12,6 +12,7 @@ mvn install -DskipTests
 ```
 ## API
 ### POST @ /reservations
+![img.png](img.png)
 #### Description
 Create a new reservation (temporarily stored in memory). The flow follows the n-layer architecture: 
 Controller → Mapper → Service → Repository.

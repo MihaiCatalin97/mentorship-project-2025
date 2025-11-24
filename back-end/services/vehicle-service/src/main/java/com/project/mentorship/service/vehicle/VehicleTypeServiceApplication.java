@@ -1,11 +1,11 @@
-package com.project.mentorship.service.vehicle.service.reservation;
+package com.project.mentorship.service.vehicle;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ReservationServiceApplication {
+public class VehicleTypeServiceApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(ReservationServiceApplication.class, args);
+		SpringApplication.run(VehicleTypeServiceApplication.class, args);
 	}
 }

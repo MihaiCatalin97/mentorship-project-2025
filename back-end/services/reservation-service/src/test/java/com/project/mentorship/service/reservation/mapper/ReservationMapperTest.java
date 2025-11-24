@@ -21,10 +21,10 @@ class ReservationMapperTest {
 		UUID id = UUID.randomUUID();
 		UUID customerId = UUID.randomUUID();
 		UUID vehicleId = UUID.randomUUID();
-		String now = OffsetDateTime.now().toString();
+		OffsetDateTime now = OffsetDateTime.now();
 
-		ReservationDto dto = new ReservationDto(id.toString(), customerId.toString(), vehicleId.toString(), now, now,
-				"CONFIRMED", now, now);
+		ReservationDto dto = new ReservationDto(id, customerId, vehicleId, now, now, ReservationStatus.CONFIRMED, now,
+				now);
 
 		// When
 		Reservation result = reservationMapper.map(dto);
@@ -35,8 +35,8 @@ class ReservationMapperTest {
 		assertEquals(customerId, result.getCustomerId());
 		assertEquals(vehicleId, result.getVehicleId());
 		assertEquals(ReservationStatus.CONFIRMED, result.getStatus());
-		assertEquals(OffsetDateTime.parse(now), result.getStartTime());
-		assertEquals(OffsetDateTime.parse(now), result.getEndTime());
+		assertEquals(now, result.getStartTime());
+		assertEquals(now, result.getEndTime());
 	}
 
 	@Test
@@ -67,12 +67,12 @@ class ReservationMapperTest {
 
 		// Then
 		assertNotNull(dto);
-		assertEquals(id.toString(), dto.id());
-		assertEquals(customerId.toString(), dto.customerId());
-		assertEquals(vehicleId.toString(), dto.vehicleId());
-		assertEquals("CANCELLED", dto.status());
-		assertEquals(now.toString(), dto.startTime());
-		assertEquals(now.toString(), dto.endTime());
+		assertEquals(id, dto.id());
+		assertEquals(customerId, dto.customerId());
+		assertEquals(vehicleId, dto.vehicleId());
+		assertEquals(ReservationStatus.CANCELLED, dto.status());
+		assertEquals(now, dto.startTime());
+		assertEquals(now, dto.endTime());
 	}
 
 	@Test
