@@ -1,23 +1,25 @@
 # Auth Service Module
 
-## Setup Steps
+## Overview
+Initial setup for the **auth-service** responsible for user creation.  
+Users are stored in-memory; a default **ADMIN** user is created at application startup.  
+All users created via API receive role **USER**. Happy-flow only (no validations).
 
-- Created new module: `auth-service` using IntelliJ IDEA.
-- Configured `pom.xml` for Maven build.
+## Setup Steps
+- Created new module: `auth-service` (under `back-end/services`).
+- Configured `pom.xml` to inherit from `services` and use Spring Boot.
 - Established package structure: `com.project.mentorship.service.auth`.
-- Added `AuthServiceApplication` class with a placeholder main method.
-- This `README.md` documents the initial setup.
+- Added `AuthServiceApplication` (Spring Boot entry point).
+- Implemented layers:
+    - `api` → `UserController` (POST `/users`)
+    - `api/dto` → `UserDto`
+    - `mapper` → `UserMapper` (DTO -> Domain && Domain -> DTO)
+    - `domain` → `User`, `Role`
+    - `persistance` → `UserRepository` (in-memory, default admin in non-static block)
+    - `service` → `UserService` (`create(User)` delegates to repository)
 
 ## Build & Integration
-
-- The module is included in Maven goals.
-- After running `mvn install`, you should see:
-    - `auth-service ..... SUCCESS`
-    - The module's JAR in your local `.m2` repository.
-
-## Definition of Done
-- Module set up in project.
-- `pom.xml` created and configured.
-- `AuthServiceApplication` class present.
-- This `README.md` file created.
-- Maven build includes `auth-service` and produces its JAR.
+- Module included in Maven reactor.
+- Build:
+  ```bash
+  mvn clean install -DskipTests
