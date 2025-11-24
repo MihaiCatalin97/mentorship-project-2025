@@ -10,5 +10,15 @@
     </parent>
 
     <artifactId>customer-service</artifactId>
+    <name>customer-service</name>
+    <dependencies>
+        <dependency>
+            <groupId>com.project.mentorship</groupId>
+            <artifactId>common-libs</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    <packaging>jar</packaging>
 
 </project>
