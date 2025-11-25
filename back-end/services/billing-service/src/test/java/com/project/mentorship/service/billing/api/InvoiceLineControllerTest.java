@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class InvoiceLineControllerTest {
+class InvoiceLineControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -25,10 +25,12 @@ public class InvoiceLineControllerTest {
 	private ObjectMapper objectMapper;
 
 	@Test
-	void shouldCreateInvoiceLineThenReturn201() throws Exception {
+	void create_shouldCreateInvoiceLineThenReturn201_whenGivenCorrectInput() throws Exception {
+		// Given
 		InvoiceLineDto invoiceLineDto = new InvoiceLineDto(UUID.fromString("11111111-1111-1111-1111-111111111111"),
 				UUID.fromString("11111111-1111-1111-1111-111111111111"), "Updated description", 12, 100.50, 1200.70);
 
+		// When & Then
 		mockMvc.perform(post("/invoice-line").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(invoiceLineDto))).andExpect(status().isCreated())
 				.andExpect(jsonPath("$.id").value("11111111-1111-1111-1111-111111111111"))

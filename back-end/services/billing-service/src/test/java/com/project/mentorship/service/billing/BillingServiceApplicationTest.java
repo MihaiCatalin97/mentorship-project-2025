@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
 
-public class InvoiceLineApplicationTest {
+class BillingServiceApplicationTest {
 	@Test
 	void mainMethodRunsWithoutException() {
-		assertDoesNotThrow(() -> InvoiceLineServiceApplication.main(new String[]{}));
+		assertDoesNotThrow(() -> BillingServiceApplication.main(new String[]{}));
 	}
 }

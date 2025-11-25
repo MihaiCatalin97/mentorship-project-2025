@@ -4,14 +4,14 @@
 Maven module for vehicle reservation operations.(Initial setup)
 
 ## Structure
-- [InvoiceLinerviceApplication](src/main/java/com/project/mentorship/service/billing/InvoiceLineServiceApplication.java) — entry point dummy (psvm)
+- [BillingServiceApplication](src/main/java/com/project/mentorship/service/billing/BillingServiceApplication.java) — entry point dummy (psvm)
 
 ## Build
 ```bash
 mvn install -DskipTests
 ```
 ## API
-### POST @ /reservations
+### POST @ /invoice-line
 #### Description
 Create a new invoice (temporarily stored in memory). The flow follows the n-layer architecture:
 Controller → Mapper → Service → Repository.

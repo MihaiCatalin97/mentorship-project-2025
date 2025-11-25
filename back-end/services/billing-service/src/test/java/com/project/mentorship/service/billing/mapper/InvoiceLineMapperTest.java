@@ -9,13 +9,13 @@ import com.project.mentorship.service.billing.domain.InvoiceLine;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
-public class InvoiceLineMapperTest {
+class InvoiceLineMapperTest {
 
 	private final InvoiceLineMapper invoiceLineMapper = new InvoiceLineMapper();
 
 	@Test
-	void mapToInvoiceLine_ShouldMapFromDtoToDomain() {
-
+	void mapToInvoiceLine_ShouldMapFromDtoToDomain_WhenGivenCorrectInput() {
+		// Given
 		UUID id = UUID.fromString("11111111-1111-1111-1111-111111111111");
 		UUID invoiceId = UUID.fromString("11111111-1111-1111-1111-111111111111");
 		String description = "description";
@@ -25,8 +25,10 @@ public class InvoiceLineMapperTest {
 
 		InvoiceLineDto dto = new InvoiceLineDto(id, invoiceId, description, quantity, price, totalPrice);
 
+		// When
 		InvoiceLine invoiceLine = invoiceLineMapper.mapToInvoiceLine(dto);
 
+		// Then
 		assertNotNull(invoiceLine);
 		assertEquals(invoiceId, invoiceLine.getInvoiceId());
 		assertEquals(description, invoiceLine.getDescription());
@@ -37,17 +39,19 @@ public class InvoiceLineMapperTest {
 
 	@Test
 	void mapToInvoiceLine_ShouldReturnNull_WhenDtoIsNull() {
-
+		// Given
 		InvoiceLineDto dto = null;
 
+		// When
 		InvoiceLine invoiceLine = invoiceLineMapper.mapToInvoiceLine(dto);
 
+		// Then
 		assertNull(invoiceLine);
 	}
 
 	@Test
-	void mapToInvoiceLineDto_ShouldMapFromDomainToDto() {
-
+	void mapToInvoiceLineDto_ShouldMapFromDomainToDto_WhenGivenCorrectInput() {
+		// Given
 		UUID id = UUID.fromString("11111111-1111-1111-1111-111111111111");
 		UUID invoiceId = UUID.fromString("11111111-1111-1111-1111-111111111111");
 		String description = "description";
@@ -57,8 +61,10 @@ public class InvoiceLineMapperTest {
 
 		InvoiceLine invoiceLine = new InvoiceLine(id, invoiceId, description, quantity, price, totalPrice);
 
+		// When
 		InvoiceLineDto invoiceLineDto = invoiceLineMapper.mapToInvoiceLineDto(invoiceLine);
 
+		// Then
 		assertNotNull(invoiceLineDto);
 		assertEquals(id, invoiceLineDto.id());
 		assertEquals(invoiceId, invoiceLineDto.invoiceId());
@@ -70,11 +76,13 @@ public class InvoiceLineMapperTest {
 
 	@Test
 	void mapToInvoiceLineDto_ShouldReturnNull_WhenDomainIsNull() {
-
+		// Given
 		InvoiceLine invoiceLine = null;
 
+		// When
 		InvoiceLineDto dto = invoiceLineMapper.mapToInvoiceLineDto(invoiceLine);
 
+		// Then
 		assertNull(dto);
 	}
 }

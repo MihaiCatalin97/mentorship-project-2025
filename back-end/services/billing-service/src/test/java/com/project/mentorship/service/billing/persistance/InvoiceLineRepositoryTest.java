@@ -8,7 +8,7 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class InvoiceLineRepositoryTest {
+class InvoiceLineRepositoryTest {
 
 	private InvoiceLineRepository invoiceLineRepository;
 
@@ -18,13 +18,15 @@ public class InvoiceLineRepositoryTest {
 	}
 
 	@Test
-	void save_ShouldAddInvoiceLineToList() {
-
+	void save_ShouldAddInvoiceLineToList_WhenGivenCorrectInput() {
+		// Given
 		InvoiceLine invoiceLine = new InvoiceLine();
 		invoiceLine.setId(UUID.randomUUID());
 
+		// When
 		InvoiceLine result = invoiceLineRepository.save(invoiceLine);
 
+		// Then
 		assertNotNull(result);
 		assertEquals(invoiceLine, result, "The saved invoice line should be the same as the input invoice line");
 	}

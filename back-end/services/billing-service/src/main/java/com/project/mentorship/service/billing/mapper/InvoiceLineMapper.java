@@ -8,8 +8,9 @@ import org.springframework.stereotype.Component;
 public final class InvoiceLineMapper {
 
 	public InvoiceLine mapToInvoiceLine(InvoiceLineDto dto) {
-		if (dto == null)
+		if (dto == null) {
 			return null;
+		}
 		return InvoiceLine.builder().id(dto.id() != null ? dto.id() : null)
 				.invoiceId(dto.invoiceId() != null ? dto.invoiceId() : null)
 				.description(dto.description() != null ? dto.description() : null)
@@ -19,8 +20,9 @@ public final class InvoiceLineMapper {
 	}
 
 	public InvoiceLineDto mapToInvoiceLineDto(InvoiceLine invoiceLine) {
-		if (invoiceLine == null)
+		if (invoiceLine == null) {
 			return null;
+		}
 		return new InvoiceLineDto(invoiceLine.getId() != null ? invoiceLine.getId() : null,
 				invoiceLine.getInvoiceId() != null ? invoiceLine.getInvoiceId() : null,
 				invoiceLine.getDescription() != null ? invoiceLine.getDescription() : null,

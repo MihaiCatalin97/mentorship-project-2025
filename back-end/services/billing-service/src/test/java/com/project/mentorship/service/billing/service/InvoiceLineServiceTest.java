@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class InvoiceLineServiceTest {
+class InvoiceLineServiceTest {
 
 	@Mock
 	private InvoiceLineRepository invoiceLineRepository;
@@ -27,11 +27,13 @@ public class InvoiceLineServiceTest {
 
 	@Test
 	void create_ShouldSaveAndReturnInvoiceLine() throws Exception {
-
+		// Given
 		when(invoiceLineRepository.save(any(InvoiceLine.class))).thenReturn(invoiceLine);
 
+		// When
 		InvoiceLine result = invoiceLineService.create(invoiceLine);
 
+		// Then
 		assertNotNull(result);
 		assertEquals(invoiceLine.getId(), result.getId());
 

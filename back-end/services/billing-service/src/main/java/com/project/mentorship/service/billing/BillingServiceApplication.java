@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InvoiceLineServiceApplication {
+public class BillingServiceApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(InvoiceLineServiceApplication.class, args);
+		SpringApplication.run(BillingServiceApplication.class, args);
 	}
 }
