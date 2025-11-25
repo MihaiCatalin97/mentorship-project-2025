@@ -4,7 +4,7 @@
 Maven module for vehicle reservation operations.(Initial setup)
 
 ## Structure
-- [ReservationServiceApplication](src/main/java/com/project/mentorship/service/vehicle/service/vehicle/service/reservation/ReservationServiceApplication.java) — entry point dummy (psvm)
+- [ReservationServiceApplication](src/main/java/com/project/mentorship/service/reservation/ReservationServiceApplication.java) — entry point dummy (psvm)
 
 ## Build
 ```bash
@@ -12,7 +12,6 @@ mvn install -DskipTests
 ```
 ## API
 ### POST @ /reservations
-![img.png](img.png)
 #### Description
 Create a new reservation (temporarily stored in memory). The flow follows the n-layer architecture: 
 Controller → Mapper → Service → Repository.

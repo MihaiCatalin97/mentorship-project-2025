@@ -4,7 +4,7 @@
 Maven module for notification related operations.(Initial setup)
 
 ## Structure
-- [NotificationServiceApplication](src/main/java/com/project/mentorship/service/vehicle/service/vehicle/service/notification/NotificationServiceApplication.java) — entry point dummy (psvm)
+- [NotificationServiceApplication](src/main/java/com/project/mentorship/service/notification/NotificationServiceApplication.java) — entry point dummy (psvm)
 
 ## Build
 ```bash

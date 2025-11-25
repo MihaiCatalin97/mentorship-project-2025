@@ -5,7 +5,6 @@ mvn install -DskipTests
 ```
 ## API
 ### POST @ / vehicles/types
-![img.png](img.png)
 #### Description
 This endpoint allows the creation of a new vehicle type in the memory for now.
 #### Validations
