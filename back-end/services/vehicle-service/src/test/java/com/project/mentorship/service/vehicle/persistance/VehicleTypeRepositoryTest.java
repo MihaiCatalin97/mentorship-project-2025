@@ -11,15 +11,10 @@ import org.junit.jupiter.api.Test;
 
 class VehicleTypeRepositoryTest {
 
-	private VehicleTypeRepository vehicleTypeRepository;
-
-	@BeforeEach
-	void setUp() {
-		vehicleTypeRepository = new VehicleTypeRepository();
-	}
+	private VehicleTypeRepository vehicleTypeRepository = new VehicleTypeRepository();
 
 	@Test
-	void save_ShouldAddVehicleTypeToList() {
+	void save_shouldAddVehicleType_whenEntityIsValid() {
 		// Given
 		VehicleType vehicleType = new VehicleType();
 		vehicleType.setId(UUID.randomUUID());

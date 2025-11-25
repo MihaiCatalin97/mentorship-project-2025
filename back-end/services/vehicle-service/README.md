@@ -14,12 +14,9 @@ No validations
 ```
 {
   "id": "550e8400-e29b-41d4-a716-446655440000",
-  "licensePlate": "B-123-XYZ",
-  "brand": "Dacia",
-  "model": "Logan",
-  "year": 2022,
-  "status": "AVAILABLE",
-  "location": "Bucharest",
+  "name": "Dacia Logan 2022",
+  "hourlyRate": 25.5,
+  "capacity": 5,
   "createdAt": "2025-11-24T14:35:00+02:00",
   "updatedAt": "2025-11-24T15:00:00+02:00"
 }
@@ -29,14 +26,11 @@ No validations
 #### Response examples
 ```
 {
-    "id": "283837f2-3d8d-4468-a2f1-30a05b388bcf",
-    "licensePlate": "B-123-XYZ",
-    "brand": "Dacia",
-    "model": "Logan",
-    "year": 2022,
-    "status": "AVAILABLE",
-    "location": "Bucharest",
-    "createdAt": "2025-11-24T11:06:26.9349617Z",
+    "id": "9021d196-a545-4025-8e40-6c32305658a9",
+    "name": "Dacia Logan 2022",
+    "hourlyRate": 25.5,
+    "capacity": 5,
+    "createdAt": "2025-11-25T09:56:34.6146665Z",
     "updatedAt": null
 }
 ```

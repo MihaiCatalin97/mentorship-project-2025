@@ -1,4 +1,4 @@
-package com.project.mentorship.service.vehicle.service.analytics;
+package com.project.mentorship.service.analytics;
 
 public class AnalyticsServiceApplication {
 	public static void main(String[] args) {

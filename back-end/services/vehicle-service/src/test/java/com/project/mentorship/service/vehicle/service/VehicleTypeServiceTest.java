@@ -28,7 +28,7 @@ class VehicleTypeServiceTest {
 	private final VehicleType vehicleType = new VehicleType().setId(UUID.randomUUID());
 
 	@Test
-	void create_ShouldSaveAndReturnVehicleType() {
+	void create_shouldSaveAndReturnVehicleType_whenInputIsValid() {
 		// Given
 		when(vehicleTypeRepository.save(any(VehicleType.class))).thenReturn(vehicleType);
 

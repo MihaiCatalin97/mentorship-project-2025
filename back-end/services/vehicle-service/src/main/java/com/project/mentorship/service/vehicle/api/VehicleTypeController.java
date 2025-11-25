@@ -1,6 +1,7 @@
 package com.project.mentorship.service.vehicle.api;
 
 import com.project.mentorship.service.vehicle.api.dto.VehicleTypeDto;
+import com.project.mentorship.service.vehicle.domain.VehicleType;
 import com.project.mentorship.service.vehicle.mapper.VehicleTypeMapper;
 import com.project.mentorship.service.vehicle.service.VehicleTypeService;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +21,9 @@ public class VehicleTypeController {
 
 	@PostMapping
 	public ResponseEntity<VehicleTypeDto> create(@RequestBody VehicleTypeDto request) {
-		var vehicleType = vehicleTypeMapper.map(request);
-		var createdVehicleType = vehicleTypeService.create(vehicleType);
-		var response = vehicleTypeMapper.map(createdVehicleType);
+		VehicleType vehicleType = vehicleTypeMapper.map(request);
+        VehicleType createdVehicleType = vehicleTypeService.create(vehicleType);
+        VehicleTypeDto response = vehicleTypeMapper.map(createdVehicleType);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}

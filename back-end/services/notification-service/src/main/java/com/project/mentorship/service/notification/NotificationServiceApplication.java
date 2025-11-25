@@ -1,4 +1,4 @@
-package com.project.mentorship.service.vehicle.service.notification;
+package com.project.mentorship.service.notification;
 
 public class NotificationServiceApplication {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.project.mentorship.service.vehicle.service.gateway;
+package com.project.mentorship.service.gateway;
 
 public class GatewayApplication {
 	public static void main(String[] args) {

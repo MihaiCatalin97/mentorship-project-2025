@@ -29,7 +29,6 @@
         <module>back-end</module>
         <module>database</module>
         <module>deploy</module>
-        <module>back-end/common-libs/com.project.mentorship.lib.pattern</module>
     </modules>
     <build>
         <pluginManagement>

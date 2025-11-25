@@ -1,17 +1,14 @@
 package com.project.mentorship.service.vehicle.api.dto;
 
-import com.project.mentorship.service.vehicle.domain.VehicleStatus;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
 public record VehicleTypeDto(
         UUID id,
-        String licensePlate,
-        String brand,
-        String model,
-        Integer year,
-		VehicleStatus status,
-        String location,
+        String name,
+        Double hourlyRate,
+        Integer capacity,
         OffsetDateTime createdAt,
         OffsetDateTime updatedAt) {
 }

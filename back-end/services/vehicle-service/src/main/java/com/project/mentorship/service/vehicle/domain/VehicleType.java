@@ -1,5 +1,6 @@
 package com.project.mentorship.service.vehicle.domain;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -15,12 +16,9 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class VehicleType {
 	private UUID id;
-	private String licensePlate;
-	private String brand;
-	private String model;
-	private Integer year;
-	private VehicleStatus status;
-	private String location;
+	private String name;
+	private Double hourlyRate;
+	private Integer capacity;
 	private OffsetDateTime createdAt;
 	private OffsetDateTime updatedAt;
 }

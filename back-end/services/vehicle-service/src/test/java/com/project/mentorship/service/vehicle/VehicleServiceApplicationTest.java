@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
 
-class VehicleTypeServiceApplicationTest {
+class VehicleServiceApplicationTest {
 
 	@Test
-	void mainMethodRunsWithoutException() {
+	void main_shouldRunWithoutException_whenInvoked() {
 		assertDoesNotThrow(() -> VehicleServiceApplication.main(new String[]{}));
 	}
 }

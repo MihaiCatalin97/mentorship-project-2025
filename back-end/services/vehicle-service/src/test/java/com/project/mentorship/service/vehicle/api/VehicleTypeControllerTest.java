@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.mentorship.service.vehicle.api.dto.VehicleTypeDto;
-import com.project.mentorship.service.vehicle.domain.VehicleStatus;
+
 import java.time.OffsetDateTime;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
@@ -28,19 +28,23 @@ class VehicleTypeControllerTest {
 	private ObjectMapper objectMapper;
 
 	@Test
-	void shouldCreateVehicleTypeAndReturn201() throws Exception {
+	void create_shouldReturn201_whenRequestIsValid() throws Exception {
 		// Given
 		VehicleTypeDto request = new VehicleTypeDto((UUID) null,
-				"B-123-XYZ", "Dacia", "Logan", 2022, VehicleStatus.AVAILABLE, "Bucharest",
-                (OffsetDateTime) null, (OffsetDateTime) null);
+                "Dacia Logan 2022",
+                25.5,
+                5,
+                (OffsetDateTime) null,
+                (OffsetDateTime) null);
 
 		// When & Then
 		mockMvc.perform(post("/vehicles/types").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(request))).andExpect(status().isCreated())
-				.andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.licensePlate").value("B-123-XYZ"))
-				.andExpect(jsonPath("$.brand").value("Dacia")).andExpect(jsonPath("$.model").value("Logan"))
-				.andExpect(jsonPath("$.year").value(2022)).andExpect(jsonPath("$.status").value("AVAILABLE"))
-				.andExpect(jsonPath("$.location").value("Bucharest")).andExpect(jsonPath("$.createdAt").isNotEmpty())
-				.andExpect(jsonPath("$.updatedAt", nullValue()));
+                .andExpect(jsonPath("$.id").isNotEmpty())
+                .andExpect(jsonPath("$.name").value("Dacia Logan 2022"))
+                .andExpect(jsonPath("$.hourlyRate").value(25.5))
+                .andExpect(jsonPath("$.capacity").value(5))
+                .andExpect(jsonPath("$.createdAt").isNotEmpty())
+                .andExpect(jsonPath("$.updatedAt", nullValue()));
 	}
 }
