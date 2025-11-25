@@ -28,8 +28,6 @@
         <spring-boot.version>3.5.7</spring-boot.version>
         <lombok.version>1.18.36</lombok.version>
         <jacoco.version>0.8.11</jacoco.version>
-        <!-- Path where SonarQube reads coverage report -->
-        <sonar.coverage.jacoco.xmlReportPaths>**/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>

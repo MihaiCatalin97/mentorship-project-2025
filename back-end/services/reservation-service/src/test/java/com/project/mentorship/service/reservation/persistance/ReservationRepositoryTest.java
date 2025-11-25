@@ -24,11 +24,11 @@ class ReservationRepositoryTest {
 		reservation.setId(UUID.randomUUID());
 
         //When
-		Reservation result = reservationRepository.save(reservation);
+		Reservation rezultat = reservationRepository.save(reservation);
 
         //Then
-		assertNotNull(result);
-		assertEquals(reservation, result,
+		assertNotNull(rezultat);
+		assertEquals(reservation, rezultat,
                 "The saved reservation should be the same as the input reservation");
 	}
 }
