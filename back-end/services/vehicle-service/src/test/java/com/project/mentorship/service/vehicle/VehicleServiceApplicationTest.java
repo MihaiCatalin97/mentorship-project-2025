@@ -8,6 +8,6 @@ class VehicleTypeServiceApplicationTest {
 
 	@Test
 	void mainMethodRunsWithoutException() {
-		assertDoesNotThrow(() -> VehicleTypeServiceApplication.main(new String[]{}));
+		assertDoesNotThrow(() -> VehicleServiceApplication.main(new String[]{}));
 	}
 }
