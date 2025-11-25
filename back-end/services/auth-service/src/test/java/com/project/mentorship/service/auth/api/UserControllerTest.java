@@ -12,22 +12,26 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UserControllerIT {
+class UserControllerTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
 
-	@Test
-	void post_users_return_201_on_happy_flow() throws Exception {
-		String body = """
-				{
-				  "username": "alex",
-				  "email": "alex@gmail.com",
-				  "password": "1234"
-				}
-				""";
+    @Test
+    void postUsers_shouldReturn201_whenRequestIsValid() throws Exception {
+        // Given
+        String body = """
+                {
+                  "username": "alex",
+                  "email": "alex@gmail.com",
+                  "password": "1234"
+                }
+                """;
 
-		mockMvc.perform(post("/users").contentType(MediaType.APPLICATION_JSON).content(body))
-				.andExpect(status().isCreated());
-	}
+        // When, Then
+        mockMvc.perform(post("/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isCreated());
+    }
 }
