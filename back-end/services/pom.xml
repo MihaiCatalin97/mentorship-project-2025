@@ -27,12 +27,14 @@
     <properties>
         <spring-boot.version>3.5.7</spring-boot.version>
         <lombok.version>1.18.36</lombok.version>
+        <jacoco.version>0.8.11</jacoco.version>
+        <!-- Path where SonarQube reads coverage report -->
+        <sonar.coverage.jacoco.xmlReportPaths>**/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
 
         <!-- Internal dependencies -->
-
         <dependency>
             <groupId>com.project.mentorship</groupId>
             <artifactId>common-libs</artifactId>
@@ -40,7 +42,6 @@
         </dependency>
 
         <!-- Production dependencies -->
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -54,7 +55,6 @@
         </dependency>
 
         <!-- Test dependencies -->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -63,5 +63,31 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- JaCoCo plugin for test coverage -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
