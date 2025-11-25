@@ -1,6 +1,5 @@
 package com.project.mentorship.service.vehicle.domain;
 
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
