@@ -1,9 +1,9 @@
 package com.project.mentorship.service.customer.api;
 
+import com.project.mentorship.lib.pattern.BaseService;
 import com.project.mentorship.service.customer.api.dto.CustomerDto;
 import com.project.mentorship.service.customer.domain.Customer;
 import com.project.mentorship.service.customer.mapper.CustomerMapper;
-import com.project.mentorship.service.customer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CustomerController {
 
-	private final CustomerService service;
+	private final BaseService<Customer> service;
 	private final CustomerMapper mapper;
 
 	@PostMapping

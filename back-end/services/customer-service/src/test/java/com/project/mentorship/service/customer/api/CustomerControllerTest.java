@@ -21,13 +21,13 @@ import org.springframework.test.web.servlet.MockMvc;
 class CustomerControllerTest {
 
 	@Autowired
-	MockMvc mockMvc;
+	private MockMvc mockMvc;
 
 	@Autowired
-	ObjectMapper objectMapper;
+	private ObjectMapper objectMapper;
 
 	@Test
-	void shouldCreateCustomerAndReturn201() throws Exception {
+	void create_shouldReturn201_whenRequestIsValid() throws Exception {
 		// Given
 		CustomerDto customerDto = new CustomerDto(UUID.fromString("11111111-1111-1111-1111-111111111111"),
 				UUID.fromString("33333333-3333-3333-3333-333333333333"), "Olivia", "Taylor",

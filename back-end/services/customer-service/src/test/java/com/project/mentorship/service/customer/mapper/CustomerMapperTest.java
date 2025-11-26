@@ -13,7 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = CustomerServiceApplication.class)
-public class CustomerMapperTest {
+class CustomerMapperTest {
+
 	private final CustomerMapper mapper = new CustomerMapper();
 
 	@Test
@@ -24,8 +25,10 @@ public class CustomerMapperTest {
 				"olivia.taylor@example.com", "+40700111222", OffsetDateTime.parse("2025-02-10T14:30:00Z"),
 				OffsetDateTime.parse("2025-09-20T08:45:00Z"));
 
+		// When
 		Customer customer = mapper.mapToDomain(customerDto);
 
+		// Then
 		assertNotNull(customer);
 		assertEquals(customerDto.userId(), customer.getUserId());
 		assertEquals(customerDto.firstName(), customer.getFirstName());
@@ -42,4 +45,78 @@ public class CustomerMapperTest {
 		assertNull(customer);
 	}
 
+    @Test
+    void mapToDomain_shouldSetAllFieldsToNull_whenDtoFieldsAreNull() {
+        // Given
+        CustomerDto customerDto = new CustomerDto(
+                null, null, null, null, null, null, null, null
+        );
+
+        // When
+        Customer customer = mapper.mapToDomain(customerDto);
+
+        // Then
+        assertNotNull(customer);
+        assertNull(customer.getId());
+        assertNull(customer.getUserId());
+        assertNull(customer.getFirstName());
+        assertNull(customer.getLastName());
+        assertNull(customer.getEmail());
+        assertNull(customer.getPhone());
+        assertNull(customer.getCreatedAt());
+        assertNull(customer.getUpdatedAt());
+    }
+
+	@Test
+	void mapToDto_shouldMapAllFields_whenCustomerHasAllFieldsSet() {
+		// Given
+		Customer customer = Customer.builder().id(UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"))
+				.userId(UUID.fromString("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb")).firstName("Daniel").lastName("Clark")
+				.email("daniel.clark@example.com").phone("+12025550123")
+				.createdAt(OffsetDateTime.parse("2025-01-15T10:00:00Z"))
+				.updatedAt(OffsetDateTime.parse("2025-01-15T12:00:00Z")).build();
+
+		// When
+		CustomerDto dto = mapper.mapToDto(customer);
+
+		// Then
+		assertNotNull(dto);
+		assertEquals(customer.getId(), dto.id());
+		assertEquals(customer.getUserId(), dto.userId());
+		assertEquals(customer.getFirstName(), dto.firstName());
+		assertEquals(customer.getLastName(), dto.lastName());
+		assertEquals(customer.getEmail(), dto.email());
+		assertEquals(customer.getPhone(), dto.phone());
+		assertEquals(customer.getCreatedAt(), dto.createdAt());
+		assertEquals(customer.getUpdatedAt(), dto.updatedAt());
+	}
+
+	@Test
+	void mapToDto_shouldReturnNull_whenCustomerIsNull() {
+		// When
+		CustomerDto dto = mapper.mapToDto(null);
+
+		// Then
+		assertNull(dto);
+	}
+
+    @Test
+    void mapToDto_shouldSetAllFieldsToNull_whenCustomerFieldsAreNull() {
+        // Given
+        Customer customer = new Customer();
+
+        // When
+        CustomerDto dto = mapper.mapToDto(customer);
+
+        // Then
+        assertNotNull(dto);
+        assertNull(dto.id());
+        assertNull(dto.userId());
+        assertNull(dto.firstName());
+        assertNull(dto.lastName());
+        assertNull(dto.email());
+        assertNull(dto.phone());
+        assertNull(dto.createdAt());
+        assertNull(dto.updatedAt());
+    }
 }

@@ -27,16 +27,18 @@
     <properties>
         <spring-boot.version>3.5.7</spring-boot.version>
         <lombok.version>1.18.36</lombok.version>
+        <project.version>1.0-SNAPSHOT</project.version>
         <jacoco.version>0.8.14</jacoco.version>
     </properties>
 
     <dependencies>
 
         <!-- Internal dependencies -->
+
         <dependency>
             <groupId>com.project.mentorship</groupId>
             <artifactId>common-libs</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Production dependencies -->
@@ -47,6 +49,7 @@
         </dependency>
 
         <!-- Test dependencies -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
