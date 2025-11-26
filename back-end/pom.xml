@@ -17,6 +17,11 @@
         <lombok.version>1.18.42</lombok.version>
     </properties>
 
+    <modules>
+        <module>common-libs</module>
+        <module>services</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -25,8 +30,4 @@
         </dependency>
     </dependencies>
 
-    <modules>
-        <module>common-libs</module>
-        <module>services</module>
-    </modules>
 </project>

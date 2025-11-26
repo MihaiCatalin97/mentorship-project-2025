@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = CustomerServiceApplication.class)
-public class CustomerRepositoryTest {
+class CustomerRepositoryTest {
 	@Autowired
 	private CustomerRepository customerRepository;
 
 	@Test
-	void shouldSaveCustomerAndAddItToList() {
+	void save_shouldReturnCustomerAndAddItToList_whenCustomerIsValid() {
 		// Given
 		Customer customer = Customer.builder().id(UUID.randomUUID()).firstName("Olivia").lastName("Taylor")
 				.email("olivia.taylor@example.com").phone("+40700111222").build();
