@@ -24,10 +24,16 @@ class InvoiceLineMapperTest {
 		Double price = 1.0;
 		Double totalPrice = 1.0;
 		OffsetDateTime createdAt = OffsetDateTime.now();
+<<<<<<< HEAD
 		OffsetDateTime updatedAt = OffsetDateTime.now();
 
 		InvoiceLineDto dto = new InvoiceLineDto(id, invoiceId, description, quantity, price, totalPrice, createdAt,
 				updatedAt);
+=======
+        OffsetDateTime updatedAt = OffsetDateTime.now();
+
+		InvoiceLineDto dto = new InvoiceLineDto(id, invoiceId, description, quantity, price, totalPrice, createdAt, updatedAt);
+>>>>>>> 6917be0 (JVNGRS-44 Fixed code smells, added createdAt and updatedAt fields to InvoiceLine object)
 
 		// When
 		InvoiceLine invoiceLine = invoiceLineMapper.mapToInvoiceLine(dto);
@@ -39,6 +45,7 @@ class InvoiceLineMapperTest {
 		assertEquals(quantity, invoiceLine.getQuantity());
 		assertEquals(price, invoiceLine.getUnitPrice());
 		assertEquals(totalPrice, invoiceLine.getTotal());
+<<<<<<< HEAD
 		assertEquals(createdAt, invoiceLine.getCreatedAt());
 		assertEquals(updatedAt, invoiceLine.getUpdatedAt());
 	}
@@ -61,9 +68,35 @@ class InvoiceLineMapperTest {
 		assertNull(invoiceLine.getTotal());
 		assertNull(invoiceLine.getCreatedAt());
 		assertNull(invoiceLine.getUpdatedAt());
+=======
+        assertEquals(createdAt, invoiceLine.getCreatedAt());
+        assertEquals(updatedAt, invoiceLine.getUpdatedAt());
+>>>>>>> 6917be0 (JVNGRS-44 Fixed code smells, added createdAt and updatedAt fields to InvoiceLine object)
 	}
 
-	@Test
+    @Test
+    void mapToInvoiceLine_shouldSetAllFieldsToNull_whenDtoFieldsAreNull() {
+        // Given
+        InvoiceLineDto customerDto = new InvoiceLineDto(
+                null, null, null, null, null, null, null, null
+        );
+
+        // When
+        InvoiceLine invoiceLine = invoiceLineMapper.mapToInvoiceLine(customerDto);
+
+        // Then
+        assertNotNull(invoiceLine);
+        assertNull(invoiceLine.getId());
+        assertNull(invoiceLine.getInvoiceId());
+        assertNull(invoiceLine.getDescription());
+        assertNull(invoiceLine.getQuantity());
+        assertNull(invoiceLine.getUnitPrice());
+        assertNull(invoiceLine.getTotal());
+        assertNull(invoiceLine.getCreatedAt());
+        assertNull(invoiceLine.getUpdatedAt());
+    }
+
+    @Test
 	void mapToInvoiceLine_ShouldReturnNull_WhenDtoIsNull() {
 		// Given
 		InvoiceLineDto dto = null;
@@ -84,11 +117,18 @@ class InvoiceLineMapperTest {
 		Integer quantity = 1;
 		Double price = 1.0;
 		Double totalPrice = 1.0;
+<<<<<<< HEAD
 		OffsetDateTime createdAt = OffsetDateTime.now();
 		OffsetDateTime updatedAt = OffsetDateTime.now();
 
 		InvoiceLine invoiceLine = new InvoiceLine(id, invoiceId, description, quantity, price, totalPrice, createdAt,
 				updatedAt);
+=======
+        OffsetDateTime createdAt = OffsetDateTime.now();
+        OffsetDateTime updatedAt = OffsetDateTime.now();
+
+		InvoiceLine invoiceLine = new InvoiceLine(id, invoiceId, description, quantity, price, totalPrice, createdAt, updatedAt);
+>>>>>>> 6917be0 (JVNGRS-44 Fixed code smells, added createdAt and updatedAt fields to InvoiceLine object)
 
 		// When
 		InvoiceLineDto dto = invoiceLineMapper.mapToInvoiceLineDto(invoiceLine);
@@ -101,6 +141,7 @@ class InvoiceLineMapperTest {
 		assertEquals(quantity, dto.quantity());
 		assertEquals(price, dto.unitPrice());
 		assertEquals(totalPrice, dto.total());
+<<<<<<< HEAD
 		assertEquals(createdAt, invoiceLine.getCreatedAt());
 		assertEquals(updatedAt, invoiceLine.getUpdatedAt());
 	}
@@ -123,7 +164,31 @@ class InvoiceLineMapperTest {
 		assertNull(dto.total());
 		assertNull(dto.createdAt());
 		assertNull(dto.updatedAt());
+=======
+        assertEquals(createdAt, invoiceLine.getCreatedAt());
+        assertEquals(updatedAt, invoiceLine.getUpdatedAt());
+>>>>>>> 6917be0 (JVNGRS-44 Fixed code smells, added createdAt and updatedAt fields to InvoiceLine object)
 	}
+
+    @Test
+    void mapToInvoiceLineDto_shouldSetAllFieldsToNull_whenInvoiceLineFieldsAreNull() {
+        // Given
+        InvoiceLine invoiceLine = new InvoiceLine();
+
+        // When
+        InvoiceLineDto dto = invoiceLineMapper.mapToInvoiceLineDto(invoiceLine);
+
+        // Then
+        assertNotNull(dto);
+        assertNull(dto.id());
+        assertNull(dto.invoiceId());
+        assertNull(dto.description());
+        assertNull(dto.quantity());
+        assertNull(dto.unitPrice());
+        assertNull(dto.total());
+        assertNull(dto.createdAt());
+        assertNull(dto.updatedAt());
+    }
 
 	@Test
 	void mapToInvoiceLineDto_ShouldReturnNull_WhenDomainIsNull() {

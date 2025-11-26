@@ -31,6 +31,7 @@ class InvoiceLineRepositoryTest {
 		assertEquals(invoiceLine, result);
 	}
 
+<<<<<<< HEAD
 	@Test
 	void save_ShouldReturnSameInstance_WhenSavingInvoiceLine() {
 		// Given
@@ -42,4 +43,18 @@ class InvoiceLineRepositoryTest {
 		// Then
 		assertEquals(invoiceLine, saved);
 	}
+=======
+    @Test
+    void save_ShouldAssignId_WhenIdIsNull() {
+        // Given
+        InvoiceLineRepository repository = new InvoiceLineRepository();
+        InvoiceLine invoiceLine = new InvoiceLine(); // ID is null
+
+        // When
+        InvoiceLine saved = repository.save(invoiceLine);
+
+        // Then
+        assertNotNull(saved.getId(), "ID should be generated when null");
+    }
+>>>>>>> 6917be0 (JVNGRS-44 Fixed code smells, added createdAt and updatedAt fields to InvoiceLine object)
 }
