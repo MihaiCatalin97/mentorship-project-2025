@@ -24,7 +24,9 @@ No validations
   "description": "Updated description",
   "quantity": 12,
   "unitPrice": 100.50,
-  "total": 1200.70
+  "total": 1200.70,
+  "createdAt": "2025-11-20T09:55:00Z",
+  "updatedAt": "2025-11-20T09:55:00Z"
 }
 
 ```
@@ -37,7 +39,9 @@ No validations
     "description": "Updated description",
     "quantity": 12,
     "unitPrice": 100.5,
-    "total": 1200.7
+    "total": 1200.7,
+    "createdAt": "2025-11-20T09:55:00Z",
+    "updatedAt": "2025-11-20T09:55:00Z"
 }
 ```
 

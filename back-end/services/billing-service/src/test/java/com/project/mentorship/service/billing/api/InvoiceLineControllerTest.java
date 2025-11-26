@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.mentorship.service.billing.api.dto.InvoiceLineDto;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,8 @@ class InvoiceLineControllerTest {
 	void create_shouldCreateInvoiceLineThenReturn201_whenGivenCorrectInput() throws Exception {
 		// Given
 		InvoiceLineDto invoiceLineDto = new InvoiceLineDto(UUID.fromString("11111111-1111-1111-1111-111111111111"),
-				UUID.fromString("11111111-1111-1111-1111-111111111111"), "Updated description", 12, 100.50, 1200.70);
+				UUID.fromString("11111111-1111-1111-1111-111111111111"), "Updated description", 12, 100.50, 1200.70,
+				OffsetDateTime.parse("2025-11-14T09:50:00Z"), OffsetDateTime.parse("2025-11-14T09:50:00Z"));
 
 		// When & Then
 		mockMvc.perform(post("/invoice-line").contentType(MediaType.APPLICATION_JSON)
@@ -37,7 +39,8 @@ class InvoiceLineControllerTest {
 				.andExpect(jsonPath("$.invoiceId").value("11111111-1111-1111-1111-111111111111"))
 				.andExpect(jsonPath("$.description").value("Updated description"))
 				.andExpect(jsonPath("$.quantity").value(12)).andExpect(jsonPath("$.unitPrice").value(100.50))
-				.andExpect(jsonPath("$.total").value(1200.70));
+				.andExpect(jsonPath("$.total").value(1200.70)).andExpect(jsonPath("$.createdAt").isNotEmpty())
+				.andExpect(jsonPath("$.updatedAt").isNotEmpty());
 
 	}
 }

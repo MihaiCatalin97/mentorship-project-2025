@@ -16,7 +16,9 @@ public final class InvoiceLineMapper {
 				.description(dto.description() != null ? dto.description() : null)
 				.quantity(dto.quantity() != null ? dto.quantity() : null)
 				.unitPrice(dto.unitPrice() != null ? dto.unitPrice() : null)
-				.total(dto.total() != null ? dto.total() : null).build();
+				.total(dto.total() != null ? dto.total() : null)
+				.createdAt(dto.createdAt() != null ? dto.createdAt() : null)
+				.updatedAt(dto.updatedAt() != null ? dto.updatedAt() : null).build();
 	}
 
 	public InvoiceLineDto mapToInvoiceLineDto(InvoiceLine invoiceLine) {
@@ -28,7 +30,9 @@ public final class InvoiceLineMapper {
 				invoiceLine.getDescription() != null ? invoiceLine.getDescription() : null,
 				invoiceLine.getQuantity() != null ? invoiceLine.getQuantity() : null,
 				invoiceLine.getUnitPrice() != null ? invoiceLine.getUnitPrice() : null,
-				invoiceLine.getTotal() != null ? invoiceLine.getTotal() : null);
+				invoiceLine.getTotal() != null ? invoiceLine.getTotal() : null,
+				invoiceLine.getCreatedAt() != null ? invoiceLine.getCreatedAt() : null,
+				invoiceLine.getUpdatedAt() != null ? invoiceLine.getUpdatedAt() : null);
 
 	}
 }
