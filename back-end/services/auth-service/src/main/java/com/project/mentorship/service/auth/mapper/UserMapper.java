@@ -6,6 +6,10 @@ import java.util.Objects;
 
 public class UserMapper {
 
+    private UserMapper(){
+
+    }
+
 	public static User toDomain(UserDto userDto) {
 		Objects.requireNonNull(userDto, "userDto must not be null");
 

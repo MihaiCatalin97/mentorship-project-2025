@@ -1,6 +1,5 @@
 package com.project.mentorship.service.auth.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.mentorship.service.auth.domain.Role;
 
 import java.sql.Timestamp;

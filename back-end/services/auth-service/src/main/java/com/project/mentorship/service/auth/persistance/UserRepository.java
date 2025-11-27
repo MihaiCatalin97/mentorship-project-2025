@@ -12,10 +12,10 @@ import java.util.UUID;
 import com.project.mentorship.service.auth.service.EncryptionService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 @RequiredArgsConstructor
 public class UserRepository implements BaseRepository<User> {
 	private final List<User> users = new ArrayList<>();
