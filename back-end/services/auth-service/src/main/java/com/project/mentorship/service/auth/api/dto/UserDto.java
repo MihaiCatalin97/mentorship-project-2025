@@ -1,13 +1,18 @@
 package com.project.mentorship.service.auth.api.dto;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.project.mentorship.service.auth.domain.Role;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
-@Data
-public class UserDto {
-    private UUID id;
-	private String username;
-	private String email;
-	private String password;
-}
+
+public record UserDto(
+        UUID id,
+        String username,
+        String password,
+        String email,
+        Role role,
+        Timestamp createdAt,
+        Timestamp updatedAt
+) {}

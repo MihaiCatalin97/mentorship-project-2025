@@ -8,19 +8,26 @@ public class UserMapper {
 
 	public static User toDomain(UserDto userDto) {
 		Objects.requireNonNull(userDto, "userDto must not be null");
+
 		User user = new User();
-		user.setUsername(userDto.getUsername());
-		user.setEmail(userDto.getEmail());
-		user.setPasswordHash(userDto.getPassword());
+		user.setUsername(userDto.username());
+		user.setEmail(userDto.email());
+		user.setPasswordHash(userDto.password());
+
 		return user;
 	}
 
 	public static UserDto toDto(User user) {
 		Objects.requireNonNull(user, "user must not be null");
-		UserDto userDto = new UserDto();
-		userDto.setUsername(user.getUsername());
-		userDto.setEmail(user.getEmail());
-		return userDto;
+        return new UserDto(
+                user.getId(),
+                user.getUsername(),
+                null,
+                user.getEmail(),
+                user.getRole(),
+                user.getCreatedAt(),
+                user.getUpdatedAt()
+        );
 	}
 
 }

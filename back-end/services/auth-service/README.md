@@ -1,25 +1,53 @@
-# Auth Service Module
+# auth-service
 
 ## Overview
-Initial setup for the **auth-service** responsible for user creation.  
-Users are stored in-memory; a default **ADMIN** user is created at application startup.  
-All users created via API receive role **USER**. Happy-flow only (no validations).
+Maven module responsible for user authentication and user management.
 
-## Setup Steps
-- Created new module: `auth-service` (under `back-end/services`).
-- Configured `pom.xml` to inherit from `services` and use Spring Boot.
-- Established package structure: `com.project.mentorship.service.auth`.
-- Added `AuthServiceApplication` (Spring Boot entry point).
-- Implemented layers:
-    - `api` → `UserController` (POST `/users`)
-    - `api/dto` → `UserDto`
-    - `mapper` → `UserMapper` (DTO -> Domain && Domain -> DTO)
-    - `domain` → `User`, `Role`
-    - `persistance` → `UserRepository` (in-memory, default admin in non-static block)
-    - `service` → `UserService` (`create(User)` delegates to repository)
+## Structure
+- `AuthServiceApplication` — entry point (Spring Boot)
+- `UserController` — handles HTTP requests
+- `UserService` — business logic for user creation
+- `UserRepository` — in-memory persistence
+- `UserMapper` — maps between domain and DTOs
+- `UserDto`  — data transfer object used for user creation and responses
 
-## Build & Integration
-- Module included in Maven reactor.
-- Build:
-  ```bash
-  mvn clean install -DskipTests
+## Build
+```bash
+mvn install -DskipTests
+```
+
+## API
+
+### POST @ /users
+
+#### Description
+Creates a new user in the system.  
+This endpoint is responsible for handling user registration.  
+The request body is mapped to a domain `User` object and passed to the `UserService` which performs hashing and persistence.
+
+#### Validations
+For this story, **only the happy flow is implemented**.  
+No input validation or error handling is applied.  
+Security rules are not enforced yet.
+
+#### Request Example
+```json
+{
+  "username": "alex",
+  "email": "alex@gmail.com",
+  "password": "1234"
+}
+```
+
+### Response Example
+```json
+{
+  "id": "fd64eb32-6f17-4299-a8bc-6902a0071efe",
+  "username": "alex",
+  "password": "alex@gmail.com",
+  "email": null,
+  "role": "USER",
+  "createdAt": "2025-11-27T09:23:51.849+00:00",
+  "updatedAt": "2025-11-27T09:23:51.849+00:00"
+}
+```

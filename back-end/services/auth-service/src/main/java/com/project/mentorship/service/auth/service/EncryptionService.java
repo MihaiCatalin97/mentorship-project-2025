@@ -12,7 +12,4 @@ public class EncryptionService {
         return passwordEncoder.encode(raw);
     }
 
-    public boolean matches(String raw, String hashed){
-        return passwordEncoder.matches(hashed, raw);
-    }
 }

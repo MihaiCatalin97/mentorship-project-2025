@@ -1,5 +1,6 @@
 package com.project.mentorship.service.auth.api;
 
+import com.project.mentorship.lib.pattern.BaseService;
 import com.project.mentorship.service.auth.api.dto.UserDto;
 import com.project.mentorship.service.auth.domain.User;
 import com.project.mentorship.service.auth.mapper.UserMapper;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
 
-	private final UserService userService;
+	private final BaseService<User> userService;
 
 	@PostMapping
 	public ResponseEntity<UserDto> create(@RequestBody UserDto userDto) {
