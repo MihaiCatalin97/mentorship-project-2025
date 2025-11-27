@@ -10,5 +10,7 @@
     </parent>
 
     <artifactId>customer-service</artifactId>
+    <name>customer-service</name>
+    <packaging>jar</packaging>
 
 </project>
