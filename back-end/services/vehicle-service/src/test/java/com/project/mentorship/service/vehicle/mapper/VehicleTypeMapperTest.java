@@ -50,6 +50,31 @@ class VehicleTypeMapperTest {
 		// Then
 		assertNull(result);
 	}
+    @Test
+    void map_shouldHandleNullFields_whenDtoHasNullValues() {
+        // Given: DTO with some null fields to cover ternary branches
+        VehicleTypeDto dto = new VehicleTypeDto(
+                null,         // id
+                null,         // name
+                null,         // hourlyRate
+                null,         // capacity
+                null,         // createdAt
+                null          // updatedAt
+        );
+
+        // When
+        VehicleType result = vehicleTypeMapper.map(dto);
+
+        // Then
+        assertNotNull(result);
+        assertNull(result.getId());
+        assertNull(result.getName());
+        assertNull(result.getHourlyRate());
+        assertNull(result.getCapacity());
+        assertNull(result.getCreatedAt());
+        assertNull(result.getUpdatedAt());
+    }
+
 
 	@Test
 	void map_shouldMapAllFieldsCorrectlyFromDomainToDto_whenDomainIsValid() {
@@ -91,4 +116,29 @@ class VehicleTypeMapperTest {
 		// Then
 		assertNull(dto);
 	}
+
+    @Test
+    void map_shouldHandleNullFields_whenDomainHasNullValues() {
+        // Given: domain object with null fields to cover ternary branches
+        VehicleType vehicleType = VehicleType.builder()
+                .id(null)
+                .name(null)
+                .hourlyRate(null)
+                .capacity(null)
+                .createdAt(null)
+                .updatedAt(null)
+                .build();
+
+        // When
+        VehicleTypeDto dto = vehicleTypeMapper.map(vehicleType);
+
+        // Then
+        assertNotNull(dto);
+        assertNull(dto.id());
+        assertNull(dto.name());
+        assertNull(dto.hourlyRate());
+        assertNull(dto.capacity());
+        assertNull(dto.createdAt());
+        assertNull(dto.updatedAt());
+    }
 }

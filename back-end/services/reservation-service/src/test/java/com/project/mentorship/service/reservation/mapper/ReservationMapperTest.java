@@ -51,6 +51,35 @@ class ReservationMapperTest {
 		assertNull(result);
 	}
 
+    @Test
+    void map_ShouldHandleNullFields_WhenDtoHasNullValues() {
+        // Given: DTO with all fields null to cover ternary branches
+        ReservationDto dto = new ReservationDto(
+                null, // id
+                null, // customerId
+                null, // vehicleId
+                null, // startTime
+                null, // endTime
+                null, // status
+                null, // createdAt
+                null  // updatedAt
+        );
+
+        // When
+        Reservation result = reservationMapper.map(dto);
+
+        // Then
+        assertNotNull(result);
+        assertNull(result.getId());
+        assertNull(result.getCustomerId());
+        assertNull(result.getVehicleId());
+        assertNull(result.getStartTime());
+        assertNull(result.getEndTime());
+        assertNull(result.getStatus());
+        assertNull(result.getCreatedAt());
+        assertNull(result.getUpdatedAt());
+    }
+
 	@Test
 	void map_ShouldMapAllFieldsCorrectly_FromDomainToDto() {
 		// Given
@@ -86,4 +115,33 @@ class ReservationMapperTest {
 		// Then
 		assertNull(dto);
 	}
+
+    @Test
+    void map_ShouldHandleNullFields_WhenDomainHasNullValues() {
+        // Given: domain object with all fields null to cover ternary branches
+        Reservation reservation = Reservation.builder()
+                .id(null)
+                .customerId(null)
+                .vehicleId(null)
+                .startTime(null)
+                .endTime(null)
+                .status(null)
+                .createdAt(null)
+                .updatedAt(null)
+                .build();
+
+        // When
+        ReservationDto dto = reservationMapper.map(reservation);
+
+        // Then
+        assertNotNull(dto);
+        assertNull(dto.id());
+        assertNull(dto.customerId());
+        assertNull(dto.vehicleId());
+        assertNull(dto.startTime());
+        assertNull(dto.endTime());
+        assertNull(dto.status());
+        assertNull(dto.createdAt());
+        assertNull(dto.updatedAt());
+    }
 }
