@@ -3,7 +3,6 @@ package com.project.mentorship.service.vehicle.service;
 import com.project.mentorship.lib.pattern.BaseRepository;
 import com.project.mentorship.lib.pattern.BaseService;
 import com.project.mentorship.service.vehicle.domain.VehicleType;
-import com.project.mentorship.service.vehicle.persistence.VehicleTypeRepository;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
