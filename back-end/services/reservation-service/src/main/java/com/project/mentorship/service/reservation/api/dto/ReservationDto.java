@@ -10,7 +10,7 @@ public record ReservationDto(
         UUID vehicleId,
         OffsetDateTime startTime,
         OffsetDateTime endTime,
-		ReservationStatus status,
+		    ReservationStatus status,
         OffsetDateTime createdAt,
         OffsetDateTime updatedAt
 ) {
