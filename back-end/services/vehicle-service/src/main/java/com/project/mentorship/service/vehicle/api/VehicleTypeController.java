@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/vehicles/types")
 @RequiredArgsConstructor
-public class VehicleTypeController implements BaseService<VehicleType> {
-	private final VehicleTypeService vehicleTypeService;
+public class VehicleTypeController {
+	private final BaseService<VehicleType> vehicleTypeService;
 	private final VehicleTypeMapper vehicleTypeMapper;
 
 	@PostMapping
