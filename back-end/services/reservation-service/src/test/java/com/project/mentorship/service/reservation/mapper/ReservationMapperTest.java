@@ -21,10 +21,10 @@ class ReservationMapperTest {
 		UUID id = UUID.randomUUID();
 		UUID customerId = UUID.randomUUID();
 		UUID vehicleId = UUID.randomUUID();
-		String now = OffsetDateTime.now().toString();
+		OffsetDateTime now = OffsetDateTime.now();
 
-		ReservationDto dto = new ReservationDto(id.toString(), customerId.toString(), vehicleId.toString(), now, now,
-				"CONFIRMED", now, now);
+		ReservationDto dto = new ReservationDto(id, customerId, vehicleId, now, now, ReservationStatus.CONFIRMED, now,
+				now);
 
 		// When
 		Reservation result = reservationMapper.map(dto);
@@ -35,8 +35,8 @@ class ReservationMapperTest {
 		assertEquals(customerId, result.getCustomerId());
 		assertEquals(vehicleId, result.getVehicleId());
 		assertEquals(ReservationStatus.CONFIRMED, result.getStatus());
-		assertEquals(OffsetDateTime.parse(now), result.getStartTime());
-		assertEquals(OffsetDateTime.parse(now), result.getEndTime());
+		assertEquals(now, result.getStartTime());
+		assertEquals(now, result.getEndTime());
 	}
 
 	@Test
@@ -50,6 +50,35 @@ class ReservationMapperTest {
 		// Then
 		assertNull(result);
 	}
+
+    @Test
+    void map_ShouldHandleNullFields_WhenDtoHasNullValues() {
+        // Given: DTO with all fields null to cover ternary branches
+        ReservationDto dto = new ReservationDto(
+                null, // id
+                null, // customerId
+                null, // vehicleId
+                null, // startTime
+                null, // endTime
+                null, // status
+                null, // createdAt
+                null  // updatedAt
+        );
+
+        // When
+        Reservation result = reservationMapper.map(dto);
+
+        // Then
+        assertNotNull(result);
+        assertNull(result.getId());
+        assertNull(result.getCustomerId());
+        assertNull(result.getVehicleId());
+        assertNull(result.getStartTime());
+        assertNull(result.getEndTime());
+        assertNull(result.getStatus());
+        assertNull(result.getCreatedAt());
+        assertNull(result.getUpdatedAt());
+    }
 
 	@Test
 	void map_ShouldMapAllFieldsCorrectly_FromDomainToDto() {
@@ -67,12 +96,12 @@ class ReservationMapperTest {
 
 		// Then
 		assertNotNull(dto);
-		assertEquals(id.toString(), dto.id());
-		assertEquals(customerId.toString(), dto.customerId());
-		assertEquals(vehicleId.toString(), dto.vehicleId());
-		assertEquals("CANCELLED", dto.status());
-		assertEquals(now.toString(), dto.startTime());
-		assertEquals(now.toString(), dto.endTime());
+		assertEquals(id, dto.id());
+		assertEquals(customerId, dto.customerId());
+		assertEquals(vehicleId, dto.vehicleId());
+		assertEquals(ReservationStatus.CANCELLED, dto.status());
+		assertEquals(now, dto.startTime());
+		assertEquals(now, dto.endTime());
 	}
 
 	@Test
@@ -86,4 +115,33 @@ class ReservationMapperTest {
 		// Then
 		assertNull(dto);
 	}
+
+    @Test
+    void map_ShouldHandleNullFields_WhenDomainHasNullValues() {
+        // Given: domain object with all fields null to cover ternary branches
+        Reservation reservation = Reservation.builder()
+                .id(null)
+                .customerId(null)
+                .vehicleId(null)
+                .startTime(null)
+                .endTime(null)
+                .status(null)
+                .createdAt(null)
+                .updatedAt(null)
+                .build();
+
+        // When
+        ReservationDto dto = reservationMapper.map(reservation);
+
+        // Then
+        assertNotNull(dto);
+        assertNull(dto.id());
+        assertNull(dto.customerId());
+        assertNull(dto.vehicleId());
+        assertNull(dto.startTime());
+        assertNull(dto.endTime());
+        assertNull(dto.status());
+        assertNull(dto.createdAt());
+        assertNull(dto.updatedAt());
+    }
 }

@@ -1,5 +1,17 @@
 package com.project.mentorship.service.reservation.api.dto;
 
-public record ReservationDto(String id, String customerId, String vehicleId, String startTime, String endTime,
-		String status, String createdAt, String updatedAt) {
+import com.project.mentorship.service.reservation.domain.ReservationStatus;
+import java.time.OffsetDateTime;
+import java.util.UUID;
+
+public record ReservationDto(
+        UUID id,
+        UUID customerId,
+        UUID vehicleId,
+        OffsetDateTime startTime,
+        OffsetDateTime endTime,
+		    ReservationStatus status,
+        OffsetDateTime createdAt,
+        OffsetDateTime updatedAt
+) {
 }
