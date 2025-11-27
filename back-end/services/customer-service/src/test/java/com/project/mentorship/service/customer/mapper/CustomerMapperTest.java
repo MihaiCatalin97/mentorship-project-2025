@@ -45,27 +45,25 @@ class CustomerMapperTest {
 		assertNull(customer);
 	}
 
-    @Test
-    void mapToDomain_shouldSetAllFieldsToNull_whenDtoFieldsAreNull() {
-        // Given
-        CustomerDto customerDto = new CustomerDto(
-                null, null, null, null, null, null, null, null
-        );
+	@Test
+	void mapToDomain_shouldSetAllFieldsToNull_whenDtoFieldsAreNull() {
+		// Given
+		CustomerDto customerDto = new CustomerDto(null, null, null, null, null, null, null, null);
 
-        // When
-        Customer customer = mapper.mapToDomain(customerDto);
+		// When
+		Customer customer = mapper.mapToDomain(customerDto);
 
-        // Then
-        assertNotNull(customer);
-        assertNull(customer.getId());
-        assertNull(customer.getUserId());
-        assertNull(customer.getFirstName());
-        assertNull(customer.getLastName());
-        assertNull(customer.getEmail());
-        assertNull(customer.getPhone());
-        assertNull(customer.getCreatedAt());
-        assertNull(customer.getUpdatedAt());
-    }
+		// Then
+		assertNotNull(customer);
+		assertNull(customer.getId());
+		assertNull(customer.getUserId());
+		assertNull(customer.getFirstName());
+		assertNull(customer.getLastName());
+		assertNull(customer.getEmail());
+		assertNull(customer.getPhone());
+		assertNull(customer.getCreatedAt());
+		assertNull(customer.getUpdatedAt());
+	}
 
 	@Test
 	void mapToDto_shouldMapAllFields_whenCustomerHasAllFieldsSet() {
@@ -100,23 +98,23 @@ class CustomerMapperTest {
 		assertNull(dto);
 	}
 
-    @Test
-    void mapToDto_shouldSetAllFieldsToNull_whenCustomerFieldsAreNull() {
-        // Given
-        Customer customer = new Customer();
+	@Test
+	void mapToDto_shouldSetAllFieldsToNull_whenCustomerFieldsAreNull() {
+		// Given
+		Customer customer = new Customer();
 
-        // When
-        CustomerDto dto = mapper.mapToDto(customer);
+		// When
+		CustomerDto dto = mapper.mapToDto(customer);
 
-        // Then
-        assertNotNull(dto);
-        assertNull(dto.id());
-        assertNull(dto.userId());
-        assertNull(dto.firstName());
-        assertNull(dto.lastName());
-        assertNull(dto.email());
-        assertNull(dto.phone());
-        assertNull(dto.createdAt());
-        assertNull(dto.updatedAt());
-    }
+		// Then
+		assertNotNull(dto);
+		assertNull(dto.id());
+		assertNull(dto.userId());
+		assertNull(dto.firstName());
+		assertNull(dto.lastName());
+		assertNull(dto.email());
+		assertNull(dto.phone());
+		assertNull(dto.createdAt());
+		assertNull(dto.updatedAt());
+	}
 }
