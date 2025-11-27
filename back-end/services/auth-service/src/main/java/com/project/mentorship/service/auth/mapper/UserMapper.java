@@ -2,15 +2,14 @@ package com.project.mentorship.service.auth.mapper;
 
 import com.project.mentorship.service.auth.api.dto.UserDto;
 import com.project.mentorship.service.auth.domain.User;
+import org.springframework.stereotype.Component;
+
 import java.util.Objects;
 
+@Component
 public class UserMapper {
 
-    private UserMapper(){
-
-    }
-
-	public static User toDomain(UserDto userDto) {
+	public User toDomain(UserDto userDto) {
 		Objects.requireNonNull(userDto, "userDto must not be null");
 
 		User user = new User();
@@ -21,7 +20,7 @@ public class UserMapper {
 		return user;
 	}
 
-	public static UserDto toDto(User user) {
+	public UserDto toDto(User user) {
 		Objects.requireNonNull(user, "user must not be null");
         return new UserDto(
                 user.getId(),

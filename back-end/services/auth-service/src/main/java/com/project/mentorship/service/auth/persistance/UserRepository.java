@@ -3,8 +3,7 @@ package com.project.mentorship.service.auth.persistance;
 import com.project.mentorship.lib.pattern.BaseRepository;
 import com.project.mentorship.service.auth.domain.Role;
 import com.project.mentorship.service.auth.domain.User;
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -39,9 +38,9 @@ public class UserRepository implements BaseRepository<User> {
 		admin.setEmail(adminEmail);
 		admin.setPasswordHash(encryptionService.hash(adminPassword));
 		admin.setRole(Role.ADMIN);
-		admin.setCreatedAt(Timestamp.from(Instant.now()));
-		admin.setUpdatedAt(Timestamp.from(Instant.now()));
-		users.add(admin);
+        admin.setCreatedAt(OffsetDateTime.now());
+        admin.setUpdatedAt(OffsetDateTime.now());
+        users.add(admin);
 	}
 	@Override
 	public User save(User user) {
@@ -52,9 +51,9 @@ public class UserRepository implements BaseRepository<User> {
 			user.setRole(Role.USER);
 		}
 		if (user.getCreatedAt() == null) {
-			user.setCreatedAt(Timestamp.from(Instant.now()));
+			user.setCreatedAt(OffsetDateTime.now());
 		}
-		user.setUpdatedAt(Timestamp.from(Instant.now()));
+		user.setUpdatedAt(OffsetDateTime.now());
 		users.add(user);
 		return user;
 	}

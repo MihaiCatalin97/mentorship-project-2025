@@ -5,8 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.project.mentorship.service.auth.api.dto.UserDto;
 import com.project.mentorship.service.auth.domain.Role;
 import com.project.mentorship.service.auth.domain.User;
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
@@ -25,8 +24,10 @@ class UserMapperTest {
                 null
         );
 
+        UserMapper userMapper = new UserMapper();
+
         // When
-        User user = UserMapper.toDomain(userDto);
+        User user = userMapper.toDomain(userDto);
 
         // Then
         assertThat(user.getUsername()).isEqualTo("alex");
@@ -43,9 +44,10 @@ class UserMapperTest {
     void toDto_shouldExposeOnlySafeFields_whenMappingFromDomain() {
         // Given
         UUID id = UUID.randomUUID();
-        Timestamp createdAt = Timestamp.from(Instant.now().minusSeconds(60));
-        Timestamp updatedAt = Timestamp.from(Instant.now());
+        OffsetDateTime createdAt = OffsetDateTime.now().minusSeconds(60);
+        OffsetDateTime updatedAt = OffsetDateTime.now();
 
+        UserMapper userMapper = new UserMapper();
         User user = new User();
         user.setId(id);
         user.setUsername("alex");
@@ -56,7 +58,7 @@ class UserMapperTest {
         user.setUpdatedAt(updatedAt);
 
         // When
-        UserDto dto = UserMapper.toDto(user);
+        UserDto dto = userMapper.toDto(user);
 
         // Then
         assertThat(dto.id()).isEqualTo(id);
@@ -66,7 +68,6 @@ class UserMapperTest {
         assertThat(dto.createdAt()).isEqualTo(createdAt);
         assertThat(dto.updatedAt()).isEqualTo(updatedAt);
 
-        // password is input-only, should not be exposed
         assertThat(dto.password()).isNull();
     }
 }

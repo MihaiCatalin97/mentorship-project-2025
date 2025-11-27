@@ -3,7 +3,6 @@ package com.project.mentorship.service.auth.service;
 import com.project.mentorship.lib.pattern.BaseRepository;
 import com.project.mentorship.lib.pattern.BaseService;
 import com.project.mentorship.service.auth.domain.User;
-import com.project.mentorship.service.auth.persistance.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

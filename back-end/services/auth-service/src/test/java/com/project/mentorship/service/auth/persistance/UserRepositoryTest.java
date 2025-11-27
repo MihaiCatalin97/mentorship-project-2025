@@ -5,8 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.project.mentorship.service.auth.domain.Role;
 import com.project.mentorship.service.auth.domain.User;
 import com.project.mentorship.service.auth.service.EncryptionService;
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
@@ -39,7 +38,7 @@ class UserRepositoryTest {
         User user = new User();
         user.setId(UUID.randomUUID());
         user.setRole(Role.ADMIN);
-        user.setCreatedAt(Timestamp.from(Instant.now().minusSeconds(3600)));
+        user.setCreatedAt(OffsetDateTime.now().minusSeconds(3600));
 
         // When
         User savedUser = userRepository.save(user);
