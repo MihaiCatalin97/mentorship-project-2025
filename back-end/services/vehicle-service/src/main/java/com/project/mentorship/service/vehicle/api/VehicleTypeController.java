@@ -4,7 +4,6 @@ import com.project.mentorship.lib.pattern.BaseService;
 import com.project.mentorship.service.vehicle.api.dto.VehicleTypeDto;
 import com.project.mentorship.service.vehicle.domain.VehicleType;
 import com.project.mentorship.service.vehicle.mapper.VehicleTypeMapper;
-import com.project.mentorship.service.vehicle.service.VehicleTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
