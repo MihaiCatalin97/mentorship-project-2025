@@ -13,13 +13,12 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Builder
 @Accessors(chain = true)
-
 public class Notification {
-    private UUID id;
-    private UUID reservationId;
-    private UUID customerId;
-    private NotificationType type;
-    private NotificationStatus status;
-    private OffsetDateTime sentAt;
-    private OffsetDateTime createdAt;
+	private UUID id;
+	private UUID reservationId;
+	private UUID customerId;
+	private NotificationType type;
+	private NotificationStatus status;
+	private OffsetDateTime sentAt;
+	private OffsetDateTime createdAt;
 }

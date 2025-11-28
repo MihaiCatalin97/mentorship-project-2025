@@ -11,10 +11,9 @@ public class VehicleTypeMapper {
 			return null;
 		}
 
-		return VehicleType.builder().id(dto.id() != null ? dto.id() : null)
-                .name(dto.name() != null ? dto.name() : null)
-                .hourlyRate(dto.hourlyRate() != null ? dto.hourlyRate() : null)
-                .capacity(dto.capacity() != null ? dto.capacity() : null)
+		return VehicleType.builder().id(dto.id() != null ? dto.id() : null).name(dto.name() != null ? dto.name() : null)
+				.hourlyRate(dto.hourlyRate() != null ? dto.hourlyRate() : null)
+				.capacity(dto.capacity() != null ? dto.capacity() : null)
 				.createdAt(dto.createdAt() != null ? dto.createdAt() : null)
 				.updatedAt(dto.updatedAt() != null ? dto.updatedAt() : null).build();
 	}
@@ -26,8 +25,8 @@ public class VehicleTypeMapper {
 
 		return new VehicleTypeDto(vehicleType.getId() != null ? vehicleType.getId() : null,
 				vehicleType.getName() != null ? vehicleType.getName() : null,
-                vehicleType.getHourlyRate() != null ? vehicleType.getHourlyRate() : null,
-                vehicleType.getCapacity() != null ? vehicleType.getCapacity() : null,
+				vehicleType.getHourlyRate() != null ? vehicleType.getHourlyRate() : null,
+				vehicleType.getCapacity() != null ? vehicleType.getCapacity() : null,
 				vehicleType.getCreatedAt() != null ? vehicleType.getCreatedAt() : null,
 				vehicleType.getUpdatedAt() != null ? vehicleType.getUpdatedAt() : null);
 	}

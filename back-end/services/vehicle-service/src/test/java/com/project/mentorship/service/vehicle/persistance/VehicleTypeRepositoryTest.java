@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.project.mentorship.service.vehicle.domain.VehicleType;
 import com.project.mentorship.service.vehicle.persistence.VehicleTypeRepository;
 import java.util.UUID;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class VehicleTypeRepositoryTest {
