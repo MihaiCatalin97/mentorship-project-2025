@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 	private final BaseService<User> userService;
-    private final UserMapper userMapper;
+	private final UserMapper userMapper;
 
 	@PostMapping
 	public ResponseEntity<UserDto> create(@RequestBody UserDto userDto) {
 		User user = userMapper.toDomain(userDto);
 		User created = userService.create(user);
-        UserDto createdDto = userMapper.toDto(created);
+		UserDto createdDto = userMapper.toDto(created);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdDto);
 	}
 }
