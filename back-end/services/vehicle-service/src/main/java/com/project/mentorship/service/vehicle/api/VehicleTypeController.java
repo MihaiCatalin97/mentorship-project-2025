@@ -22,8 +22,8 @@ public class VehicleTypeController {
 	@PostMapping
 	public ResponseEntity<VehicleTypeDto> create(@RequestBody VehicleTypeDto request) {
 		VehicleType vehicleType = vehicleTypeMapper.map(request);
-        VehicleType createdVehicleType = vehicleTypeService.create(vehicleType);
-        VehicleTypeDto response = vehicleTypeMapper.map(createdVehicleType);
+		VehicleType createdVehicleType = vehicleTypeService.create(vehicleType);
+		VehicleTypeDto response = vehicleTypeMapper.map(createdVehicleType);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}

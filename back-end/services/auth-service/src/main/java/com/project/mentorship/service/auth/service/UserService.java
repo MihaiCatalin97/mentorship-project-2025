@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserService implements BaseService<User> {
 	private final BaseRepository<User> userRepository;
-    private final EncryptionService encryptionService;
+	private final EncryptionService encryptionService;
 
-    @Override
+	@Override
 	public User create(User user) {
 		user.setPasswordHash(encryptionService.hash(user.getPasswordHash()));
-        return userRepository.save(user);
+		return userRepository.save(user);
 	}
 }
