@@ -1,11 +1,13 @@
 package com.project.mentorship.service.notification;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.Test;
 
 class NotificationServiceApplicationTest {
 
 	@Test
 	void contextLoads() {
-		NotificationServiceApplication.main(new String[]{});
+		assertDoesNotThrow(() -> NotificationServiceApplication.main(new String[]{}));
 	}
 }

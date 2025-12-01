@@ -16,8 +16,8 @@ class NotificationMapperTest {
 	@Test
 	void map_ShouldConvertDtoToDomain() {
 		// given
-		NotificationDto dto = new NotificationDto(UUID.randomUUID(), UUID.randomUUID().toString(),
-				UUID.randomUUID().toString(), "EMAIL", "PENDING", null, null);
+		NotificationDto dto = new NotificationDto(UUID.randomUUID(), UUID.randomUUID(), UUID.randomUUID(), "EMAIL",
+				"PENDING", null, null);
 
 		// when
 		Notification result = mapper.map(dto);
