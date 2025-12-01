@@ -24,8 +24,8 @@ class NotificationMapperTest {
 
 		// then
 		assertNotNull(result);
-		assertEquals(dto.reservationId(), result.getReservationId().toString());
-		assertEquals(dto.customerId(), result.getCustomerId().toString());
+		assertEquals(dto.reservationId(), result.getReservationId());
+		assertEquals(dto.customerId(), result.getCustomerId());
 	}
 
 	@Test
@@ -39,8 +39,8 @@ class NotificationMapperTest {
 
 		// then
 		assertNotNull(dto);
-		assertEquals(notification.getReservationId().toString(), dto.reservationId());
-		assertEquals(notification.getCustomerId().toString(), dto.customerId());
+		assertEquals(notification.getReservationId(), dto.reservationId());
+		assertEquals(notification.getCustomerId(), dto.customerId());
 	}
 
 	@Test
