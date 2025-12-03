@@ -29,6 +29,7 @@
         <module>back-end</module>
         <module>database</module>
         <module>deploy</module>
+        <module>back-end/contracts</module>
     </modules>
     <build>
         <pluginManagement>
