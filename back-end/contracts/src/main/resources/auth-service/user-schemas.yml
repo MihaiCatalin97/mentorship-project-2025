@@ -1,0 +1,39 @@
+components:
+  schemas:
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+        email:
+          type: string
+          format: email
+        role:
+          $ref: '#/components/schemas/Role'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - username
+        - password
+        - email
+        - role
+        - createdAt
+        - updatedAt
+
+    Role:
+      type: string
+      enum:
+        - ADMIN
+        - USER
+
