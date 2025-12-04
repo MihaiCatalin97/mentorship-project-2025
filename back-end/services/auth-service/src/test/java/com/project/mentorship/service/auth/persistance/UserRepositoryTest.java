@@ -24,10 +24,11 @@ class UserRepositoryTest {
 		User savedUser = userRepository.save(user);
 
 		// Then
-		assertThat(savedUser.getId()).isNotNull();
-		assertThat(savedUser.getRole()).isEqualTo(Role.USER);
-		assertThat(savedUser.getCreatedAt()).isNotNull();
-		assertThat(savedUser.getUpdatedAt()).isNotNull();
+		assertThat(savedUser).isSameAs(user);
+		assertThat(savedUser.getId()).isNull();
+		assertThat(savedUser.getRole()).isNull();
+		assertThat(savedUser.getCreatedAt()).isNull();
+		assertThat(savedUser.getUpdatedAt()).isNull();
 	}
 
 	@Test
@@ -43,10 +44,10 @@ class UserRepositoryTest {
 		User savedUser = userRepository.save(user);
 
 		// Then
+		assertThat(savedUser).isSameAs(user);
 		assertThat(savedUser.getId()).isNotNull();
 		assertThat(savedUser.getRole()).isEqualTo(Role.ADMIN);
 		assertThat(savedUser.getCreatedAt()).isNotNull();
-		assertThat(savedUser.getUpdatedAt()).isNotNull();
+		assertThat(savedUser.getUpdatedAt()).isNull();
 	}
-
 }

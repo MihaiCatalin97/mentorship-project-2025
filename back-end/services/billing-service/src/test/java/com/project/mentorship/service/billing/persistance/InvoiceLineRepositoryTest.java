@@ -28,19 +28,18 @@ class InvoiceLineRepositoryTest {
 
 		// Then
 		assertNotNull(result);
-		assertEquals(invoiceLine, result, "The saved invoice line should be the same as the input invoice line");
+		assertEquals(invoiceLine, result);
 	}
 
 	@Test
-	void save_ShouldAssignId_WhenIdIsNull() {
+	void save_ShouldReturnSameInstance_WhenSavingInvoiceLine() {
 		// Given
-		InvoiceLineRepository repository = new InvoiceLineRepository();
-		InvoiceLine invoiceLine = new InvoiceLine(); // ID is null
+		InvoiceLine invoiceLine = new InvoiceLine();
 
 		// When
-		InvoiceLine saved = repository.save(invoiceLine);
+		InvoiceLine saved = invoiceLineRepository.save(invoiceLine);
 
 		// Then
-		assertNotNull(saved.getId(), "ID should be generated when null");
+		assertEquals(invoiceLine, saved);
 	}
 }

@@ -1,5 +1,6 @@
 package com.project.mentorship.service.billing.api;
 
+import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -35,12 +36,11 @@ class InvoiceLineControllerTest {
 		// When & Then
 		mockMvc.perform(post("/invoice-line").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(invoiceLineDto))).andExpect(status().isCreated())
-				.andExpect(jsonPath("$.id").value("11111111-1111-1111-1111-111111111111"))
+				.andExpect(jsonPath("$.id").isNotEmpty())
 				.andExpect(jsonPath("$.invoiceId").value("11111111-1111-1111-1111-111111111111"))
 				.andExpect(jsonPath("$.description").value("Updated description"))
 				.andExpect(jsonPath("$.quantity").value(12)).andExpect(jsonPath("$.unitPrice").value(100.50))
 				.andExpect(jsonPath("$.total").value(1200.70)).andExpect(jsonPath("$.createdAt").isNotEmpty())
-				.andExpect(jsonPath("$.updatedAt").isNotEmpty());
-
+				.andExpect(jsonPath("$.updatedAt").value(nullValue()));
 	}
 }

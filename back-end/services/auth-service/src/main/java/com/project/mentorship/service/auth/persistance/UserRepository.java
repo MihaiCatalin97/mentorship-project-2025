@@ -42,16 +42,6 @@ public class UserRepository implements BaseRepository<User> {
 	}
 	@Override
 	public User save(User user) {
-		if (user.getId() == null) {
-			user.setId(UUID.randomUUID());
-		}
-		if (user.getRole() == null) {
-			user.setRole(Role.USER);
-		}
-		if (user.getCreatedAt() == null) {
-			user.setCreatedAt(OffsetDateTime.now());
-		}
-		user.setUpdatedAt(OffsetDateTime.now());
 		users.add(user);
 		return user;
 	}
