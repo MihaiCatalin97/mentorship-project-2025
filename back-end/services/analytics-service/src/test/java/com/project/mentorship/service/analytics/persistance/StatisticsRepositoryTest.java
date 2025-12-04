@@ -9,7 +9,7 @@ import java.time.ZoneOffset;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
-public class StatisticsRepositoryTest {
+class StatisticsRepositoryTest {
 
 	@Test
 	void save_shouldStoreStatisticsInMemory() {

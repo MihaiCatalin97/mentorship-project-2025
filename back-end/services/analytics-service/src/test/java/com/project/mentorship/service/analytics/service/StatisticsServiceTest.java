@@ -14,7 +14,7 @@ import java.time.ZoneOffset;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class StatisticsServiceTest {
+class StatisticsServiceTest {
 
 	@Test
 	void create_shouldPopulateSystemFieldsAndDelegateToRepository() {

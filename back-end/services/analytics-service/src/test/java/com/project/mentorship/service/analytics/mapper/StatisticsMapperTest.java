@@ -10,7 +10,7 @@ import java.time.ZoneOffset;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
-public class StatisticsMapperTest {
+class StatisticsMapperTest {
 
 	private final StatisticsMapper statisticsMapper = new StatisticsMapper();
 
