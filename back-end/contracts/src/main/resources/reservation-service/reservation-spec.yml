@@ -1,27 +1,27 @@
-openapi: 3.1.0
-info:
-  title: Reservation Service - Reservation API
-  version: 1.0.0
-
-paths:
-  /reservations:
-    post:
-      summary: Create a new reservation
-      operationId: createReservation
-      tags:
-        - Reservation
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: './reservation-schemas.yml#/components/schemas/ReservationDto'
-      responses:
-        '201':
-          description: Reservation created successfully
-          content:
-            application/json:
-              schema:
-                $ref: './reservation-schemas.yml#/components/schemas/ReservationDto'
-        '400':
-          description: Invalid input
+#openapi: 3.1.0
+#info:
+#  title: Reservation Service - Reservation API
+#  version: 1.0.0
+#
+#paths:
+#  /reservations:
+#    post:
+#      summary: Create a new reservation
+#      operationId: createReservation
+#      tags:
+#        - Reservation
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: './reservation-schemas.yml#/components/schemas/ReservationDto'
+#      responses:
+#        '201':
+#          description: Reservation created successfully
+#          content:
+#            application/json:
+#              schema:
+#                $ref: './reservation-schemas.yml#/components/schemas/ReservationDto'
+#        '400':
+#          description: Invalid input
