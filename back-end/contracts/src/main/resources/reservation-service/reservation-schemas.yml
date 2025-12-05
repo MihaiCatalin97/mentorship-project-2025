@@ -1,45 +1,45 @@
-components:
-  schemas:
-    ReservationDto:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        customerId:
-          type: string
-          format: uuid
-        vehicleId:
-          type: string
-          format: uuid
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        status:
-          $ref: '#/components/schemas/ReservationStatus'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-      required:
-        - id
-        - customerId
-        - vehicleId
-        - startTime
-        - endTime
-        - status
-        - createdAt
-        - updatedAt
-
-    ReservationStatus:
-      type: string
-      enum:
-        - PENDING
-        - CONFIRMED
-        - CANCELLED
-        - COMPLETED
+#components:
+#  schemas:
+#    ReservationDto:
+#      type: object
+#      properties:
+#        id:
+#          type: string
+#          format: uuid
+#        customerId:
+#          type: string
+#          format: uuid
+#        vehicleId:
+#          type: string
+#          format: uuid
+#        startTime:
+#          type: string
+#          format: date-time
+#        endTime:
+#          type: string
+#          format: date-time
+#        status:
+#          $ref: '#/components/schemas/ReservationStatus'
+#        createdAt:
+#          type: string
+#          format: date-time
+#        updatedAt:
+#          type: string
+#          format: date-time
+#      required:
+#        - id
+#        - customerId
+#        - vehicleId
+#        - startTime
+#        - endTime
+#        - status
+#        - createdAt
+#        - updatedAt
+#
+#    ReservationStatus:
+#      type: string
+#      enum:
+#        - PENDING
+#        - CONFIRMED
+#        - CANCELLED
+#        - COMPLETED
