@@ -3,6 +3,9 @@ package com.project.mentorship.service.billing.service;
 import com.project.mentorship.lib.pattern.BaseRepository;
 import com.project.mentorship.lib.pattern.BaseService;
 import com.project.mentorship.service.billing.domain.InvoiceLine;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,10 @@ public class InvoiceLineService implements BaseService<InvoiceLine> {
 
 	@Override
 	public InvoiceLine create(InvoiceLine invoiceLine) {
+		invoiceLine.setId(UUID.randomUUID());
+		invoiceLine.setCreatedAt(OffsetDateTime.now(ZoneOffset.UTC));
+		invoiceLine.setUpdatedAt(null);
+
 		return invoiceLineRepository.save(invoiceLine);
 	}
 }

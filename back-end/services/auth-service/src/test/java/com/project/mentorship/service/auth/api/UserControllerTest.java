@@ -1,5 +1,6 @@
 package com.project.mentorship.service.auth.api;
 
+import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -35,7 +36,7 @@ class UserControllerTest {
 				.andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$.username").value("alex")).andExpect(jsonPath("$.email").value("alex@gmail.com"))
 				.andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.role").value("USER"))
-				.andExpect(jsonPath("$.createdAt").isNotEmpty()).andExpect(jsonPath("$.updatedAt").isNotEmpty())
+				.andExpect(jsonPath("$.createdAt").isNotEmpty()).andExpect(jsonPath("$.updatedAt").value(nullValue()))
 				.andExpect(jsonPath("$.password").doesNotExist());
 	}
 }

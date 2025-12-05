@@ -2,7 +2,11 @@ package com.project.mentorship.service.auth.service;
 
 import com.project.mentorship.lib.pattern.BaseRepository;
 import com.project.mentorship.lib.pattern.BaseService;
+import com.project.mentorship.service.auth.domain.Role;
 import com.project.mentorship.service.auth.domain.User;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,10 @@ public class UserService implements BaseService<User> {
 
 	@Override
 	public User create(User user) {
+		user.setId(UUID.randomUUID());
+		user.setRole(Role.USER);
+		user.setCreatedAt(OffsetDateTime.now(ZoneOffset.UTC));
+		user.setUpdatedAt(null);
 		user.setPasswordHash(encryptionService.hash(user.getPasswordHash()));
 		return userRepository.save(user);
 	}

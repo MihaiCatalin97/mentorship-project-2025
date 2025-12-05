@@ -1,23 +1,43 @@
-# Analytics Service Module
+# analytics-service  
+## Overview  
+Maven module for analytics/statistics operations. (Initial setup)
 
-## Setup Steps
+## Structure  
+AnalyticsServiceApplication — entry point (psvm)
 
-- Created new module: `analytics-service` using IntelliJ IDEA.
-- Configured `pom.xml` for Maven build.
-- Established package structure: `com.project.mentorship.service.analytics`.
-- Added `AuthServiceApplication` class with a placeholder main method.
-- This `README.md` documents the initial setup.
+## Build  
+```bash
+mvn install -DskipTests
+```
 
-## Build & Integration
+## API  
+### POST @ /analytics/statistics
 
-- The module is included in Maven goals.
-- After running `mvn install`, you should see:
-    - `analytics-service ..... SUCCESS`
-    - The module's JAR in your local `.m2` repository.
+#### Description  
+Create a new statistics entry (temporarily stored in memory).  
+The flow follows the n-layer architecture: Controller → Mapper → Service → Repository.  
+On success, the endpoint returns HTTP 201 and echoes the created statistics as received from the request.
 
-## Definition of Done
-- Module set up in project.
-- `pom.xml` created and configured.
-- `AnalyticsServiceApplication` class present.
-- This `README.md` file created.
-- Maven build includes `analytics-service` and produces its JAR.
+#### Validations  
+No validations
+
+#### Request examples  
+```
+{
+"date": "2025-01-15T00:00:00Z",
+"totalReservations": 42,
+"totalRevenue": 950.75
+}
+```
+
+### Response examples  
+```
+{
+"id": "b2979c1d-25b4-476b-a3b3-db4ad0b9bb48",
+"date": "2025-01-15T00:00:00Z",
+"totalReservations": 42,
+"totalRevenue": 950.75,
+"createdAt": "2025-12-04T13:06:06.5438286Z"
+}
+```
+
