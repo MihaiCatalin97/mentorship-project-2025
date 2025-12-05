@@ -26,6 +26,7 @@
 
     <properties>
         <spring-boot.version>3.5.7</spring-boot.version>
+        <jib-maven-plugin.version>3.5.1</jib-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -55,5 +56,38 @@
         </dependency>
 
     </dependencies>
+
+    <!-- Build docker images only when the docker profile is active -->
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <version>${jib-maven-plugin.version}</version>
+                        <configuration>
+                            <to>
+                                <image>${project.artifactId}:${project.version}</image>
+                            </to>
+                            <container>
+                                <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+                            </container>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>dockerBuild</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 
 </project>

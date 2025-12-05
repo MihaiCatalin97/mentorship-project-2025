@@ -12,4 +12,8 @@
 
     <artifactId>deploy</artifactId>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>local</module>
+    </modules>
 </project>
