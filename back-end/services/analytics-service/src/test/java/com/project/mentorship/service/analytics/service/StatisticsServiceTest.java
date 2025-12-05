@@ -8,7 +8,6 @@ import static org.mockito.Mockito.when;
 
 import com.project.mentorship.service.analytics.domain.Statistics;
 import com.project.mentorship.service.analytics.persistance.StatisticsRepository;
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import org.junit.jupiter.api.Test;
@@ -23,7 +22,7 @@ class StatisticsServiceTest {
 		StatisticsService statisticsService = new StatisticsService(statisticsRepository);
 
 		Statistics statistics = new Statistics(null, OffsetDateTime.of(2025, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC), 10,
-				BigDecimal.valueOf(250), null);
+				Double.valueOf(250.0), null);
 
 		when(statisticsRepository.save(any(Statistics.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
