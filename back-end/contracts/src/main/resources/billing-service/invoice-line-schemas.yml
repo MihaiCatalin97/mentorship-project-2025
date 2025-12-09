@@ -1,0 +1,46 @@
+components:
+  schemas:
+    InvoiceLineDto:
+      title: InvoiceLineDto
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+
+        invoiceId:
+          type: string
+          format: uuid
+
+        description:
+          type: string
+
+        quantity:
+          type: integer
+          minimum: 1
+
+        unitPrice:
+          type: number
+          format: double
+
+        total:
+          type: number
+          format: double
+
+        createdAt:
+          type: string
+          format: date-time
+
+        updatedAt:
+          type: string
+          format: date-time
+
+      required:
+        - id
+        - invoiceId
+        - description
+        - quantity
+        - unitPrice
+        - total
+        - createdAt
+        - updatedAt
