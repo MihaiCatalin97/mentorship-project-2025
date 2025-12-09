@@ -1,6 +1,7 @@
 components:
   schemas:
     UserDto:
+      title: UserDto
       type: object
       properties:
         id:

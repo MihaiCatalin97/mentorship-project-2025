@@ -11,4 +11,20 @@
 
     <artifactId>notification-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.project.mentorship</groupId>
+            <artifactId>contracts</artifactId>
+            <classifier>notification</classifier>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+
 </project>

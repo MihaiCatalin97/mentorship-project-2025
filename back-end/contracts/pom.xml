@@ -60,9 +60,81 @@
                                 <delegatePattern>true</delegatePattern>
                                 <useJakartaEe>true</useJakartaEe>
                                 <useBeanValidation>true</useBeanValidation>
-                                <modelNameMapping>
-                                    <createUser_request>UserDto</createUser_request>
-                                </modelNameMapping>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>generate-reservation-contracts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>
+                                ${project.basedir}/src/main/resources/reservation-service/reservation-spec.yml
+                            </inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>com.project.mentorship.contract.reservation.api</apiPackage>
+                            <modelPackage>com.project.mentorship.contract.reservation.model</modelPackage>
+                            <openapiNormalizer>REF_AS_PARENT_IN_ALLOF=true</openapiNormalizer>
+                            <supportingFilesToGenerate>
+                                ApiUtil.java
+                            </supportingFilesToGenerate>
+                            <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
+                            <configOptions>
+                                <delegatePattern>true</delegatePattern>
+                                <useJakartaEe>true</useJakartaEe>
+                                <useBeanValidation>true</useBeanValidation>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>generate-notification-contracts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>
+                                ${project.basedir}/src/main/resources/notification-service/notification-spec.yml
+                            </inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>com.project.mentorship.contract.notification.api</apiPackage>
+                            <modelPackage>com.project.mentorship.contract.notification.model</modelPackage>
+                            <openapiNormalizer>REF_AS_PARENT_IN_ALLOF=true</openapiNormalizer>
+                            <supportingFilesToGenerate>
+                                ApiUtil.java
+                            </supportingFilesToGenerate>
+                            <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
+                            <configOptions>
+                                <delegatePattern>true</delegatePattern>
+                                <useJakartaEe>true</useJakartaEe>
+                                <useBeanValidation>true</useBeanValidation>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>generate-billing-contracts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>
+                                ${project.basedir}/src/main/resources/billing-service/invoice-line-spec.yml
+                            </inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>com.project.mentorship.contract.billing.api</apiPackage>
+                            <modelPackage>com.project.mentorship.contract.billing.model</modelPackage>
+                            <openapiNormalizer>REF_AS_PARENT_IN_ALLOF=true</openapiNormalizer>
+                            <supportingFilesToGenerate>
+                                ApiUtil.java
+                            </supportingFilesToGenerate>
+                            <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
+                            <configOptions>
+                                <delegatePattern>true</delegatePattern>
+                                <useJakartaEe>true</useJakartaEe>
+                                <useBeanValidation>true</useBeanValidation>
                             </configOptions>
                         </configuration>
                     </execution>
@@ -84,6 +156,48 @@
                             <classifier>auth</classifier>
                             <includes>
                                 <include>**/com/project/mentorship/contract/auth/**</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>package-reservation</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>reservation</classifier>
+                            <includes>
+                                <include>**/com/project/mentorship/contract/reservation/**</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>package-notification</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>notification</classifier>
+                            <includes>
+                                <include>**/com/project/mentorship/contract/notification/**</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>package-billing</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>billing</classifier>
+                            <includes>
+                                <include>**/com/project/mentorship/contract/billing/**</include>
                             </includes>
                         </configuration>
                     </execution>
