@@ -1,26 +1,29 @@
 components:
   schemas:
-    StatisticsDto:
-      title: StatisticsDto
+    VehicleTypeDto:
+      title: VehicleTypeDto
       type: object
       properties:
         id:
           type: string
           format: uuid
-        date:
+        name:
           type: string
-          format: date-time
-        totalReservations:
-          type: integer
-        totalRevenue:
+        hourlyRate:
           type: number
           format: double
+        capacity:
+          type: integer
         createdAt:
+          type: string
+          format: date-time
+        updatedAt:
           type: string
           format: date-time
       required:
         - id
-        - date
-        - totalReservations
-        - totalRevenue
+        - name
+        - hourlyRate
+        - capacity
         - createdAt
+        - updatedAt

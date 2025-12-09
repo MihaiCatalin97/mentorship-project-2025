@@ -13,4 +13,12 @@
     <name>vehicle-service</name>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.project.mentorship</groupId>
+            <artifactId>contracts</artifactId>
+            <classifier>vehicle</classifier>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
