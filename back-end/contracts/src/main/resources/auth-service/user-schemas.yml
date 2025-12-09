@@ -37,4 +37,3 @@ components:
       enum:
         - ADMIN
         - USER
-
