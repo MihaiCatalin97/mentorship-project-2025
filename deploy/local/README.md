@@ -12,8 +12,8 @@
     ```
   -Ensure that a bash-compatible shell is available.
   On Windows, this requires using WSL, and WSL integration must be enabled for your Linux distribution in Rancher Desktop settings.
-  ![RancherSettings.png](RancherSettings.png)
-  ![Terminal.png](Terminal.png)
+  ![RancherSettings.png](docs/images/RancherSettings.png)
+  ![Terminal.png](docs/images/Terminal.png)
 
 ## Build Services
 - Navigate to the root directory of the project.

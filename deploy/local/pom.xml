@@ -11,6 +11,11 @@
     </parent>
 
     <artifactId>local</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <exec-maven-plugin.version>3.6.2</exec-maven-plugin.version>
+    </properties>
 
     <profiles>
         <profile>
@@ -27,6 +32,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
+                        <version>${exec-maven-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>deploy</id>
