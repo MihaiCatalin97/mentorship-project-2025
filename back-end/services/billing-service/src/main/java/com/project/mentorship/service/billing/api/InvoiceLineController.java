@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/invoice-line")
+@RequestMapping("/billing")
 @RequiredArgsConstructor
 public class InvoiceLineController {
 
