@@ -14,33 +14,35 @@ components:
 
         description:
           type: string
+          description: A short description of the invoiced item or service
 
         quantity:
           type: integer
           minimum: 1
+          description: The number of units being billed
 
         unitPrice:
           type: number
           format: double
+          description: The price per single unit
 
         total:
           type: number
           format: double
+          description: The total amount for this line (quantity × unit price)
 
         createdAt:
           type: string
           format: date-time
+          description: The timestamp when this invoice line was created
 
         updatedAt:
           type: string
           format: date-time
+          description: The timestamp of the last update to this invoice line
 
       required:
-        - id
-        - invoiceId
         - description
         - quantity
         - unitPrice
         - total
-        - createdAt
-        - updatedAt

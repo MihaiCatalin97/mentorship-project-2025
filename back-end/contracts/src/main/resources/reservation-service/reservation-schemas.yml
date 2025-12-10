@@ -7,35 +7,45 @@ components:
         id:
           type: string
           format: uuid
+
         customerId:
           type: string
           format: uuid
+
         vehicleId:
           type: string
           format: uuid
+
         startTime:
           type: string
           format: date-time
+          description: The date and time when the reservation begins
+
         endTime:
           type: string
           format: date-time
+          description: The date and time when the reservation ends
+
         status:
           $ref: '#/components/schemas/ReservationStatus'
+          description: The current status of the reservation
+
         createdAt:
           type: string
           format: date-time
+          description: The timestamp when the reservation was created
+
         updatedAt:
           type: string
           format: date-time
+          description: The timestamp of the last update to the reservation
+
       required:
-        - id
         - customerId
         - vehicleId
         - startTime
         - endTime
         - status
-        - createdAt
-        - updatedAt
 
     ReservationStatus:
       type: string

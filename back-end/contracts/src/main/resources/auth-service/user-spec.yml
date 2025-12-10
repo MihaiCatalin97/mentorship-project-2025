@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 
 paths:
-  /users:
+  /auth/users:
     post:
       summary: Create a new user
       operationId: createUser

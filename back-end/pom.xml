@@ -16,7 +16,7 @@
     <properties>
         <lombok.version>1.18.42</lombok.version>
         <jacoco.version>0.8.14</jacoco.version>
-        <spring-boot.version>4.0.0</spring-boot.version>
+        <spring-boot.version>3.5.7</spring-boot.version>
     </properties>
 
     <modules>
