@@ -11,4 +11,13 @@
 
     <artifactId>analytics-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.project.mentorship</groupId>
+            <artifactId>contracts</artifactId>
+            <classifier>analytics</classifier>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>
