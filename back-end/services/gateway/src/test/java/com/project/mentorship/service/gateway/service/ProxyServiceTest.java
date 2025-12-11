@@ -107,7 +107,7 @@ class ProxyServiceTest {
 	void forward_shouldThrowServiceNotFoundWhenNoMatchingService() {
 		// given
 		HttpServletRequest request = new MockHttpServletRequest();
-		when(gatewayProperties.getServices()).thenReturn(List.of()); // sau null
+		when(gatewayProperties.getServices()).thenReturn(List.of());
 
 		// when / then
 		assertThrows(ServiceNotFoundException.class, () -> proxyService.forward(HttpMethod.GET, request, null));
