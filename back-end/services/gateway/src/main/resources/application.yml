@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+gateway:
+  services:
+    - name: analytics
+      host: localhost
+      port: 8081
+      path: /analytics
+
+    - name: auth
+      host: localhost
+      port: 8082
+      path: /auth
+
+    - name: billing
+      host: localhost
+      port: 8083
+      path: /billing
+
+    - name: customer
+      host: localhost
+      port: 8084
+      path: /customers
+
+    - name: notification
+      host: localhost
+      port: 8085
+      path: /notifications
+
+    - name: reservation
+      host: localhost
+      port: 8086
+      path: /reservations
+
+    - name: vehicle
+      host: localhost
+      port: 8087
+      path: /vehicles
