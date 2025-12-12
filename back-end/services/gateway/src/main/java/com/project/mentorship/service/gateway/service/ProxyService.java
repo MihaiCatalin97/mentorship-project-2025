@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.net.URISyntaxException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProxyService {
@@ -34,7 +36,7 @@ public class ProxyService {
 			targetURI = new URI("http", null, targetService.getHost(), targetService.getPort(), requestURI, queryString,
 					null);
 		} catch (URISyntaxException e) {
-			e.printStackTrace();
+			log.error("Failed to build target URI", e);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 					.body("Invalid URI constructed for service.".getBytes());
 		}
