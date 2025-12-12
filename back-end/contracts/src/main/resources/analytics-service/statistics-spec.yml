@@ -1,0 +1,27 @@
+openapi: 3.1.1
+info:
+  title: Analytics Service - Statistics API
+  version: 1.0.0
+
+paths:
+  /analytics/statistics:
+    post:
+      summary: Create statistics entry
+      operationId: createStatistics
+      tags:
+        - Statistics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './statistics-schemas.yml#/components/schemas/StatisticsDto'
+      responses:
+        '201':
+          description: Statistics entry created successfully
+          content:
+            application/json:
+              schema:
+                $ref: './statistics-schemas.yml#/components/schemas/StatisticsDto'
+        '400':
+          description: Invalid input

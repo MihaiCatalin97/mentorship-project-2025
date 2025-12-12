@@ -30,7 +30,9 @@ No validations
   "createdAt": "2025-02-10T14:30:00Z",
   "updatedAt": "2025-09-20T08:45:00Z"
 }
-#### Request examples
+```
+
+#### Response examples
 ```
 {
 "id": "e2c82339-7057-4835-bd1a-6449ee99e2e3",

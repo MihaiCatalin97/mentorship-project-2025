@@ -1,0 +1,28 @@
+openapi: 3.1.1
+
+info:
+  title: Notification API
+  version: 1.0.0
+
+paths:
+  /notifications:
+    post:
+      summary: Create a new notification
+      operationId: createNotification
+      tags:
+        - Notification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./notification-schemas.yml#/components/schemas/NotificationDto"
+      responses:
+        "201":
+          description: Notification created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "./notification-schemas.yml#/components/schemas/NotificationDto"
+        "400":
+          description: Invalid input
