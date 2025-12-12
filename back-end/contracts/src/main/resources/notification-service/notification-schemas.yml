@@ -1,0 +1,41 @@
+components:
+  schemas:
+    NotificationDto:
+      title: NotificationDto
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+
+        reservationId:
+          type: string
+          format: uuid
+
+        customerId:
+          type: string
+          format: uuid
+
+        type:
+          type: string
+          description: Type of the notification (e.g. EMAIL, SMS, PUSH)
+
+        status:
+          type: string
+          description: Delivery status of the notification (e.g. SENT, FAILED, PENDING)
+
+        sentAt:
+          type: string
+          format: date-time
+          description: When the notification was sent
+
+        createdAt:
+          type: string
+          format: date-time
+          description: When the notification was created
+
+      required:
+        - reservationId
+        - customerId
+        - type
+        - status

@@ -11,4 +11,13 @@
 
     <artifactId>notification-service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.project.mentorship</groupId>
+            <artifactId>contracts</artifactId>
+            <classifier>notification</classifier>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

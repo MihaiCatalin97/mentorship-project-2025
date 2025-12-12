@@ -1,0 +1,27 @@
+openapi: 3.1.1
+info:
+  title: Customer Service - Customer API
+  version: 1.0.0
+
+paths:
+  /customers:
+    post:
+      summary: Create a new customer
+      operationId: createCustomer
+      tags:
+        - Customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './customer-schemas.yml#/components/schemas/CustomerDto'
+      responses:
+        '201':
+          description: Customer created successfully
+          content:
+            application/json:
+              schema:
+                $ref: './customer-schemas.yml#/components/schemas/CustomerDto'
+        '400':
+          description: Invalid input
