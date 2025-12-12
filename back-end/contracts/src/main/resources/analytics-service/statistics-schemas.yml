@@ -1,0 +1,33 @@
+components:
+  schemas:
+    StatisticsDto:
+      title: StatisticsDto
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+
+        date:
+          type: string
+          format: date-time
+          description: The date for which statistics are calculated
+
+        totalReservations:
+          type: integer
+          description: The total number of reservations made on the given date
+
+        totalRevenue:
+          type: number
+          format: double
+          description: The total revenue generated on the given date
+
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the statistics entry was created
+
+      required:
+        - date
+        - totalReservations
+        - totalRevenue

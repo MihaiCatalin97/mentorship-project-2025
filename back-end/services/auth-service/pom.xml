@@ -21,5 +21,12 @@
             <version>${spring-boot.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.project.mentorship</groupId>
+            <artifactId>contracts</artifactId>
+            <classifier>auth</classifier>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
+
 </project>

@@ -1,0 +1,28 @@
+openapi: 3.1.1
+
+info:
+  title: Billing Service - Invoice Line API
+  version: 1.0.0
+
+paths:
+  /billing/invoice-line:
+    post:
+      summary: Create a new invoice line
+      operationId: createInvoiceLine
+      tags:
+        - Billing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: "./invoice-line-schemas.yml#/components/schemas/InvoiceLineDto"
+      responses:
+        "201":
+          description: Invoice line created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "./invoice-line-schemas.yml#/components/schemas/InvoiceLineDto"
+        "400":
+          description: Invalid input

@@ -1,0 +1,27 @@
+openapi: 3.1.1
+info:
+  title: Vehicle Service - VehicleType API
+  version: 1.0.0
+
+paths:
+  /vehicles/types:
+    post:
+      summary: Create a new vehicle type
+      operationId: createVehicleType
+      tags:
+        - VehicleType
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './vehicle-type-schemas.yml#/components/schemas/VehicleTypeDto'
+      responses:
+        '201':
+          description: Vehicle type created successfully
+          content:
+            application/json:
+              schema:
+                $ref: './vehicle-type-schemas.yml#/components/schemas/VehicleTypeDto'
+        '400':
+          description: Invalid input
