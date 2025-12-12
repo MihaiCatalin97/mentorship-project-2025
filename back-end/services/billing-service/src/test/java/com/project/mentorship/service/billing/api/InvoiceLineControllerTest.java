@@ -34,7 +34,7 @@ class InvoiceLineControllerTest {
 				OffsetDateTime.parse("2025-11-14T09:50:00Z"), OffsetDateTime.parse("2025-11-14T09:50:00Z"));
 
 		// When & Then
-		mockMvc.perform(post("/billing").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("/invoice-line").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(invoiceLineDto))).andExpect(status().isCreated())
 				.andExpect(jsonPath("$.id").isNotEmpty())
 				.andExpect(jsonPath("$.invoiceId").value("11111111-1111-1111-1111-111111111111"))

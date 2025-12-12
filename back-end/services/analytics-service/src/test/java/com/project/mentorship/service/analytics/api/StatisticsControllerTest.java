@@ -34,7 +34,7 @@ class StatisticsControllerIT {
 		String requestBody = objectMapper.writeValueAsString(dto);
 
 		// When & Then
-		mockMvc.perform(post("/analytics").contentType(MediaType.APPLICATION_JSON).content(requestBody))
+		mockMvc.perform(post("/statistics").contentType(MediaType.APPLICATION_JSON).content(requestBody))
 				.andExpect(status().isCreated());
 	}
 }

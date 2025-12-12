@@ -3,11 +3,13 @@ package com.project.mentorship.service.gateway.service;
 import com.project.mentorship.service.gateway.config.GatewayProperties;
 import com.project.mentorship.service.gateway.config.ServiceConfig;
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.List;
+import java.net.URI;
+import java.net.URISyntaxException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -26,33 +28,27 @@ public class ProxyService {
 
 		ServiceConfig targetService = findServiceForPath(requestURI);
 
-		StringBuilder urlBuilder = new StringBuilder();
-		urlBuilder.append("http://").append(targetService.getHost()).append(":").append(targetService.getPort())
-				.append(requestURI);
+		URI targetURI = null;
 
-		if (queryString != null && !queryString.isEmpty()) {
-			urlBuilder.append("?").append(queryString);
+		try {
+			targetURI = new URI("http", null, targetService.getHost(), targetService.getPort(), requestURI, queryString,
+					null);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("Invalid URI constructed for service.".getBytes());
 		}
-
-		String targetURL = urlBuilder.toString();
 
 		HttpHeaders headers = new HttpHeaders();
-
-		HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		return restTemplate.exchange(targetURL, method, requestEntity, byte[].class);
+		HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
+
+		return restTemplate.exchange(targetURI, method, requestEntity, byte[].class);
 	}
 	private ServiceConfig findServiceForPath(String path) {
-		List<ServiceConfig> services = gatewayProperties.getServices();
-
-		if (services != null) {
-			for (ServiceConfig service : services) {
-				if (path.startsWith(service.getPath())) {
-					return service;
-				}
-			}
-		}
-		throw new ServiceNotFoundException();
+		return gatewayProperties.getServices().stream()
+				.filter(serviceConfig -> path.startsWith(serviceConfig.getPath())).findFirst()
+				.orElseThrow(ServiceNotFoundException::new);
 	}
 }

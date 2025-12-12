@@ -33,7 +33,7 @@ class VehicleTypeControllerTest {
 				(OffsetDateTime) null);
 
 		// When & Then
-		mockMvc.perform(post("/vehicles").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("/types").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(request))).andExpect(status().isCreated())
 				.andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.name").value("Dacia Logan 2022"))
 				.andExpect(jsonPath("$.hourlyRate").value(25.5)).andExpect(jsonPath("$.capacity").value(5))

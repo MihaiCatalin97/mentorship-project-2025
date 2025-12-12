@@ -32,7 +32,7 @@ class UserControllerTest {
 				""";
 
 		// When, Then
-		mockMvc.perform(post("/auth").contentType(MediaType.APPLICATION_JSON).content(body))
+		mockMvc.perform(post("/users").contentType(MediaType.APPLICATION_JSON).content(body))
 				.andExpect(status().isCreated()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(jsonPath("$.username").value("alex")).andExpect(jsonPath("$.email").value("alex@gmail.com"))
 				.andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.role").value("USER"))
