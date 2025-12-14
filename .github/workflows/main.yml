@@ -35,32 +35,31 @@ jobs:
           java-version: '21'
           cache: maven
 
-      - name: Cache Maven repository
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.m2/repository
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-m2-
+      - name: Build with Maven
+        run: mvn clean install
 
-      - name: Cache SonarQube
-        uses: actions/cache@v4
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-sonar-
-
-      - name: Build with Maven (tests & coverage)
-        run: mvn -B clean verify
-
-      - name: SonarQube analysis (no tests)
+      - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: >
-          mvn -B
-          org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+
+      - name: Install GitHub CLI
+        run: |
+          type -p gh || curl -fsSL https://cli.github.com/install.sh | sh
+
+      - name: Trigger PR rechecks
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          prs=$(gh pr list --repo "$REPO" --state open --json number --jq '.[].number')
+
+          echo "Found PRs: $prs"
+          for pr in $prs; do
+            echo "Triggering recheck for PR #$pr"
+            gh api "repos/$REPO/dispatches" \
+              -f event_type="recheck-pr" \
+              -f client_payload="{\"pr_number\": $pr}"
+          done
