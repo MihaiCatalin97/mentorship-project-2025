@@ -42,6 +42,11 @@ jobs:
       - name: Fetch latest main
         run: git fetch origin main
 
+      - name: Set Git identity
+        run: |
+          git config --global user.email "ci@example.com"
+          git config --global user.name "CI User"
+
       - name: Rebase PR branch with latest main
         run: git rebase origin/main
 
