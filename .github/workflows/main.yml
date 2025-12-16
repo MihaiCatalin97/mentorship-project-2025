@@ -15,7 +15,7 @@ jobs:
 
       - name: Trigger PR rechecks
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
           prs=$(gh pr list --repo "$REPO" --state open --json number --jq '.[].number')
