@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>contracts</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <openapi-generator-maven-plugin.version>7.17.0</openapi-generator-maven-plugin.version>

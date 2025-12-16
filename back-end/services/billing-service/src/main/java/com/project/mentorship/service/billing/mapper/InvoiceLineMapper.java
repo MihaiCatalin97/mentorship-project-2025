@@ -1,6 +1,6 @@
 package com.project.mentorship.service.billing.mapper;
 
-import com.project.mentorship.service.billing.api.dto.InvoiceLineDto;
+import com.project.mentorship.contract.billing.model.InvoiceLineDto;
 import com.project.mentorship.service.billing.domain.InvoiceLine;
 import org.springframework.stereotype.Component;
 
@@ -11,28 +11,32 @@ public final class InvoiceLineMapper {
 		if (dto == null) {
 			return null;
 		}
-		return InvoiceLine.builder().id(dto.id() != null ? dto.id() : null)
-				.invoiceId(dto.invoiceId() != null ? dto.invoiceId() : null)
-				.description(dto.description() != null ? dto.description() : null)
-				.quantity(dto.quantity() != null ? dto.quantity() : null)
-				.unitPrice(dto.unitPrice() != null ? dto.unitPrice() : null)
-				.total(dto.total() != null ? dto.total() : null)
-				.createdAt(dto.createdAt() != null ? dto.createdAt() : null)
-				.updatedAt(dto.updatedAt() != null ? dto.updatedAt() : null).build();
+		return InvoiceLine.builder().id(dto.getId() != null ? dto.getId() : null)
+				.invoiceId(dto.getInvoiceId() != null ? dto.getInvoiceId() : null)
+				.description(dto.getDescription() != null ? dto.getDescription() : null)
+				.quantity(dto.getQuantity() != null ? dto.getQuantity() : null)
+				.unitPrice(dto.getUnitPrice() != null ? dto.getUnitPrice() : null)
+				.total(dto.getTotal() != null ? dto.getTotal() : null)
+				.createdAt(dto.getCreatedAt() != null ? dto.getCreatedAt() : null)
+				.updatedAt(dto.getUpdatedAt() != null ? dto.getUpdatedAt() : null).build();
 	}
 
 	public InvoiceLineDto mapToInvoiceLineDto(InvoiceLine invoiceLine) {
 		if (invoiceLine == null) {
 			return null;
 		}
-		return new InvoiceLineDto(invoiceLine.getId() != null ? invoiceLine.getId() : null,
-				invoiceLine.getInvoiceId() != null ? invoiceLine.getInvoiceId() : null,
-				invoiceLine.getDescription() != null ? invoiceLine.getDescription() : null,
-				invoiceLine.getQuantity() != null ? invoiceLine.getQuantity() : null,
-				invoiceLine.getUnitPrice() != null ? invoiceLine.getUnitPrice() : null,
-				invoiceLine.getTotal() != null ? invoiceLine.getTotal() : null,
-				invoiceLine.getCreatedAt() != null ? invoiceLine.getCreatedAt() : null,
-				invoiceLine.getUpdatedAt() != null ? invoiceLine.getUpdatedAt() : null);
 
+		InvoiceLineDto dto = new InvoiceLineDto();
+
+		dto.setId(invoiceLine.getId());
+		dto.setInvoiceId(invoiceLine.getInvoiceId());
+		dto.setDescription(invoiceLine.getDescription());
+		dto.setQuantity(invoiceLine.getQuantity());
+		dto.setUnitPrice(invoiceLine.getUnitPrice());
+		dto.setTotal(invoiceLine.getTotal());
+		dto.setCreatedAt(invoiceLine.getCreatedAt());
+		dto.setUpdatedAt(invoiceLine.getUpdatedAt());
+
+		return dto;
 	}
 }
