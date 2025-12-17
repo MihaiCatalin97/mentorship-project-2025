@@ -1,8 +1,8 @@
 # auth-service
 
 ## Overview
-Maven module responsible for user authentication and user management.
-
+Maven module responsible for user authentication and user management within the system.
+Implements a simple in-memory persistence layer for now, focusing on core flows (happy path).
 ## Structure
 - `AuthServiceApplication` — entry point (Spring Boot)
 - `UserController` — handles HTTP requests
@@ -39,7 +39,7 @@ Security rules are not enforced yet.
 }
 ```
 
-### Response Example
+#### Response Example
 ```json
 {
   "id": "fd64eb32-6f17-4299-a8bc-6902a0071efe",
@@ -49,6 +49,36 @@ Security rules are not enforced yet.
   "role": "USER",
   "createdAt": "2025-11-27T09:23:51.849+00:00",
   "updatedAt": "2025-11-27T09:23:51.849+00:00"
+}
+```
+
+### Get @ /users/{id}
+
+#### Description
+Fetches a user by its ID.
+This endpoint retrieves the user through the service and maps it into a DTO.
+
+#### Notes
+- Only happy flow implemented
+- Returns 200 OK with user data if found
+- If the user does not exist, the repository throws UserNotFoundException
+- @ResponseStatus(HttpStatus.NOT_FOUND) ensures the API returns 404 instead of 500
+
+#### Request Example
+- No request body needed
+- Path parameter: `id` (UUID of the user)
+- Example: GET at `http://localhost:8082/auth/users/38d4bf7c-1439-496b-b608-55b0fcdbd621`
+
+#### Response Example (200 OK)
+```json
+{
+    "id": "38d4bf7c-1439-496b-b608-55b0fcdbd62e",
+    "username": "casiana",
+    "password": "$2a$10$HJ1XY8fx2YWMId1d/RbzC.HN1gRQ1Yb9doe..bH5jNUjxZYzWzD66",
+    "email": "casiana@gmail.com",
+    "role": "USER",
+    "createdAt": null,
+    "updatedAt": null
 }
 ```
 ## Added Config package in tests.

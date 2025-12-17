@@ -3,11 +3,13 @@ package com.project.mentorship.service.auth.persistance;
 import com.project.mentorship.lib.pattern.BaseRepository;
 import com.project.mentorship.service.auth.domain.Role;
 import com.project.mentorship.service.auth.domain.User;
+import com.project.mentorship.service.auth.exception.UserNotFoundException;
 import com.project.mentorship.service.auth.service.EncryptionService;
 import jakarta.annotation.PostConstruct;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,5 +47,14 @@ public class UserRepository implements BaseRepository<User> {
 		users.add(user);
 		return user;
 	}
+
+    @Override
+    public java.util.Optional<User> findById(String id) {
+        return Optional.of(
+                users.stream()
+                .filter(user -> user.getId().toString().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new UserNotFoundException(id)));
+    }
 
 }

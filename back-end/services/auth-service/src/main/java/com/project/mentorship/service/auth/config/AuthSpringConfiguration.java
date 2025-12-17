@@ -3,7 +3,7 @@ package com.project.mentorship.service.auth.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@ComponentScan(basePackages = "com.project.mentorship.service.auth.**")
+@ComponentScan(basePackages = "com.project.mentorship.contract.auth.api")
 @Configuration
 public class AuthSpringConfiguration {
 }

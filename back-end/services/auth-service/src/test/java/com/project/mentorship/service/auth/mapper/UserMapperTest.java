@@ -2,7 +2,7 @@ package com.project.mentorship.service.auth.mapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.project.mentorship.service.auth.api.dto.UserDto;
+import com.project.mentorship.contract.auth.model.UserDto;
 import com.project.mentorship.service.auth.domain.Role;
 import com.project.mentorship.service.auth.domain.User;
 import java.time.OffsetDateTime;
@@ -14,7 +14,7 @@ class UserMapperTest {
 	@Test
 	void toDomain_shouldMapInputFieldsAndLeaveServerFieldsNull_whenDtoIsValid() {
 		// Given
-		UserDto userDto = new UserDto(null, "alex", "1234", "alex@gmail.com", null, null, null);
+		UserDto userDto = new UserDto("alex", "1234", "alex@gmail.com");
 
 		UserMapper userMapper = new UserMapper();
 
@@ -25,11 +25,6 @@ class UserMapperTest {
 		assertThat(user.getUsername()).isEqualTo("alex");
 		assertThat(user.getEmail()).isEqualTo("alex@gmail.com");
 		assertThat(user.getPasswordHash()).isEqualTo("1234");
-
-		assertThat(user.getId()).isNull();
-		assertThat(user.getRole()).isNull();
-		assertThat(user.getCreatedAt()).isNull();
-		assertThat(user.getUpdatedAt()).isNull();
 	}
 
 	@Test
@@ -53,13 +48,12 @@ class UserMapperTest {
 		UserDto dto = userMapper.toDto(user);
 
 		// Then
-		assertThat(dto.id()).isEqualTo(id);
-		assertThat(dto.username()).isEqualTo("alex");
-		assertThat(dto.email()).isEqualTo("alex@gmail.com");
-		assertThat(dto.role()).isEqualTo(Role.USER);
-		assertThat(dto.createdAt()).isEqualTo(createdAt);
-		assertThat(dto.updatedAt()).isEqualTo(updatedAt);
-
-		assertThat(dto.password()).isNull();
+		assertThat(dto.getId()).isEqualTo(id);
+		assertThat(dto.getUsername()).isEqualTo("alex");
+		assertThat(dto.getEmail()).isEqualTo("alex@gmail.com");
+		assertThat(dto.getRole()).isEqualTo(UserDto.RoleEnum.USER);
+		assertThat(dto.getCreatedAt()).isEqualTo(createdAt);
+		assertThat(dto.getUpdatedAt()).isEqualTo(updatedAt);
+		assertThat(dto.getPassword()).isNull();
 	}
 }

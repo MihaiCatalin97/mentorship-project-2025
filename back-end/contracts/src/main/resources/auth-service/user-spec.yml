@@ -28,7 +28,7 @@ paths:
 
   /users/{uuid}:
     get:
-      operationId: fetchUserById
+      operationId: getUserById
       summary: Fetches a user by its id.
       parameters:
         - $ref: "../common/common-schema.yml#/components/parameters/path_uuid"

@@ -1,30 +1,41 @@
 package com.project.mentorship.service.auth.api;
 
+import com.project.mentorship.contract.auth.api.UsersApiDelegate;
+import com.project.mentorship.contract.auth.model.UserDto;
 import com.project.mentorship.lib.pattern.BaseService;
-import com.project.mentorship.service.auth.api.dto.UserDto;
 import com.project.mentorship.service.auth.domain.User;
 import com.project.mentorship.service.auth.mapper.UserMapper;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
-@RestController
-@RequestMapping("/users")
+@Service
 @RequiredArgsConstructor
-public class UserController {
+public class UserApiDelegateImpl implements UsersApiDelegate {
 
 	private final BaseService<User> userService;
 	private final UserMapper userMapper;
 
-	@PostMapping
-	public ResponseEntity<UserDto> create(@RequestBody UserDto userDto) {
+	@Override
+	public ResponseEntity<UserDto> createUser(UserDto userDto) {
 		User user = userMapper.toDomain(userDto);
 		User created = userService.create(user);
 		UserDto createdDto = userMapper.toDto(created);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdDto);
 	}
+
+	@Override
+	public ResponseEntity<UserDto> getUserById(UUID uuid) {
+        User user = userService.findById(uuid.toString()).get();
+        UserDto userDto = userMapper.toDto(user);
+        return ResponseEntity.ok(userDto);
+	}
+
 }
