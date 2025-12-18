@@ -37,3 +37,16 @@ gateway:
       host: vehicle-service
       port: 8087
       path: /vehicles
+
+# Spring Boot Actuator configuration
+
+management:
+  server:
+    port: 9090
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    healthcheckendpoint:
+      enabled: true
