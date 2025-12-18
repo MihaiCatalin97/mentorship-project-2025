@@ -4,33 +4,88 @@ services:
     image: analytics-service:${project.version}
     ports:
       - "8081:8081"
+      - "9091:9091"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/actuator/healthcheckendpoint"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+
   auth-service:
     image: auth-service:${project.version}
     ports:
       - "8082:8082"
+      - "9092:9092"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9092/actuator/healthcheckendpoint"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+
   billing-service:
     image: billing-service:${project.version}
     ports:
       - "8083:8083"
+      - "9093:9093"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9093/actuator/healthcheckendpoint"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+
   customer-service:
     image: customer-service:${project.version}
     ports:
       - "8084:8084"
+      - "9094:9094"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9094/actuator/healthcheckendpoint"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+
   gateway:
     image: gateway:${project.version}
     ports:
       - "8080:8080"
+      - "9090:9090"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/actuator/healthcheckendpoint"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+
   notification-service:
     image: notification-service:${project.version}
     ports:
       - "8085:8085"
+      - "9095:9095"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9095/actuator/healthcheckendpoint"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+
   reservation-service:
     image: reservation-service:${project.version}
     ports:
       - "8086:8086"
+      - "9096:9096"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9096/actuator/healthcheckendpoint"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+
   vehicle-service:
     image: vehicle-service:${project.version}
     ports:
       - "8087:8087"
+      - "9097:9097"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9097/actuator/healthcheckendpoint"]
+      interval: 10s
+      timeout: 2s
+      retries: 5
