@@ -3,32 +3,34 @@ services:
   analytics-service:
     image: analytics-service:${project.version}
     ports:
-      - "8081:8080"
+      - "8081:8081"
   auth-service:
     image: auth-service:${project.version}
     ports:
-      - "8082:8080"
+      - "8082:8082"
   billing-service:
     image: billing-service:${project.version}
     ports:
-      - "8083:8080"
+      - "8083:8083"
   customer-service:
     image: customer-service:${project.version}
     ports:
-      - "8084:8080"
+      - "8084:8084"
   gateway:
     image: gateway:${project.version}
     ports:
       - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
   notification-service:
     image: notification-service:${project.version}
     ports:
-      - "8085:8080"
+      - "8085:8085"
   reservation-service:
     image: reservation-service:${project.version}
     ports:
-      - "8086:8080"
+      - "8086:8086"
   vehicle-service:
     image: vehicle-service:${project.version}
     ports:
-      - "8087:8080"
+      - "8087:8087"
