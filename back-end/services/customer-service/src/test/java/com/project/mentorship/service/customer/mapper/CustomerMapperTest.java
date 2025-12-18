@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import com.project.mentorship.contract.customer.model.CustomerDto;
 import com.project.mentorship.service.customer.CustomerServiceApplication;
-import com.project.mentorship.service.customer.api.dto.CustomerDto;
 import com.project.mentorship.service.customer.domain.Customer;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -20,23 +20,22 @@ class CustomerMapperTest {
 	@Test
 	void mapToDomain_shouldMapAllFields_whenAllPresent() {
 		// Given
-		CustomerDto customerDto = new CustomerDto(UUID.fromString("11111111-1111-1111-1111-111111111111"),
-				UUID.fromString("33333333-3333-3333-3333-333333333333"), "Olivia", "Taylor",
-				"olivia.taylor@example.com", "+40700111222", OffsetDateTime.parse("2025-02-10T14:30:00Z"),
-				OffsetDateTime.parse("2025-09-20T08:45:00Z"));
+		CustomerDto customerDto = new CustomerDto("Olivia", "Taylor", "olivia.taylor@example.com", "+40700111222");
+		customerDto.setUserId(UUID.fromString("33333333-3333-3333-3333-333333333333"));
+		customerDto.setCreatedAt(OffsetDateTime.parse("2025-02-10T14:30:00Z"));
+		customerDto.setUpdatedAt(OffsetDateTime.parse("2025-09-20T08:45:00Z"));
 
 		// When
 		Customer customer = mapper.mapToDomain(customerDto);
 
 		// Then
 		assertNotNull(customer);
-		assertEquals(customerDto.userId(), customer.getUserId());
-		assertEquals(customerDto.firstName(), customer.getFirstName());
-		assertEquals(customerDto.lastName(), customer.getLastName());
-		assertEquals(customerDto.email(), customer.getEmail());
-		assertEquals(customerDto.phone(), customer.getPhone());
-		assertEquals(customerDto.createdAt(), customer.getCreatedAt());
-		assertEquals(customerDto.updatedAt(), customer.getUpdatedAt());
+		assertEquals(customerDto.getFirstName(), customer.getFirstName());
+		assertEquals(customerDto.getLastName(), customer.getLastName());
+		assertEquals(customerDto.getEmail(), customer.getEmail());
+		assertEquals(customerDto.getPhone(), customer.getPhone());
+		assertEquals(customerDto.getCreatedAt(), customer.getCreatedAt());
+		assertEquals(customerDto.getUpdatedAt(), customer.getUpdatedAt());
 	}
 
 	@Test
@@ -48,21 +47,17 @@ class CustomerMapperTest {
 	@Test
 	void mapToDomain_shouldSetAllFieldsToNull_whenDtoFieldsAreNull() {
 		// Given
-		CustomerDto customerDto = new CustomerDto(null, null, null, null, null, null, null, null);
+		CustomerDto customerDto = new CustomerDto(null, null, null, null);
 
 		// When
 		Customer customer = mapper.mapToDomain(customerDto);
 
 		// Then
 		assertNotNull(customer);
-		assertNull(customer.getId());
-		assertNull(customer.getUserId());
 		assertNull(customer.getFirstName());
 		assertNull(customer.getLastName());
 		assertNull(customer.getEmail());
 		assertNull(customer.getPhone());
-		assertNull(customer.getCreatedAt());
-		assertNull(customer.getUpdatedAt());
 	}
 
 	@Test
@@ -79,14 +74,14 @@ class CustomerMapperTest {
 
 		// Then
 		assertNotNull(dto);
-		assertEquals(customer.getId(), dto.id());
-		assertEquals(customer.getUserId(), dto.userId());
-		assertEquals(customer.getFirstName(), dto.firstName());
-		assertEquals(customer.getLastName(), dto.lastName());
-		assertEquals(customer.getEmail(), dto.email());
-		assertEquals(customer.getPhone(), dto.phone());
-		assertEquals(customer.getCreatedAt(), dto.createdAt());
-		assertEquals(customer.getUpdatedAt(), dto.updatedAt());
+		assertEquals(customer.getId(), dto.getId());
+		assertEquals(customer.getUserId(), dto.getUserId());
+		assertEquals(customer.getFirstName(), dto.getFirstName());
+		assertEquals(customer.getLastName(), dto.getLastName());
+		assertEquals(customer.getEmail(), dto.getEmail());
+		assertEquals(customer.getPhone(), dto.getPhone());
+		assertEquals(customer.getCreatedAt(), dto.getCreatedAt());
+		assertEquals(customer.getUpdatedAt(), dto.getUpdatedAt());
 	}
 
 	@Test
@@ -108,13 +103,13 @@ class CustomerMapperTest {
 
 		// Then
 		assertNotNull(dto);
-		assertNull(dto.id());
-		assertNull(dto.userId());
-		assertNull(dto.firstName());
-		assertNull(dto.lastName());
-		assertNull(dto.email());
-		assertNull(dto.phone());
-		assertNull(dto.createdAt());
-		assertNull(dto.updatedAt());
+		assertNull(dto.getId());
+		assertNull(dto.getUserId());
+		assertNull(dto.getFirstName());
+		assertNull(dto.getLastName());
+		assertNull(dto.getEmail());
+		assertNull(dto.getPhone());
+		assertNull(dto.getCreatedAt());
+		assertNull(dto.getUpdatedAt());
 	}
 }

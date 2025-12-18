@@ -11,6 +11,7 @@ public final class InvoiceLineMapper {
 		if (dto == null) {
 			return null;
 		}
+
 		return InvoiceLine.builder().id(dto.getId() != null ? dto.getId() : null)
 				.invoiceId(dto.getInvoiceId() != null ? dto.getInvoiceId() : null)
 				.description(dto.getDescription() != null ? dto.getDescription() : null)

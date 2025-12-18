@@ -17,11 +17,11 @@ components:
           format: uuid
 
         type:
-          type: string
+          $ref: '#/components/schemas/NotificationType'
           description: Type of the notification (e.g. EMAIL, SMS, PUSH)
 
         status:
-          type: string
+          $ref: '#/components/schemas/NotificationStatus'
           description: Delivery status of the notification (e.g. SENT, FAILED, PENDING)
 
         sentAt:
@@ -39,3 +39,17 @@ components:
         - customerId
         - type
         - status
+
+    NotificationStatus:
+      type: string
+      enum:
+        - SENT
+        - FAILED
+        - PENDING
+
+    NotificationType:
+      type: string
+      enum:
+        - EMAIL
+        - SMS
+        - PUSH_NOTIFICATION

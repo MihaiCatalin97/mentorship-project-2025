@@ -1,9 +1,9 @@
 package com.project.mentorship.service.notification.service;
 
+import com.project.mentorship.contract.notification.model.NotificationDto;
 import com.project.mentorship.lib.pattern.BaseRepository;
 import com.project.mentorship.lib.pattern.BaseService;
 import com.project.mentorship.service.notification.domain.Notification;
-import com.project.mentorship.service.notification.domain.NotificationStatus;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.UUID;
@@ -21,7 +21,7 @@ public class NotificationService implements BaseService<Notification> {
 		notification.setCreatedAt(OffsetDateTime.now(ZoneOffset.UTC));
 
 		if (notification.getStatus() == null) {
-			notification.setStatus(NotificationStatus.PENDING);
+			notification.setStatus(NotificationDto.StatusEnum.PENDING);
 		}
 		return notificationRepository.save(notification);
 	}

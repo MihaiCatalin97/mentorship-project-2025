@@ -1,8 +1,9 @@
 package com.project.mentorship.service.analytics.mapper;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.project.mentorship.service.analytics.api.dto.StatisticsDto;
+import com.project.mentorship.contract.analytics.model.StatisticsDto;
 import com.project.mentorship.service.analytics.domain.Statistics;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -17,7 +18,7 @@ class StatisticsMapperTest {
 	void mapToDomain_shouldMapFieldsCorrectly_whenDtoIsNotNull() {
 		// Given
 		OffsetDateTime date = OffsetDateTime.of(2025, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC);
-		StatisticsDto dto = new StatisticsDto(null, date, 10, Double.valueOf(250.0), null);
+		StatisticsDto dto = new StatisticsDto(date, 10, 250.0);
 
 		// When
 		Statistics statistics = statisticsMapper.mapToDomain(dto);
@@ -49,16 +50,17 @@ class StatisticsMapperTest {
 		OffsetDateTime date = OffsetDateTime.of(2025, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC);
 		OffsetDateTime createdAt = OffsetDateTime.of(2025, 1, 1, 1, 0, 0, 0, ZoneOffset.UTC);
 
-		Statistics statistics = new Statistics(UUID.randomUUID(), date, 10, Double.valueOf(250.0), createdAt);
+		Statistics statistics = new Statistics(UUID.randomUUID(), date, 10, 250.0, createdAt);
 
 		// When
 		StatisticsDto dto = statisticsMapper.mapToDto(statistics);
 
 		// Then
 		assertThat(dto).isNotNull();
-		assertThat(dto.date()).isEqualTo(date);
-		assertThat(dto.totalReservations()).isEqualTo(10);
-		assertThat(dto.totalRevenue()).isEqualTo(250.0);
+		assertEquals(date, dto.getDate());
+		assertEquals(10, dto.getTotalReservations());
+		assertEquals(250.0, dto.getTotalRevenue());
+
 	}
 
 	@Test

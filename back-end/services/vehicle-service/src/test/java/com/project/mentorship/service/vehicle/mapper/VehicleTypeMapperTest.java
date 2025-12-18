@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import com.project.mentorship.service.vehicle.api.dto.VehicleTypeDto;
+import com.project.mentorship.contract.vehicle.model.VehicleTypeDto;
 import com.project.mentorship.service.vehicle.domain.VehicleType;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -20,7 +20,10 @@ class VehicleTypeMapperTest {
 		UUID id = UUID.randomUUID();
 		OffsetDateTime now = OffsetDateTime.now();
 
-		VehicleTypeDto dto = new VehicleTypeDto(id, "Toyota Corolla 2020", 25.5, 5, now, now);
+		VehicleTypeDto dto = new VehicleTypeDto("Toyota Corolla 2020", 25.5, 5);
+		dto.setId(id);
+		dto.setCreatedAt(now);
+		dto.setUpdatedAt(now);
 
 		// When
 		VehicleType result = vehicleTypeMapper.map(dto);
@@ -48,12 +51,9 @@ class VehicleTypeMapperTest {
 	@Test
 	void map_shouldHandleNullFields_whenDtoHasNullValues() {
 		// Given: DTO with some null fields to cover ternary branches
-		VehicleTypeDto dto = new VehicleTypeDto(null, // id
-				null, // name
+		VehicleTypeDto dto = new VehicleTypeDto(null, // name
 				null, // hourlyRate
-				null, // capacity
-				null, // createdAt
-				null // updatedAt
+				null // capacity
 		);
 
 		// When
@@ -61,12 +61,9 @@ class VehicleTypeMapperTest {
 
 		// Then
 		assertNotNull(result);
-		assertNull(result.getId());
 		assertNull(result.getName());
 		assertNull(result.getHourlyRate());
 		assertNull(result.getCapacity());
-		assertNull(result.getCreatedAt());
-		assertNull(result.getUpdatedAt());
 	}
 
 	@Test
@@ -84,12 +81,12 @@ class VehicleTypeMapperTest {
 
 		// Then
 		assertNotNull(dto);
-		assertEquals(id, dto.id());
-		assertEquals("Honda Civic 2021", dto.name());
-		assertEquals(Double.valueOf(30.0), dto.hourlyRate());
-		assertEquals(Integer.valueOf(5), dto.capacity());
-		assertEquals(created, dto.createdAt());
-		assertEquals(updated, dto.updatedAt());
+		assertEquals(id, dto.getId());
+		assertEquals("Honda Civic 2021", dto.getName());
+		assertEquals(Double.valueOf(30.0), dto.getHourlyRate());
+		assertEquals(Integer.valueOf(5), dto.getCapacity());
+		assertEquals(created, dto.getCreatedAt());
+		assertEquals(updated, dto.getUpdatedAt());
 	}
 
 	@Test
@@ -115,11 +112,11 @@ class VehicleTypeMapperTest {
 
 		// Then
 		assertNotNull(dto);
-		assertNull(dto.id());
-		assertNull(dto.name());
-		assertNull(dto.hourlyRate());
-		assertNull(dto.capacity());
-		assertNull(dto.createdAt());
-		assertNull(dto.updatedAt());
+		assertNull(dto.getId());
+		assertNull(dto.getName());
+		assertNull(dto.getHourlyRate());
+		assertNull(dto.getCapacity());
+		assertNull(dto.getCreatedAt());
+		assertNull(dto.getUpdatedAt());
 	}
 }

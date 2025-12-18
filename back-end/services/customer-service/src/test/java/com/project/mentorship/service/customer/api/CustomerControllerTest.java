@@ -5,8 +5,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.mentorship.contract.customer.model.CustomerDto;
 import com.project.mentorship.service.customer.CustomerServiceApplication;
-import com.project.mentorship.service.customer.api.dto.CustomerDto;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
@@ -29,10 +29,11 @@ class CustomerControllerTest {
 	@Test
 	void create_shouldReturn201_whenRequestIsValid() throws Exception {
 		// Given
-		CustomerDto customerDto = new CustomerDto(UUID.fromString("11111111-1111-1111-1111-111111111111"),
-				UUID.fromString("33333333-3333-3333-3333-333333333333"), "Olivia", "Taylor",
-				"olivia.taylor@example.com", "+40700111222", OffsetDateTime.parse("2025-02-10T14:30:00Z"),
-				OffsetDateTime.parse("2025-09-20T08:45:00Z"));
+		CustomerDto customerDto = new CustomerDto("Olivia", "Taylor", "olivia.taylor@example.com", "+40700111222");
+		customerDto.setId(UUID.fromString("11111111-1111-1111-1111-111111111111"));
+		customerDto.setUserId(UUID.fromString("33333333-3333-3333-3333-333333333333"));
+		customerDto.setCreatedAt(OffsetDateTime.parse("2025-02-10T14:30:00Z"));
+		customerDto.setUpdatedAt(OffsetDateTime.parse("2025-09-20T08:45:00Z"));
 
 		// When & Then
 		mockMvc.perform(post("/customers").contentType(MediaType.APPLICATION_JSON)
