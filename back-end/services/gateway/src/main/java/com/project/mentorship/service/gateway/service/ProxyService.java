@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
@@ -46,7 +47,16 @@ public class ProxyService {
 
 		HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
 
-		return restTemplate.exchange(targetURI, method, requestEntity, byte[].class);
+		try {
+			return restTemplate.exchange(targetURI, method, requestEntity, byte[].class);
+		} catch (HttpStatusCodeException ex) {
+			HttpHeaders responseHeaders = ex.getResponseHeaders();
+			if (responseHeaders == null) {
+				responseHeaders = new HttpHeaders();
+			}
+
+			return new ResponseEntity<>(ex.getResponseBodyAsByteArray(), responseHeaders, ex.getStatusCode());
+		}
 	}
 	private ServiceConfig findServiceForPath(String path) {
 		return gatewayProperties.getServices().stream()
