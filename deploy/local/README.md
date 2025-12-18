@@ -24,7 +24,7 @@
   ```
   2. Deploy all services locally using Docker Compose:
     ```bash 
-    mvn install -Pdeploy-local -pl deploy
+    mvn install -Pdeploy-local -pl deploy/local
     ```
 
 ## Deployment Workflow
