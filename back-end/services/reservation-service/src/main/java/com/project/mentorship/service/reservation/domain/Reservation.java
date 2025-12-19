@@ -1,5 +1,6 @@
 package com.project.mentorship.service.reservation.domain;
 
+import com.project.mentorship.contract.reservation.model.ReservationDto;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ public class Reservation {
 	private UUID vehicleId;
 	private OffsetDateTime startTime;
 	private OffsetDateTime endTime;
-	private ReservationStatus status;
+	private ReservationDto.StatusEnum status;
 	private OffsetDateTime createdAt;
 	private OffsetDateTime updatedAt;
 }

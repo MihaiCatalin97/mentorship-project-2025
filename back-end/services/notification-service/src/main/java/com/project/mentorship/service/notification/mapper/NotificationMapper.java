@@ -1,22 +1,21 @@
 package com.project.mentorship.service.notification.mapper;
 
-import com.project.mentorship.service.notification.api.dto.NotificationDto;
+import com.project.mentorship.contract.notification.model.NotificationDto;
 import com.project.mentorship.service.notification.domain.Notification;
-import com.project.mentorship.service.notification.domain.NotificationStatus;
-import com.project.mentorship.service.notification.domain.NotificationType;
 import org.springframework.stereotype.Component;
 
 @Component
 public class NotificationMapper {
-	public Notification map(NotificationDto dto) {
-		if (dto == null) {
+	public Notification map(NotificationDto notificationDto) {
+		if (notificationDto == null) {
 			return null;
 		}
 
-		return Notification.builder().id(dto.id()).reservationId(dto.reservationId()).customerId(dto.customerId())
-				.type(dto.type() != null ? NotificationType.valueOf(dto.type()) : null)
-				.status(dto.status() != null ? NotificationStatus.valueOf(dto.status()) : null).sentAt(dto.sentAt())
-				.createdAt(dto.createdAt()).build();
+		return Notification.builder().id(notificationDto.getId()).reservationId(notificationDto.getReservationId())
+				.customerId(notificationDto.getCustomerId())
+				.type(notificationDto.getType() != null ? notificationDto.getType() : null)
+				.status(notificationDto.getStatus() != null ? notificationDto.getStatus() : null)
+				.sentAt(notificationDto.getSentAt()).createdAt(notificationDto.getCreatedAt()).build();
 	}
 
 	public NotificationDto map(Notification notification) {
@@ -24,9 +23,16 @@ public class NotificationMapper {
 			return null;
 		}
 
-		return new NotificationDto(notification.getId(), notification.getReservationId(), notification.getCustomerId(),
-				notification.getType() != null ? notification.getType().name() : null,
-				notification.getStatus() != null ? notification.getStatus().name() : null, notification.getSentAt(),
-				notification.getCreatedAt());
+		NotificationDto notificationDto = new NotificationDto();
+
+		notificationDto.setId(notification.getId());
+		notificationDto.setReservationId(notification.getReservationId());
+		notificationDto.setCustomerId(notification.getCustomerId());
+		notificationDto.setType(notification.getType());
+		notificationDto.setStatus(notification.getStatus());
+		notificationDto.setSentAt(notification.getSentAt());
+		notificationDto.setCreatedAt(notification.getCreatedAt());
+
+		return notificationDto;
 	}
 }

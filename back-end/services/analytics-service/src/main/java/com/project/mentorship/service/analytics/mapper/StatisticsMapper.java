@@ -1,6 +1,6 @@
 package com.project.mentorship.service.analytics.mapper;
 
-import com.project.mentorship.service.analytics.api.dto.StatisticsDto;
+import com.project.mentorship.contract.analytics.model.StatisticsDto;
 import com.project.mentorship.service.analytics.domain.Statistics;
 import org.springframework.stereotype.Component;
 
@@ -12,15 +12,21 @@ public final class StatisticsMapper {
 			return null;
 		}
 
-		return new Statistics(null, statisticsDto.date(), statisticsDto.totalReservations(),
-				statisticsDto.totalRevenue(), null);
+		return new Statistics(null, statisticsDto.getDate(), statisticsDto.getTotalReservations(),
+				statisticsDto.getTotalRevenue(), null);
 	}
 
 	public StatisticsDto mapToDto(Statistics statistics) {
 		if (statistics == null) {
 			return null;
 		}
-		return new StatisticsDto(statistics.getId(), statistics.getDate(), statistics.getTotalReservations(),
-				statistics.getTotalRevenue(), statistics.getCreatedAt());
+
+		StatisticsDto statisticsDto = new StatisticsDto();
+		statisticsDto.setId(statistics.getId());
+		statisticsDto.setDate(statistics.getDate());
+		statisticsDto.setTotalReservations(statistics.getTotalReservations());
+		statisticsDto.setTotalRevenue(statistics.getTotalRevenue());
+		statisticsDto.setCreatedAt(statistics.getCreatedAt());
+		return statisticsDto;
 	}
 }
