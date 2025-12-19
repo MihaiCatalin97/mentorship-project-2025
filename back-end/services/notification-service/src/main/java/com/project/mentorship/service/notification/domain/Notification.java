@@ -1,5 +1,6 @@
 package com.project.mentorship.service.notification.domain;
 
+import com.project.mentorship.contract.notification.model.NotificationDto;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -17,8 +18,8 @@ public class Notification {
 	private UUID id;
 	private UUID reservationId;
 	private UUID customerId;
-	private NotificationType type;
-	private NotificationStatus status;
+	private NotificationDto.TypeEnum type;
+	private NotificationDto.StatusEnum status;
 	private OffsetDateTime sentAt;
 	private OffsetDateTime createdAt;
 }

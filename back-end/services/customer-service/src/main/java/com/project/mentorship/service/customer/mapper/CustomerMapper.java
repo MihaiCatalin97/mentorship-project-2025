@@ -1,24 +1,25 @@
 package com.project.mentorship.service.customer.mapper;
 
-import com.project.mentorship.service.customer.api.dto.CustomerDto;
+import com.project.mentorship.contract.customer.model.CustomerDto;
 import com.project.mentorship.service.customer.domain.Customer;
 import org.springframework.stereotype.Component;
 
 @Component
 public final class CustomerMapper {
 
-	public Customer mapToDomain(CustomerDto dto) {
-		if (dto == null) {
+	public Customer mapToDomain(CustomerDto customerDto) {
+		if (customerDto == null) {
 			return null;
 		}
 
-		return Customer.builder().id(dto.id() != null ? dto.id() : null)
-				.userId(dto.userId() != null ? dto.userId() : null)
-				.firstName(dto.firstName() != null ? dto.firstName() : null)
-				.lastName(dto.lastName() != null ? dto.lastName() : null)
-				.email(dto.email() != null ? dto.email() : null).phone(dto.phone() != null ? dto.phone() : null)
-				.createdAt(dto.createdAt() != null ? dto.createdAt() : null)
-				.updatedAt(dto.updatedAt() != null ? dto.updatedAt() : null).build();
+		return Customer.builder().id(customerDto.getId() != null ? customerDto.getId() : null)
+				.userId(customerDto.getUserId() != null ? customerDto.getUserId() : null)
+				.firstName(customerDto.getFirstName() != null ? customerDto.getFirstName() : null)
+				.lastName(customerDto.getLastName() != null ? customerDto.getLastName() : null)
+				.email(customerDto.getEmail() != null ? customerDto.getEmail() : null)
+				.phone(customerDto.getPhone() != null ? customerDto.getPhone() : null)
+				.createdAt(customerDto.getCreatedAt() != null ? customerDto.getCreatedAt() : null)
+				.updatedAt(customerDto.getUpdatedAt() != null ? customerDto.getUpdatedAt() : null).build();
 	}
 
 	public CustomerDto mapToDto(Customer customer) {
@@ -26,13 +27,17 @@ public final class CustomerMapper {
 			return null;
 		}
 
-		return new CustomerDto(customer.getId() != null ? customer.getId() : null,
-				customer.getUserId() != null ? customer.getUserId() : null,
-				customer.getFirstName() != null ? customer.getFirstName() : null,
-				customer.getLastName() != null ? customer.getLastName() : null,
-				customer.getEmail() != null ? customer.getEmail() : null,
-				customer.getPhone() != null ? customer.getPhone() : null,
-				customer.getCreatedAt() != null ? customer.getCreatedAt() : null,
-				customer.getUpdatedAt() != null ? customer.getUpdatedAt() : null);
+		CustomerDto customerDto = new CustomerDto();
+
+		customerDto.setId(customer.getId());
+		customerDto.setUserId(customer.getUserId());
+		customerDto.setFirstName(customer.getFirstName());
+		customerDto.setLastName(customer.getLastName());
+		customerDto.setEmail(customer.getEmail());
+		customerDto.setPhone(customer.getPhone());
+		customerDto.setCreatedAt(customer.getCreatedAt());
+		customerDto.setUpdatedAt(customer.getUpdatedAt());
+
+		return customerDto;
 	}
 }

@@ -16,5 +16,4 @@ public class Statistics {
 	private Integer totalReservations;
 	private Double totalRevenue;
 	private OffsetDateTime createdAt;
-
 }

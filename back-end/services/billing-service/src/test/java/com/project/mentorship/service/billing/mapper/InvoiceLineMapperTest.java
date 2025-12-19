@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import com.project.mentorship.service.billing.api.dto.InvoiceLineDto;
+import com.project.mentorship.contract.billing.model.InvoiceLineDto;
 import com.project.mentorship.service.billing.domain.InvoiceLine;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -17,20 +17,19 @@ class InvoiceLineMapperTest {
 	@Test
 	void mapToInvoiceLine_ShouldMapFromDtoToDomain_WhenGivenCorrectInput() {
 		// Given
-		UUID id = UUID.fromString("11111111-1111-1111-1111-111111111111");
 		UUID invoiceId = UUID.fromString("11111111-1111-1111-1111-111111111111");
 		String description = "description";
 		Integer quantity = 1;
 		Double price = 1.0;
 		Double totalPrice = 1.0;
 		OffsetDateTime createdAt = OffsetDateTime.now();
-		OffsetDateTime updatedAt = OffsetDateTime.now();
 
-		InvoiceLineDto dto = new InvoiceLineDto(id, invoiceId, description, quantity, price, totalPrice, createdAt,
-				updatedAt);
+		InvoiceLineDto invoiceLineDto = new InvoiceLineDto(description, quantity, price, totalPrice);
+		invoiceLineDto.setInvoiceId(invoiceId);
+		invoiceLineDto.setCreatedAt(createdAt);
 
 		// When
-		InvoiceLine invoiceLine = invoiceLineMapper.mapToInvoiceLine(dto);
+		InvoiceLine invoiceLine = invoiceLineMapper.mapToInvoiceLine(invoiceLineDto);
 
 		// Then
 		assertNotNull(invoiceLine);
@@ -40,16 +39,15 @@ class InvoiceLineMapperTest {
 		assertEquals(price, invoiceLine.getUnitPrice());
 		assertEquals(totalPrice, invoiceLine.getTotal());
 		assertEquals(createdAt, invoiceLine.getCreatedAt());
-		assertEquals(updatedAt, invoiceLine.getUpdatedAt());
 	}
 
 	@Test
 	void mapToInvoiceLine_shouldSetAllFieldsToNull_whenDtoFieldsAreNull() {
 		// Given
-		InvoiceLineDto customerDto = new InvoiceLineDto(null, null, null, null, null, null, null, null);
+		InvoiceLineDto invoiceLineDto = new InvoiceLineDto(null, null, null, null);
 
 		// When
-		InvoiceLine invoiceLine = invoiceLineMapper.mapToInvoiceLine(customerDto);
+		InvoiceLine invoiceLine = invoiceLineMapper.mapToInvoiceLine(invoiceLineDto);
 
 		// Then
 		assertNotNull(invoiceLine);
@@ -59,17 +57,16 @@ class InvoiceLineMapperTest {
 		assertNull(invoiceLine.getQuantity());
 		assertNull(invoiceLine.getUnitPrice());
 		assertNull(invoiceLine.getTotal());
-		assertNull(invoiceLine.getCreatedAt());
 		assertNull(invoiceLine.getUpdatedAt());
 	}
 
 	@Test
 	void mapToInvoiceLine_ShouldReturnNull_WhenDtoIsNull() {
 		// Given
-		InvoiceLineDto dto = null;
+		InvoiceLineDto invoiceLineDto = null;
 
 		// When
-		InvoiceLine invoiceLine = invoiceLineMapper.mapToInvoiceLine(dto);
+		InvoiceLine invoiceLine = invoiceLineMapper.mapToInvoiceLine(invoiceLineDto);
 
 		// Then
 		assertNull(invoiceLine);
@@ -91,18 +88,16 @@ class InvoiceLineMapperTest {
 				updatedAt);
 
 		// When
-		InvoiceLineDto dto = invoiceLineMapper.mapToInvoiceLineDto(invoiceLine);
+		InvoiceLineDto invoiceLineDto = invoiceLineMapper.mapToInvoiceLineDto(invoiceLine);
 
 		// Then
-		assertNotNull(dto);
-		assertEquals(id, dto.id());
-		assertEquals(invoiceId, dto.invoiceId());
-		assertEquals(description, dto.description());
-		assertEquals(quantity, dto.quantity());
-		assertEquals(price, dto.unitPrice());
-		assertEquals(totalPrice, dto.total());
-		assertEquals(createdAt, invoiceLine.getCreatedAt());
-		assertEquals(updatedAt, invoiceLine.getUpdatedAt());
+		assertNotNull(invoiceLineDto);
+		assertEquals(invoiceId, invoiceLineDto.getInvoiceId());
+		assertEquals(description, invoiceLineDto.getDescription());
+		assertEquals(quantity, invoiceLineDto.getQuantity());
+		assertEquals(price, invoiceLineDto.getUnitPrice());
+		assertEquals(totalPrice, invoiceLineDto.getTotal());
+		assertEquals(createdAt, invoiceLineDto.getCreatedAt());
 	}
 
 	@Test
@@ -111,18 +106,17 @@ class InvoiceLineMapperTest {
 		InvoiceLine invoiceLine = new InvoiceLine();
 
 		// When
-		InvoiceLineDto dto = invoiceLineMapper.mapToInvoiceLineDto(invoiceLine);
+		InvoiceLineDto invoiceLineDto = invoiceLineMapper.mapToInvoiceLineDto(invoiceLine);
 
 		// Then
-		assertNotNull(dto);
-		assertNull(dto.id());
-		assertNull(dto.invoiceId());
-		assertNull(dto.description());
-		assertNull(dto.quantity());
-		assertNull(dto.unitPrice());
-		assertNull(dto.total());
-		assertNull(dto.createdAt());
-		assertNull(dto.updatedAt());
+		assertNotNull(invoiceLineDto);
+		assertNull(invoiceLineDto.getId());
+		assertNull(invoiceLineDto.getInvoiceId());
+		assertNull(invoiceLineDto.getDescription());
+		assertNull(invoiceLineDto.getQuantity());
+		assertNull(invoiceLineDto.getUnitPrice());
+		assertNull(invoiceLineDto.getTotal());
+		assertNull(invoiceLineDto.getUpdatedAt());
 	}
 
 	@Test
@@ -131,9 +125,9 @@ class InvoiceLineMapperTest {
 		InvoiceLine invoiceLine = null;
 
 		// When
-		InvoiceLineDto dto = invoiceLineMapper.mapToInvoiceLineDto(invoiceLine);
+		InvoiceLineDto invoiceLineDto = invoiceLineMapper.mapToInvoiceLineDto(invoiceLine);
 
 		// Then
-		assertNull(dto);
+		assertNull(invoiceLineDto);
 	}
 }
