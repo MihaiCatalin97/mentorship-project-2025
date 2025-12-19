@@ -13,6 +13,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Trigger PR rechecks
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          prs=$(gh pr list --repo "$REPO" --state open --json number --jq '.[].number')
+          echo "Found PRs: $prs"
+          for pr in $prs; do
+            echo "Triggering recheck for PR #$pr"
+            gh api "repos/$REPO/dispatches" --input - <<EOF
+          {
+            "event_type": "recheck-pr",
+            "client_payload": {
+              "pr_number": $pr
+            }
+          }
+          EOF
+          done
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
