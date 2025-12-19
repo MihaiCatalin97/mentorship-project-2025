@@ -20,13 +20,13 @@ class VehicleTypeMapperTest {
 		UUID id = UUID.randomUUID();
 		OffsetDateTime now = OffsetDateTime.now();
 
-		VehicleTypeDto dto = new VehicleTypeDto("Toyota Corolla 2020", 25.5, 5);
-		dto.setId(id);
-		dto.setCreatedAt(now);
-		dto.setUpdatedAt(now);
+		VehicleTypeDto vehicleTypeDto = new VehicleTypeDto("Toyota Corolla 2020", 25.5, 5);
+		vehicleTypeDto.setId(id);
+		vehicleTypeDto.setCreatedAt(now);
+		vehicleTypeDto.setUpdatedAt(now);
 
 		// When
-		VehicleType result = vehicleTypeMapper.map(dto);
+		VehicleType result = vehicleTypeMapper.map(vehicleTypeDto);
 
 		// Then
 		assertEquals(id, result.getId());
@@ -40,10 +40,10 @@ class VehicleTypeMapperTest {
 	@Test
 	void map_shouldReturnNull_whenDtoIsNull() {
 		// Given
-		VehicleTypeDto dto = null;
+		VehicleTypeDto vehicleTypeDto = null;
 
 		// When
-		VehicleType result = vehicleTypeMapper.map(dto);
+		VehicleType result = vehicleTypeMapper.map(vehicleTypeDto);
 
 		// Then
 		assertNull(result);
@@ -51,13 +51,13 @@ class VehicleTypeMapperTest {
 	@Test
 	void map_shouldHandleNullFields_whenDtoHasNullValues() {
 		// Given: DTO with some null fields to cover ternary branches
-		VehicleTypeDto dto = new VehicleTypeDto(null, // name
+		VehicleTypeDto vehicleTypeDto = new VehicleTypeDto(null, // name
 				null, // hourlyRate
 				null // capacity
 		);
 
 		// When
-		VehicleType result = vehicleTypeMapper.map(dto);
+		VehicleType result = vehicleTypeMapper.map(vehicleTypeDto);
 
 		// Then
 		assertNotNull(result);
@@ -77,16 +77,16 @@ class VehicleTypeMapperTest {
 		VehicleType vehicleType = VehicleType.builder().id(id).name("Honda Civic 2021").hourlyRate(30.0).capacity(5)
 				.createdAt(created).updatedAt(updated).build();
 		// When
-		VehicleTypeDto dto = vehicleTypeMapper.map(vehicleType);
+		VehicleTypeDto vehicleTypeDto = vehicleTypeMapper.map(vehicleType);
 
 		// Then
-		assertNotNull(dto);
-		assertEquals(id, dto.getId());
-		assertEquals("Honda Civic 2021", dto.getName());
-		assertEquals(Double.valueOf(30.0), dto.getHourlyRate());
-		assertEquals(Integer.valueOf(5), dto.getCapacity());
-		assertEquals(created, dto.getCreatedAt());
-		assertEquals(updated, dto.getUpdatedAt());
+		assertNotNull(vehicleTypeDto);
+		assertEquals(id, vehicleTypeDto.getId());
+		assertEquals("Honda Civic 2021", vehicleTypeDto.getName());
+		assertEquals(Double.valueOf(30.0), vehicleTypeDto.getHourlyRate());
+		assertEquals(Integer.valueOf(5), vehicleTypeDto.getCapacity());
+		assertEquals(created, vehicleTypeDto.getCreatedAt());
+		assertEquals(updated, vehicleTypeDto.getUpdatedAt());
 	}
 
 	@Test
@@ -108,15 +108,15 @@ class VehicleTypeMapperTest {
 				.createdAt(null).updatedAt(null).build();
 
 		// When
-		VehicleTypeDto dto = vehicleTypeMapper.map(vehicleType);
+		VehicleTypeDto vehicleTypeDto = vehicleTypeMapper.map(vehicleType);
 
 		// Then
-		assertNotNull(dto);
-		assertNull(dto.getId());
-		assertNull(dto.getName());
-		assertNull(dto.getHourlyRate());
-		assertNull(dto.getCapacity());
-		assertNull(dto.getCreatedAt());
-		assertNull(dto.getUpdatedAt());
+		assertNotNull(vehicleTypeDto);
+		assertNull(vehicleTypeDto.getId());
+		assertNull(vehicleTypeDto.getName());
+		assertNull(vehicleTypeDto.getHourlyRate());
+		assertNull(vehicleTypeDto.getCapacity());
+		assertNull(vehicleTypeDto.getCreatedAt());
+		assertNull(vehicleTypeDto.getUpdatedAt());
 	}
 }

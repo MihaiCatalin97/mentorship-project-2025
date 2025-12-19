@@ -7,19 +7,19 @@ import org.springframework.stereotype.Component;
 @Component
 public final class InvoiceLineMapper {
 
-	public InvoiceLine mapToInvoiceLine(InvoiceLineDto dto) {
-		if (dto == null) {
+	public InvoiceLine mapToInvoiceLine(InvoiceLineDto invoiceLineDto) {
+		if (invoiceLineDto == null) {
 			return null;
 		}
 
-		return InvoiceLine.builder().id(dto.getId() != null ? dto.getId() : null)
-				.invoiceId(dto.getInvoiceId() != null ? dto.getInvoiceId() : null)
-				.description(dto.getDescription() != null ? dto.getDescription() : null)
-				.quantity(dto.getQuantity() != null ? dto.getQuantity() : null)
-				.unitPrice(dto.getUnitPrice() != null ? dto.getUnitPrice() : null)
-				.total(dto.getTotal() != null ? dto.getTotal() : null)
-				.createdAt(dto.getCreatedAt() != null ? dto.getCreatedAt() : null)
-				.updatedAt(dto.getUpdatedAt() != null ? dto.getUpdatedAt() : null).build();
+		return InvoiceLine.builder().id(invoiceLineDto.getId() != null ? invoiceLineDto.getId() : null)
+				.invoiceId(invoiceLineDto.getInvoiceId() != null ? invoiceLineDto.getInvoiceId() : null)
+				.description(invoiceLineDto.getDescription() != null ? invoiceLineDto.getDescription() : null)
+				.quantity(invoiceLineDto.getQuantity() != null ? invoiceLineDto.getQuantity() : null)
+				.unitPrice(invoiceLineDto.getUnitPrice() != null ? invoiceLineDto.getUnitPrice() : null)
+				.total(invoiceLineDto.getTotal() != null ? invoiceLineDto.getTotal() : null)
+				.createdAt(invoiceLineDto.getCreatedAt() != null ? invoiceLineDto.getCreatedAt() : null)
+				.updatedAt(invoiceLineDto.getUpdatedAt() != null ? invoiceLineDto.getUpdatedAt() : null).build();
 	}
 
 	public InvoiceLineDto mapToInvoiceLineDto(InvoiceLine invoiceLine) {
@@ -27,17 +27,17 @@ public final class InvoiceLineMapper {
 			return null;
 		}
 
-		InvoiceLineDto dto = new InvoiceLineDto();
+		InvoiceLineDto invoiceLineDto = new InvoiceLineDto();
 
-		dto.setId(invoiceLine.getId());
-		dto.setInvoiceId(invoiceLine.getInvoiceId());
-		dto.setDescription(invoiceLine.getDescription());
-		dto.setQuantity(invoiceLine.getQuantity());
-		dto.setUnitPrice(invoiceLine.getUnitPrice());
-		dto.setTotal(invoiceLine.getTotal());
-		dto.setCreatedAt(invoiceLine.getCreatedAt());
-		dto.setUpdatedAt(invoiceLine.getUpdatedAt());
+		invoiceLineDto.setId(invoiceLine.getId());
+		invoiceLineDto.setInvoiceId(invoiceLine.getInvoiceId());
+		invoiceLineDto.setDescription(invoiceLine.getDescription());
+		invoiceLineDto.setQuantity(invoiceLine.getQuantity());
+		invoiceLineDto.setUnitPrice(invoiceLine.getUnitPrice());
+		invoiceLineDto.setTotal(invoiceLine.getTotal());
+		invoiceLineDto.setCreatedAt(invoiceLine.getCreatedAt());
+		invoiceLineDto.setUpdatedAt(invoiceLine.getUpdatedAt());
 
-		return dto;
+		return invoiceLineDto;
 	}
 }

@@ -18,10 +18,10 @@ class StatisticsMapperTest {
 	void mapToDomain_shouldMapFieldsCorrectly_whenDtoIsNotNull() {
 		// Given
 		OffsetDateTime date = OffsetDateTime.of(2025, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC);
-		StatisticsDto dto = new StatisticsDto(date, 10, 250.0);
+		StatisticsDto statisticsDto = new StatisticsDto(date, 10, 250.0);
 
 		// When
-		Statistics statistics = statisticsMapper.mapToDomain(dto);
+		Statistics statistics = statisticsMapper.mapToDomain(statisticsDto);
 
 		// Then
 		assertThat(statistics).isNotNull();
@@ -35,10 +35,10 @@ class StatisticsMapperTest {
 	@Test
 	void mapToDomain_shouldReturnNull_whenDtoIsNull() {
 		// Given
-		StatisticsDto dto = null;
+		StatisticsDto statisticsDto = null;
 
 		// When
-		Statistics statistics = statisticsMapper.mapToDomain(dto);
+		Statistics statistics = statisticsMapper.mapToDomain(statisticsDto);
 
 		// Then
 		assertThat(statistics).isNull();
@@ -53,13 +53,13 @@ class StatisticsMapperTest {
 		Statistics statistics = new Statistics(UUID.randomUUID(), date, 10, 250.0, createdAt);
 
 		// When
-		StatisticsDto dto = statisticsMapper.mapToDto(statistics);
+		StatisticsDto statisticsDto = statisticsMapper.mapToDto(statistics);
 
 		// Then
-		assertThat(dto).isNotNull();
-		assertEquals(date, dto.getDate());
-		assertEquals(10, dto.getTotalReservations());
-		assertEquals(250.0, dto.getTotalRevenue());
+		assertThat(statisticsDto).isNotNull();
+		assertEquals(date, statisticsDto.getDate());
+		assertEquals(10, statisticsDto.getTotalReservations());
+		assertEquals(250.0, statisticsDto.getTotalRevenue());
 
 	}
 
@@ -69,9 +69,9 @@ class StatisticsMapperTest {
 		Statistics statistics = null;
 
 		// When
-		StatisticsDto dto = statisticsMapper.mapToDto(statistics);
+		StatisticsDto statisticsDto = statisticsMapper.mapToDto(statistics);
 
 		// Then
-		assertThat(dto).isNull();
+		assertThat(statisticsDto).isNull();
 	}
 }

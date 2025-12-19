@@ -70,27 +70,27 @@ class CustomerMapperTest {
 				.updatedAt(OffsetDateTime.parse("2025-01-15T12:00:00Z")).build();
 
 		// When
-		CustomerDto dto = mapper.mapToDto(customer);
+		CustomerDto customerDto = mapper.mapToDto(customer);
 
 		// Then
-		assertNotNull(dto);
-		assertEquals(customer.getId(), dto.getId());
-		assertEquals(customer.getUserId(), dto.getUserId());
-		assertEquals(customer.getFirstName(), dto.getFirstName());
-		assertEquals(customer.getLastName(), dto.getLastName());
-		assertEquals(customer.getEmail(), dto.getEmail());
-		assertEquals(customer.getPhone(), dto.getPhone());
-		assertEquals(customer.getCreatedAt(), dto.getCreatedAt());
-		assertEquals(customer.getUpdatedAt(), dto.getUpdatedAt());
+		assertNotNull(customerDto);
+		assertEquals(customer.getId(), customerDto.getId());
+		assertEquals(customer.getUserId(), customerDto.getUserId());
+		assertEquals(customer.getFirstName(), customerDto.getFirstName());
+		assertEquals(customer.getLastName(), customerDto.getLastName());
+		assertEquals(customer.getEmail(), customerDto.getEmail());
+		assertEquals(customer.getPhone(), customerDto.getPhone());
+		assertEquals(customer.getCreatedAt(), customerDto.getCreatedAt());
+		assertEquals(customer.getUpdatedAt(), customerDto.getUpdatedAt());
 	}
 
 	@Test
 	void mapToDto_shouldReturnNull_whenCustomerIsNull() {
 		// When
-		CustomerDto dto = mapper.mapToDto(null);
+		CustomerDto customerDto = mapper.mapToDto(null);
 
 		// Then
-		assertNull(dto);
+		assertNull(customerDto);
 	}
 
 	@Test
@@ -99,17 +99,17 @@ class CustomerMapperTest {
 		Customer customer = new Customer();
 
 		// When
-		CustomerDto dto = mapper.mapToDto(customer);
+		CustomerDto customerDto = mapper.mapToDto(customer);
 
 		// Then
-		assertNotNull(dto);
-		assertNull(dto.getId());
-		assertNull(dto.getUserId());
-		assertNull(dto.getFirstName());
-		assertNull(dto.getLastName());
-		assertNull(dto.getEmail());
-		assertNull(dto.getPhone());
-		assertNull(dto.getCreatedAt());
-		assertNull(dto.getUpdatedAt());
+		assertNotNull(customerDto);
+		assertNull(customerDto.getId());
+		assertNull(customerDto.getUserId());
+		assertNull(customerDto.getFirstName());
+		assertNull(customerDto.getLastName());
+		assertNull(customerDto.getEmail());
+		assertNull(customerDto.getPhone());
+		assertNull(customerDto.getCreatedAt());
+		assertNull(customerDto.getUpdatedAt());
 	}
 }

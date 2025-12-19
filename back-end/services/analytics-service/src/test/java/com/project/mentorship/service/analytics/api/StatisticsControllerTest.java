@@ -28,10 +28,11 @@ class StatisticsControllerIT {
 	@Test
 	void createStatistics_shouldReturn201Created_whenRequestIsValid() throws Exception {
 		// Given
-		StatisticsDto dto = new StatisticsDto(OffsetDateTime.of(2025, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC), 10, 250.0);
-		dto.setId(null);
-		dto.setCreatedAt(null);
-		String requestBody = objectMapper.writeValueAsString(dto);
+		OffsetDateTime dateTime = OffsetDateTime.of(2025, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC);
+		StatisticsDto statisticsDto = new StatisticsDto(dateTime, 10, 250.0);
+		statisticsDto.setId(null);
+		statisticsDto.setCreatedAt(null);
+		String requestBody = objectMapper.writeValueAsString(statisticsDto);
 
 		// When & Then
 		mockMvc.perform(post("/statistics").contentType(MediaType.APPLICATION_JSON).content(requestBody))

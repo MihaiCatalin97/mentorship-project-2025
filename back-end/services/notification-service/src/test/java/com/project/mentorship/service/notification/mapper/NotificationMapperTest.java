@@ -19,18 +19,18 @@ class NotificationMapperTest {
 	@Test
 	void map_ShouldConvertDtoToDomain() {
 		// given
-		NotificationDto dto = new NotificationDto(UUID.randomUUID(), UUID.randomUUID(), EMAIL, PENDING);
-		dto.setId(UUID.randomUUID());
-		dto.setSentAt(null);
-		dto.setCreatedAt(null);
+		NotificationDto notificationDto = new NotificationDto(UUID.randomUUID(), UUID.randomUUID(), EMAIL, PENDING);
+		notificationDto.setId(UUID.randomUUID());
+		notificationDto.setSentAt(null);
+		notificationDto.setCreatedAt(null);
 
 		// when
-		Notification result = mapper.map(dto);
+		Notification result = mapper.map(notificationDto);
 
 		// then
 		assertNotNull(result);
-		assertEquals(dto.getReservationId(), result.getReservationId());
-		assertEquals(dto.getCustomerId(), result.getCustomerId());
+		assertEquals(notificationDto.getReservationId(), result.getReservationId());
+		assertEquals(notificationDto.getCustomerId(), result.getCustomerId());
 	}
 
 	@Test
@@ -45,12 +45,12 @@ class NotificationMapperTest {
 		notification.setCreatedAt(null);
 
 		// when
-		NotificationDto dto = mapper.map(notification);
+		NotificationDto notificationDto = mapper.map(notification);
 
 		// then
-		assertNotNull(dto);
-		assertEquals(notification.getReservationId(), dto.getReservationId());
-		assertEquals(notification.getCustomerId(), dto.getCustomerId());
+		assertNotNull(notificationDto);
+		assertEquals(notification.getReservationId(), notificationDto.getReservationId());
+		assertEquals(notification.getCustomerId(), notificationDto.getCustomerId());
 	}
 
 	@Test

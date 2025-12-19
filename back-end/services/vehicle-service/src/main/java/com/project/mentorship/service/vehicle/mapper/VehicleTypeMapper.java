@@ -6,17 +6,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class VehicleTypeMapper {
-	public VehicleType map(VehicleTypeDto dto) {
-		if (dto == null) {
+	public VehicleType map(VehicleTypeDto vehicleTypeDto) {
+		if (vehicleTypeDto == null) {
 			return null;
 		}
 
-		return VehicleType.builder().id(dto.getId() != null ? dto.getId() : null)
-				.name(dto.getName() != null ? dto.getName() : null)
-				.hourlyRate(dto.getHourlyRate() != null ? dto.getHourlyRate() : null)
-				.capacity(dto.getCapacity() != null ? dto.getCapacity() : null)
-				.createdAt(dto.getCreatedAt() != null ? dto.getCreatedAt() : null)
-				.updatedAt(dto.getUpdatedAt() != null ? dto.getUpdatedAt() : null).build();
+		return VehicleType.builder().id(vehicleTypeDto.getId() != null ? vehicleTypeDto.getId() : null)
+				.name(vehicleTypeDto.getName() != null ? vehicleTypeDto.getName() : null)
+				.hourlyRate(vehicleTypeDto.getHourlyRate() != null ? vehicleTypeDto.getHourlyRate() : null)
+				.capacity(vehicleTypeDto.getCapacity() != null ? vehicleTypeDto.getCapacity() : null)
+				.createdAt(vehicleTypeDto.getCreatedAt() != null ? vehicleTypeDto.getCreatedAt() : null)
+				.updatedAt(vehicleTypeDto.getUpdatedAt() != null ? vehicleTypeDto.getUpdatedAt() : null).build();
 	}
 
 	public VehicleTypeDto map(VehicleType vehicleType) {

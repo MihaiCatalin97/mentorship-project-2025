@@ -7,19 +7,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReservationMapper {
 
-	public Reservation map(ReservationDto dto) {
-		if (dto == null) {
+	public Reservation map(ReservationDto reservationDto) {
+		if (reservationDto == null) {
 			return null;
 		}
 
-		return Reservation.builder().id(dto.getId() != null ? dto.getId() : null)
-				.customerId(dto.getCustomerId() != null ? dto.getCustomerId() : null)
-				.vehicleId(dto.getVehicleId() != null ? dto.getVehicleId() : null)
-				.startTime(dto.getStartTime() != null ? dto.getStartTime() : null)
-				.endTime(dto.getEndTime() != null ? dto.getEndTime() : null)
-				.status(dto.getStatus() != null ? dto.getStatus() : null)
-				.createdAt(dto.getCreatedAt() != null ? dto.getCreatedAt() : null)
-				.updatedAt(dto.getUpdatedAt() != null ? dto.getUpdatedAt() : null).build();
+		return Reservation.builder().id(reservationDto.getId() != null ? reservationDto.getId() : null)
+				.customerId(reservationDto.getCustomerId() != null ? reservationDto.getCustomerId() : null)
+				.vehicleId(reservationDto.getVehicleId() != null ? reservationDto.getVehicleId() : null)
+				.startTime(reservationDto.getStartTime() != null ? reservationDto.getStartTime() : null)
+				.endTime(reservationDto.getEndTime() != null ? reservationDto.getEndTime() : null)
+				.status(reservationDto.getStatus() != null ? reservationDto.getStatus() : null)
+				.createdAt(reservationDto.getCreatedAt() != null ? reservationDto.getCreatedAt() : null)
+				.updatedAt(reservationDto.getUpdatedAt() != null ? reservationDto.getUpdatedAt() : null).build();
 	}
 
 	public ReservationDto map(Reservation reservation) {

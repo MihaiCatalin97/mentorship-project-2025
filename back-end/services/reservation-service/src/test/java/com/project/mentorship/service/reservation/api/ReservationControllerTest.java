@@ -28,16 +28,16 @@ class ReservationControllerTest {
 	@Test
 	void shouldCreateReservationAndReturn201() throws Exception {
 		// Given
-		ReservationDto request = new ReservationDto(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"),
+		ReservationDto reservationDto = new ReservationDto(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"),
 				UUID.fromString("223e4567-e89b-12d3-a456-426614174000"), OffsetDateTime.parse("2025-11-14T10:00:00Z"),
 				OffsetDateTime.parse("2025-11-14T12:00:00Z"), ReservationDto.StatusEnum.PENDING);
 
-		request.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
-		request.setCreatedAt(OffsetDateTime.parse("2025-11-14T09:50:00Z"));
-		request.setUpdatedAt(OffsetDateTime.parse("2025-11-14T09:50:00Z"));
+		reservationDto.setId(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
+		reservationDto.setCreatedAt(OffsetDateTime.parse("2025-11-14T09:50:00Z"));
+		reservationDto.setUpdatedAt(OffsetDateTime.parse("2025-11-14T09:50:00Z"));
 		// When & Then
 		mockMvc.perform(post("/reservations").contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(request))).andExpect(status().isCreated())
+				.content(objectMapper.writeValueAsString(reservationDto))).andExpect(status().isCreated())
 				.andExpect(jsonPath("$.id").isNotEmpty())
 				.andExpect(jsonPath("$.customerId").value("123e4567-e89b-12d3-a456-426614174000"))
 				.andExpect(jsonPath("$.status").value("PENDING")).andExpect(jsonPath("$.createdAt").isNotEmpty())

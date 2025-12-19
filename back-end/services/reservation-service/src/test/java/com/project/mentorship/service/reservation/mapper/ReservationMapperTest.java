@@ -22,13 +22,14 @@ class ReservationMapperTest {
 		UUID vehicleId = UUID.randomUUID();
 		OffsetDateTime now = OffsetDateTime.now();
 
-		ReservationDto dto = new ReservationDto(customerId, vehicleId, now, now, ReservationDto.StatusEnum.CONFIRMED);
-		dto.setId(id);
-		dto.setCreatedAt(now);
-		dto.setUpdatedAt(now);
+		ReservationDto reservationDto = new ReservationDto(customerId, vehicleId, now, now,
+				ReservationDto.StatusEnum.CONFIRMED);
+		reservationDto.setId(id);
+		reservationDto.setCreatedAt(now);
+		reservationDto.setUpdatedAt(now);
 
 		// When
-		Reservation result = reservationMapper.map(dto);
+		Reservation result = reservationMapper.map(reservationDto);
 
 		// Then
 		assertNotNull(result);
@@ -43,10 +44,10 @@ class ReservationMapperTest {
 	@Test
 	void map_ShouldReturnNull_WhenDtoIsNull() {
 		// Given
-		ReservationDto dto = null;
+		ReservationDto reservationDto = null;
 
 		// When
-		Reservation result = reservationMapper.map(dto);
+		Reservation result = reservationMapper.map(reservationDto);
 
 		// Then
 		assertNull(result);
@@ -55,7 +56,7 @@ class ReservationMapperTest {
 	@Test
 	void map_ShouldHandleNullFields_WhenDtoHasNullValues() {
 		// Given: DTO with all fields null to cover ternary branches
-		ReservationDto dto = new ReservationDto(null, // customerId
+		ReservationDto reservationDto = new ReservationDto(null, // customerId
 				null, // vehicleId
 				null, // startTime
 				null, // endTime
@@ -63,7 +64,7 @@ class ReservationMapperTest {
 		);
 
 		// When
-		Reservation result = reservationMapper.map(dto);
+		Reservation result = reservationMapper.map(reservationDto);
 
 		// Then
 		assertNotNull(result);
@@ -90,16 +91,16 @@ class ReservationMapperTest {
 				.build();
 
 		// When
-		ReservationDto dto = reservationMapper.map(reservation);
+		ReservationDto reservationDto = reservationMapper.map(reservation);
 
 		// Then
-		assertNotNull(dto);
-		assertEquals(id, dto.getId());
-		assertEquals(customerId, dto.getCustomerId());
-		assertEquals(vehicleId, dto.getVehicleId());
-		assertEquals(ReservationDto.StatusEnum.CANCELLED, dto.getStatus());
-		assertEquals(now, dto.getStartTime());
-		assertEquals(now, dto.getEndTime());
+		assertNotNull(reservationDto);
+		assertEquals(id, reservationDto.getId());
+		assertEquals(customerId, reservationDto.getCustomerId());
+		assertEquals(vehicleId, reservationDto.getVehicleId());
+		assertEquals(ReservationDto.StatusEnum.CANCELLED, reservationDto.getStatus());
+		assertEquals(now, reservationDto.getStartTime());
+		assertEquals(now, reservationDto.getEndTime());
 	}
 
 	@Test
@@ -108,10 +109,10 @@ class ReservationMapperTest {
 		Reservation reservation = null;
 
 		// When
-		ReservationDto dto = reservationMapper.map(reservation);
+		ReservationDto reservationDto = reservationMapper.map(reservation);
 
 		// Then
-		assertNull(dto);
+		assertNull(reservationDto);
 	}
 
 	@Test
@@ -121,17 +122,17 @@ class ReservationMapperTest {
 				.endTime(null).status(null).createdAt(null).updatedAt(null).build();
 
 		// When
-		ReservationDto dto = reservationMapper.map(reservation);
+		ReservationDto reservationDto = reservationMapper.map(reservation);
 
 		// Then
-		assertNotNull(dto);
-		assertNull(dto.getId());
-		assertNull(dto.getCustomerId());
-		assertNull(dto.getVehicleId());
-		assertNull(dto.getStartTime());
-		assertNull(dto.getEndTime());
-		assertNull(dto.getStatus());
-		assertNull(dto.getCreatedAt());
-		assertNull(dto.getUpdatedAt());
+		assertNotNull(reservationDto);
+		assertNull(reservationDto.getId());
+		assertNull(reservationDto.getCustomerId());
+		assertNull(reservationDto.getVehicleId());
+		assertNull(reservationDto.getStartTime());
+		assertNull(reservationDto.getEndTime());
+		assertNull(reservationDto.getStatus());
+		assertNull(reservationDto.getCreatedAt());
+		assertNull(reservationDto.getUpdatedAt());
 	}
 }

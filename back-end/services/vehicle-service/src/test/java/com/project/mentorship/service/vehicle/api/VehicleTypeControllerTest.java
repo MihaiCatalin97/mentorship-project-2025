@@ -27,14 +27,14 @@ class VehicleTypeControllerTest {
 	@Test
 	void create_shouldReturn201_whenRequestIsValid() throws Exception {
 		// Given
-		VehicleTypeDto request = new VehicleTypeDto("Dacia Logan 2022", 25.5, 5);
-		request.setId(null);
-		request.setCreatedAt(null);
-		request.setUpdatedAt(null);
+		VehicleTypeDto vehicleTypeDto = new VehicleTypeDto("Dacia Logan 2022", 25.5, 5);
+		vehicleTypeDto.setId(null);
+		vehicleTypeDto.setCreatedAt(null);
+		vehicleTypeDto.setUpdatedAt(null);
 
 		// When & Then
 		mockMvc.perform(post("/vehicles/types").contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(request))).andExpect(status().isCreated())
+				.content(objectMapper.writeValueAsString(vehicleTypeDto))).andExpect(status().isCreated())
 				.andExpect(jsonPath("$.id").isNotEmpty()).andExpect(jsonPath("$.name").value("Dacia Logan 2022"))
 				.andExpect(jsonPath("$.hourlyRate").value(25.5)).andExpect(jsonPath("$.capacity").value(5))
 				.andExpect(jsonPath("$.createdAt").isNotEmpty()).andExpect(jsonPath("$.updatedAt", nullValue()));

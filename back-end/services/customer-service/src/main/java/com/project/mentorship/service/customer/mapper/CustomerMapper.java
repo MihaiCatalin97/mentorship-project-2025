@@ -7,19 +7,19 @@ import org.springframework.stereotype.Component;
 @Component
 public final class CustomerMapper {
 
-	public Customer mapToDomain(CustomerDto dto) {
-		if (dto == null) {
+	public Customer mapToDomain(CustomerDto customerDto) {
+		if (customerDto == null) {
 			return null;
 		}
 
-		return Customer.builder().id(dto.getId() != null ? dto.getId() : null)
-				.userId(dto.getUserId() != null ? dto.getUserId() : null)
-				.firstName(dto.getFirstName() != null ? dto.getFirstName() : null)
-				.lastName(dto.getLastName() != null ? dto.getLastName() : null)
-				.email(dto.getEmail() != null ? dto.getEmail() : null)
-				.phone(dto.getPhone() != null ? dto.getPhone() : null)
-				.createdAt(dto.getCreatedAt() != null ? dto.getCreatedAt() : null)
-				.updatedAt(dto.getUpdatedAt() != null ? dto.getUpdatedAt() : null).build();
+		return Customer.builder().id(customerDto.getId() != null ? customerDto.getId() : null)
+				.userId(customerDto.getUserId() != null ? customerDto.getUserId() : null)
+				.firstName(customerDto.getFirstName() != null ? customerDto.getFirstName() : null)
+				.lastName(customerDto.getLastName() != null ? customerDto.getLastName() : null)
+				.email(customerDto.getEmail() != null ? customerDto.getEmail() : null)
+				.phone(customerDto.getPhone() != null ? customerDto.getPhone() : null)
+				.createdAt(customerDto.getCreatedAt() != null ? customerDto.getCreatedAt() : null)
+				.updatedAt(customerDto.getUpdatedAt() != null ? customerDto.getUpdatedAt() : null).build();
 	}
 
 	public CustomerDto mapToDto(Customer customer) {
@@ -27,17 +27,17 @@ public final class CustomerMapper {
 			return null;
 		}
 
-		CustomerDto dto = new CustomerDto();
+		CustomerDto customerDto = new CustomerDto();
 
-		dto.setId(customer.getId());
-		dto.setUserId(customer.getUserId());
-		dto.setFirstName(customer.getFirstName());
-		dto.setLastName(customer.getLastName());
-		dto.setEmail(customer.getEmail());
-		dto.setPhone(customer.getPhone());
-		dto.setCreatedAt(customer.getCreatedAt());
-		dto.setUpdatedAt(customer.getUpdatedAt());
+		customerDto.setId(customer.getId());
+		customerDto.setUserId(customer.getUserId());
+		customerDto.setFirstName(customer.getFirstName());
+		customerDto.setLastName(customer.getLastName());
+		customerDto.setEmail(customer.getEmail());
+		customerDto.setPhone(customer.getPhone());
+		customerDto.setCreatedAt(customer.getCreatedAt());
+		customerDto.setUpdatedAt(customer.getUpdatedAt());
 
-		return dto;
+		return customerDto;
 	}
 }

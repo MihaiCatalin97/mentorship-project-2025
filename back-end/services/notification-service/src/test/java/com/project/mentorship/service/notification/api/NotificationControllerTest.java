@@ -28,14 +28,14 @@ class NotificationControllerTest {
 	@Test
 	void create_ShouldReturn201() throws Exception {
 		// given
-		NotificationDto request = new NotificationDto(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"),
+		NotificationDto notificationDto = new NotificationDto(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"),
 				UUID.fromString("223e4567-e89b-12d3-a456-426614174000"), EMAIL, PENDING);
-		request.setId(null);
-		request.setCreatedAt(null);
-		request.setSentAt(null);
+		notificationDto.setId(null);
+		notificationDto.setCreatedAt(null);
+		notificationDto.setSentAt(null);
 
 		// when & then
 		mockMvc.perform(post("/notifications").contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(request))).andExpect(status().isCreated());
+				.content(objectMapper.writeValueAsString(notificationDto))).andExpect(status().isCreated());
 	}
 }

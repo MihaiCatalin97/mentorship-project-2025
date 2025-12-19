@@ -6,15 +6,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class NotificationMapper {
-	public Notification map(NotificationDto dto) {
-		if (dto == null) {
+	public Notification map(NotificationDto notificationDto) {
+		if (notificationDto == null) {
 			return null;
 		}
 
-		return Notification.builder().id(dto.getId()).reservationId(dto.getReservationId())
-				.customerId(dto.getCustomerId()).type(dto.getType() != null ? dto.getType() : null)
-				.status(dto.getStatus() != null ? dto.getStatus() : null).sentAt(dto.getSentAt())
-				.createdAt(dto.getCreatedAt()).build();
+		return Notification.builder().id(notificationDto.getId()).reservationId(notificationDto.getReservationId())
+				.customerId(notificationDto.getCustomerId())
+				.type(notificationDto.getType() != null ? notificationDto.getType() : null)
+				.status(notificationDto.getStatus() != null ? notificationDto.getStatus() : null)
+				.sentAt(notificationDto.getSentAt()).createdAt(notificationDto.getCreatedAt()).build();
 	}
 
 	public NotificationDto map(Notification notification) {
