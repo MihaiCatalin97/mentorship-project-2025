@@ -51,3 +51,9 @@ Security rules are not enforced yet.
   "updatedAt": "2025-11-27T09:23:51.849+00:00"
 }
 ```
+## Added Config package in tests.
+Added a config package under src/test/java for test-specific Spring configurations.
+Included a TestSecurityConfig class to provide a minimal SecurityFilterChain bean for tests, 
+disabling CSRF and allowing all requests.
+Also removed spring.autoconfigure.exclude=org.springframework.boot.autoconfigure from applications.properties 
+to ensure test configurations are applied correctly.
