@@ -48,13 +48,10 @@ public class UserRepository implements BaseRepository<User> {
 		return user;
 	}
 
-    @Override
-    public java.util.Optional<User> findById(String id) {
-        return Optional.of(
-                users.stream()
-                .filter(user -> user.getId().toString().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new UserNotFoundException(id)));
-    }
+	@Override
+	public java.util.Optional<User> findById(String id) {
+		return Optional.of(users.stream().filter(user -> user.getId().toString().equals(id)).findFirst()
+				.orElseThrow(() -> new UserNotFoundException(id)));
+	}
 
 }

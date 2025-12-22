@@ -8,8 +8,6 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,8 +26,8 @@ public class UserService implements BaseService<User> {
 		return userRepository.save(user);
 	}
 
-    @Override
-    public java.util.Optional<User> findById(String id) {
-        return userRepository.findById(id);
-    }
+	@Override
+	public java.util.Optional<User> findById(String id) {
+		return userRepository.findById(id);
+	}
 }

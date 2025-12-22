@@ -50,4 +50,14 @@ class UserRepositoryTest {
 		assertThat(savedUser.getCreatedAt()).isNotNull();
 		assertThat(savedUser.getUpdatedAt()).isNull();
 	}
+
+	@Test
+	void findById_shouldReturnUser_whenUserExists() {
+		// Given
+		UserRepository userRepository = new UserRepository(new EncryptionService());
+		User user = new User();
+		user.setId(UUID.randomUUID());
+		user.setUsername("alex");
+		user.setEmail("alex@email.com");
+	}
 }
