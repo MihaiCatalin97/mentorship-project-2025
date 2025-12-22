@@ -44,4 +44,33 @@ class UserServiceTest {
 		assertThat(input.getPasswordHash()).isEqualTo("hashed");
 		assertThat(result).isSameAs(savedUser);
 	}
+
+	@Test
+	void findById_shouldReturnUser_whenUserExists() {
+		// Given
+		User user = new User();
+		when(userRepository.findById("id")).thenReturn(java.util.Optional.of(user));
+
+		// When
+		var result = userService.findById("id");
+
+		// Then
+		assertThat(result).isPresent();
+		assertThat(result.get()).isSameAs(user);
+		verify(userRepository, times(1)).findById("id");
+	}
+
+	@Test
+	void findById_shouldReturnEmpty_whenUserDoesNotExist() {
+		// Given
+		when(userRepository.findById("missing")).thenReturn(java.util.Optional.empty());
+
+		// When
+		var result = userService.findById("missing");
+
+		// Then
+		assertThat(result).isEmpty();
+		verify(userRepository, times(1)).findById("missing");
+	}
+
 }

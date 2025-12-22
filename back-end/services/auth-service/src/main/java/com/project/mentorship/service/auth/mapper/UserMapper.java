@@ -25,9 +25,12 @@ public class UserMapper {
 		UserDto userDto = new UserDto();
 		userDto.setId(user.getId());
 		userDto.setUsername(user.getUsername());
-		userDto.setRole(UserDto.RoleEnum.fromValue(user.getRole().name()));
 		userDto.setEmail(user.getEmail());
-		userDto.setPassword(user.getPasswordHash());
+		userDto.setRole(UserDto.RoleEnum.fromValue(user.getRole().name()));
+		userDto.setCreatedAt(user.getCreatedAt());
+		userDto.setUpdatedAt(user.getUpdatedAt());
+		userDto.setPassword(null);
+
 		return userDto;
 	}
 
