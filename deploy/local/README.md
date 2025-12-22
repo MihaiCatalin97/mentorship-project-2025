@@ -24,10 +24,25 @@
   ```
   2. Deploy all services locally using Docker Compose:
     ```bash 
-    mvn install -Pdeploy-local -pl deploy
+    mvn install -Pdeploy-local -pl deploy/local
     ```
 
 ## Deployment Workflow
    1. Activate the docker profile → Maven builds all microservice images using Jib and publishes them to the local Docker environment.
    2. Activate the deploy-local profile → Maven uses Docker Compose to start all services defined in the `docker-compose.yml` file located in the `deploy/local` directory.
    3. All services will be accessible at their respective endpoints as defined in the Docker Compose configuration.
+
+## Status healthy Check
+- After deployment, you can check the health status of each service by accessing their healthcheck endpoints:
+  - Gateway: `http://localhost:9090/actuator/healthcheckendpoint`
+  - Analytics Service: `http://localhost:9091/actuator/healthcheckendpoint`
+  - Auth Service: `http://localhost:9092/actuator/healthcheckendpoint`
+  - Billing Service: `http://localhost:9093/actuator/healthcheckendpoint`
+  - Customer Service: `http://localhost:9094/actuator/healthcheckendpoint`
+  - Notification Service: `http://localhost:9095/actuator/healthcheckendpoint`
+  - Reservation Service: `http://localhost:9096/actuator/healthcheckendpoint`
+  - Vehicle Service: `http://localhost:9097/actuator/healthcheckendpoint`
+- A successful response will return:
+  ```json
+  { "status": "UP" }
+  ```
