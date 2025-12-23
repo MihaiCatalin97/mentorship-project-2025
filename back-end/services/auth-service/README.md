@@ -85,5 +85,5 @@ This endpoint retrieves the user through the service and maps it into a DTO.
 Added a config package under src/test/java for test-specific Spring configurations.
 Included a TestSecurityConfig class to provide a minimal SecurityFilterChain bean for tests, 
 disabling CSRF and allowing all requests.
-Also removed spring.autoconfigure.exclude=org.springframework.boot.autoconfigure from applications.properties 
+Also removed spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration from applications.properties 
 to ensure test configurations are applied correctly.

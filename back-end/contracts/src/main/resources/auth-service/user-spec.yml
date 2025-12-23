@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 
 paths:
-  /users:
+  /auth/users:
     post:
       summary: Create a new user
       operationId: createUser
@@ -26,7 +26,7 @@ paths:
         '400':
           description: Invalid input
 
-  /users/{uuid}:
+  /auth/users/{uuid}:
     get:
       operationId: getUserById
       summary: Fetches a user by its id.
