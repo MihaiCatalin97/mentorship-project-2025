@@ -1,10 +1,45 @@
 version: '3.8'
 services:
+  database:
+    image: postgres:16
+    container_name: database
+    environment:
+      POSTGRES_DB: ${db.name}
+      POSTGRES_USER: ${db.user}
+      POSTGRES_PASSWORD: ${db.password}
+    ports:
+      - "5433:5432"
+    volumes:
+      - database_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${db.user} -d ${db.name}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  pgadmin:
+      image: dpage/pgadmin4
+      container_name: pgadmin
+      environment:
+        PGADMIN_DEFAULT_EMAIL: ${pgadmin.email}
+        PGADMIN_DEFAULT_PASSWORD: ${pgadmin.password}
+      ports:
+        - "5050:80"
+      volumes:
+        - pgadmin_data:/var/lib/pgadmin
+      depends_on:
+        database:
+          condition: service_healthy
+
   analytics-service:
     image: analytics-service:${project.version}
     ports:
       - "8081:8081"
       - "9091:9091"
+    depends_on:
+      database:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9091/actuator/healthcheckendpoint"]
       interval: 10s
@@ -16,6 +51,9 @@ services:
     ports:
       - "8082:8082"
       - "9092:9092"
+    depends_on:
+      database:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9092/actuator/healthcheckendpoint"]
       interval: 10s
@@ -27,6 +65,9 @@ services:
     ports:
       - "8083:8083"
       - "9093:9093"
+    depends_on:
+      database:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9093/actuator/healthcheckendpoint"]
       interval: 10s
@@ -38,6 +79,9 @@ services:
     ports:
       - "8084:8084"
       - "9094:9094"
+    depends_on:
+      database:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9094/actuator/healthcheckendpoint"]
       interval: 10s
@@ -49,6 +93,9 @@ services:
     ports:
       - "8080:8080"
       - "9090:9090"
+    depends_on:
+      database:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     healthcheck:
@@ -62,6 +109,9 @@ services:
     ports:
       - "8085:8085"
       - "9095:9095"
+    depends_on:
+      database:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9095/actuator/healthcheckendpoint"]
       interval: 10s
@@ -73,6 +123,9 @@ services:
     ports:
       - "8086:8086"
       - "9096:9096"
+    depends_on:
+      database:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9096/actuator/healthcheckendpoint"]
       interval: 10s
@@ -84,8 +137,15 @@ services:
     ports:
       - "8087:8087"
       - "9097:9097"
+    depends_on:
+      database:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9097/actuator/healthcheckendpoint"]
       interval: 10s
       timeout: 2s
       retries: 5
+
+volumes:
+  database_data:
+  pgadmin_data:
