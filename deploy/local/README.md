@@ -30,7 +30,53 @@
 ## Deployment Workflow
    1. Activate the docker profile → Maven builds all microservice images using Jib and publishes them to the local Docker environment.
    2. Activate the deploy-local profile → Maven uses Docker Compose to start all services defined in the `docker-compose.yml` file located in the `deploy/local` directory.
-   3. All services will be accessible at their respective endpoints as defined in the Docker Compose configuration.
+   3. The deployment starts:
+      - All microservices
+      - PostgreSQL database
+      - pgAdmin
+   4. All services will be accessible at their respective endpoints as defined in the Docker Compose configuration.
+
+### Database & pgAdmin
+**_`Database`_** 
+  - Database name: `car_app_db`
+  - Username: `car_app_user`
+  - Password: `jvngrs`
+  - PostgreSQL container name: `database`
+
+The database container includes a healthcheck and all application services depend on it being healthy before startup.
+
+### pgAdmin Access
+
+**Option A** — *pgAdmin Web (Docker container)*
+
+> URL: *http://localhost:5050*
+
+Login credentials:
+- Email: `admin@example.com`
+- Password: `admin`
+
+***Servers > Register > Server***
+
+- Name: `JVNGRS-DB`
+- Host: `database`
+- Port: `5432`
+- Database:` car_app_db`
+- Username: `car_app_user`
+- Password: `jvngrs`
+
+**Option B** — *pgAdmin Desktop (installed locally)*
+
+> Use this option if pgAdmin is installed directly on the host machine.
+
+***Servers > Register > Server***
+
+- Name: `JVNGRS-DB`
+- Host: `localhost`
+- Port:` 5433`
+- Database: `car_app_db`
+- Username:` car_app_user`
+- Password:` jvngrs`
+
 
 ## Status healthy Check
 - After deployment, you can check the health status of each service by accessing their healthcheck endpoints:
