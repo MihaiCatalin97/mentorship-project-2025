@@ -55,8 +55,7 @@ class UserServiceTest {
 		var result = userService.findById("id");
 
 		// Then
-		assertThat(result).isPresent();
-		assertThat(result.get()).isSameAs(user);
+		assertThat(result).containsSame(user);
 		verify(userRepository, times(1)).findById("id");
 	}
 
