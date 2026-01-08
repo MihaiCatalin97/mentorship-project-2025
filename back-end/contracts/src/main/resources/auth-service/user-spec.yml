@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 
 paths:
-  /auth/users:
+  /users:
     post:
       summary: Create a new user
       operationId: createUser
@@ -25,3 +25,19 @@ paths:
                 $ref: './user-schemas.yml#/components/schemas/UserDto'
         '400':
           description: Invalid input
+
+  /users/{uuid}:
+    get:
+      operationId: getUserById
+      summary: Fetches a user by its id.
+      parameters:
+        - $ref: "../common/common-schema.yml#/components/parameters/path_uuid"
+      responses:
+        "200":
+          description: User with specified id successfully fetched.
+          content:
+            application/json:
+              schema:
+                $ref: './user-schemas.yml#/components/schemas/UserDto'
+        "404":
+          description: User not found

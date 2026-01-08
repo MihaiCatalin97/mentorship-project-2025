@@ -25,4 +25,9 @@ public class UserService implements BaseService<User> {
 		user.setPasswordHash(encryptionService.hash(user.getPasswordHash()));
 		return userRepository.save(user);
 	}
+
+	@Override
+	public java.util.Optional<User> findById(String id) {
+		return userRepository.findById(id);
+	}
 }
